@@ -5,7 +5,8 @@
 #### Implementation of Strategy, Sorting & Pruning of Queries
 #### QueryController Tier Discussion
 #### How Observer will fit into the system
-#### Making queries : factory design pattern 
+#### Making queries : factory design pattern, should we use the factory design pattern?
+#### what is executing our commands.
 ### UML Diagrams
 ### State Diagrams
 ### Sequence Diagrams
