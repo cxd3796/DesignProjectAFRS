@@ -1,11 +1,15 @@
 package com.flyboiz.afrs.Controller;
 
 import com.flyboiz.afrs.Model.FlightDatabase;
+import com.flyboiz.afrs.Model.Itinerary;
 
-public class SortByAirfare implements SortStrategy {
+import java.util.List;
 
-    private FlightDatabase flightDB;
+public class SortByAirfare implements SortStrategy
+{
+	@Override
+	public void sort(List<Itinerary> list)
+	{
 
-
-    public void sort(){}
+	}
 }
