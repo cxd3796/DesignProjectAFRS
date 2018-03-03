@@ -1,5 +1,6 @@
 package Controller;
 
-public class QueryExecutor
-{
+public class QueryExecutor {
+    private Query lastQuery;
+
 }

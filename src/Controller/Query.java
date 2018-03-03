@@ -1,5 +1,5 @@
 package Controller;
 
-public interface Query
-{
+public interface Query {
+    void generateResponse();
 }

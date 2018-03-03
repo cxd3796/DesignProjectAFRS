@@ -1,5 +1,4 @@
 package Model;
 
-public class FlightDatabase
-{
+public class FlightDatabase {
 }

@@ -1,5 +1,4 @@
 package Controller;
 
-public class QueryMaker
-{
+public class QueryMaker {
 }
