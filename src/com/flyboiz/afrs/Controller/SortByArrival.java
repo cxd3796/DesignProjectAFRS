@@ -1,6 +1,6 @@
-package Controller;
+package com.flyboiz.afrs.Controller;
 
-import Model.FlightDatabase;
+import com.flyboiz.afrs.Model.FlightDatabase;
 
 public class SortByArrival implements SortStrategy {
     private FlightDatabase flightDB;

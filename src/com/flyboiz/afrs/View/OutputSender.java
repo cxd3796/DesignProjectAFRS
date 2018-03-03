@@ -1,4 +1,4 @@
-package View;
+package com.flyboiz.afrs.View;
 
 
 /**
@@ -6,7 +6,6 @@ package View;
  */
 public class OutputSender implements Output
 {
-
     /**
      * Todo- implement
      * @param updateText - String of text that the user will see

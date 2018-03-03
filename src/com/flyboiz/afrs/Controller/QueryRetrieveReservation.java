@@ -1,14 +1,13 @@
-package Controller;
+package com.flyboiz.afrs.Controller;
 
-import Model.ReservationDatabase;
+import com.flyboiz.afrs.Model.ReservationDatabase;
 
-public class QueryDeleteReservation implements Query {
+public class QueryRetrieveReservation implements Query {
 
     private String name;
     private String origin;
     private String destination;
     private ReservationDatabase reservationDB;
-
 
     public void generateResponse(){}
 }
