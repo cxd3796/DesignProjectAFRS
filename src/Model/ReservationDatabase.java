@@ -1,5 +1,4 @@
 package Model;
 
-public class ReservationDatabase
-{
+public class ReservationDatabase {
 }
