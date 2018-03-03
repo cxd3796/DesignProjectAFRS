@@ -9,9 +9,6 @@ public class QueryRetrieveReservation implements Query {
     private String destination;
     private ReservationDatabase reservationDB;
 
-    public void generateResponse(){}
-public class QueryRetrieveReservation implements Query
-{
 	@Override
 	public String generateResponse()
 	{

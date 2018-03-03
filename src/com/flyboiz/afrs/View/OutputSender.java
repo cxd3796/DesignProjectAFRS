@@ -6,20 +6,28 @@ package com.flyboiz.afrs.View;
  */
 public class OutputSender implements Output
 {
+    // State //
+    private final InputReader reader;
+
+    // Constructor //
+    public OutputSender(InputReader ir) {
+        this.reader = ir;
+    }
+
     /**
-     * Todo- implement
      * @param updateText - String of text that the user will see
      */
     @Override
     public void update(String updateText) {
-
+        sendOutput(updateText);
+        reader.waitOnInput(); // Once the sender has sent its output, the reader should wait on new input.
     }
 
     /**
-     * Todo- implement. Can either be parameterless if using a class state or string parameter if passing value in. this function could be redundant
+     * Sends the given line of text to the console output.
      * @param updateText - String of text
      */
-    public void sendOutput(String updateText){
-
+    private void sendOutput(String updateText){
+        System.out.println(updateText); // Print the supplied string.
     }
 }

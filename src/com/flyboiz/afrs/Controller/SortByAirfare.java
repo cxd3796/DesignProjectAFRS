@@ -7,9 +7,7 @@ import java.util.List;
 
 public class SortByAirfare implements SortStrategy
 {
-	@Override
-	public void sort(List<Itinerary> list)
-	{
+	public void sort(List<Itinerary> list) {
 
 	}
 }

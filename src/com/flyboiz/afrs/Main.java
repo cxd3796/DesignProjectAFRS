@@ -1,9 +1,28 @@
+/* Authors:
+Kent Brown
+*/
+
+// Package //
 package com.flyboiz.afrs;
 
-public class Main {
+// Imports //
+
+import com.flyboiz.afrs.Controller.QueryMaker;
+import com.flyboiz.afrs.View.InputReader;
+import com.flyboiz.afrs.View.Output;
+import com.flyboiz.afrs.View.OutputSender;
+
+// Implementation //
+public class Main
+{
 
     public static void main(String[] args) {
-	// write your code here
+
+        // Instantiate controller objects. //
+        QueryMaker queryMaker = new QueryMaker();
+        InputReader reader = new InputReader(queryMaker);
+        Output output = new OutputSender(reader);
+
     }
 
 }

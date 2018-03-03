@@ -3,6 +3,7 @@ package com.flyboiz.afrs.Controller;
 import com.flyboiz.afrs.Model.FlightDatabase;
 
 public class QueryItineraryInfo implements Query {
+
     private String origin;
     private String destination;
     private int maxConnection;
@@ -10,5 +11,8 @@ public class QueryItineraryInfo implements Query {
     private FlightDatabase flightDB;
 
 
-    public void generateResponse(){}
+    public String generateResponse() {
+        return "";
+    }
+
 }

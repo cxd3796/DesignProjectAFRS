@@ -9,6 +9,7 @@ public class QueryDeleteReservation implements Query {
     private String destination;
     private ReservationDatabase reservationDB;
 
-
-    public void generateResponse(){}
+    public String generateResponse() {
+        return "";
+    }
 }
