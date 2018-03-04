@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.FlightDatabase;
+import Model.Itinerary;
 
 public class QueryItineraryInfo implements Query {
     private String origin;
@@ -10,5 +11,15 @@ public class QueryItineraryInfo implements Query {
     private FlightDatabase flightDB;
 
 
-    public void generateResponse(){}
+
+    public QueryItineraryInfo(String origin, String destination, int maxConnection, SortStrategy sortType,
+                              FlightDatabase flightDB){
+        this.origin = origin;
+        this.destination = destination;
+        this.maxConnection = maxConnection;
+        this.sortType = sortType;
+        this.flightDB = flightDB;
+    }
+
+    public String generateResponse(){return "";} //TODO
 }
