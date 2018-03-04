@@ -57,4 +57,9 @@ public class Flight
     Time getArrivalTime(){
         return arrivalTime;
     }
+
+    // Return format FlightNumber,OriginAirport,DepartureTime,DestinationAirport,ArrivalTime
+    public String toString(){
+        return String.format("%d,%s,%s,%s,%s", flightNumber, originAirport, departureTime.toString(), destinationAirport, arrivalTime.toString());
+    }
 }

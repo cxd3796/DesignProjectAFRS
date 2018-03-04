@@ -43,7 +43,7 @@ public class QueryMaker {
                         sortOrder = new SortByAirfare();
                     }
                 }
-                return new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB);
+                return new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB, airportDB);
             case "reserve":
                 int id = Integer.parseInt(fields[1]);
                 String name = fields[2];
@@ -57,7 +57,7 @@ public class QueryMaker {
                 if(fields.length>3){
                     destination = fields[3];
                 }
-                return new QueryRetrieveReservation(passenger, origin, destination, reservationDB);
+                return new QueryRetrieveReservation(passenger, origin, destination, reservationDB, airportDB);
 
             case "delete":
                 passenger = fields[1];

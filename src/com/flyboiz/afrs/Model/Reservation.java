@@ -29,4 +29,5 @@ public class Reservation {
     public String getDestination(){
         return itinerary.getDestination();
     }
+
 }
