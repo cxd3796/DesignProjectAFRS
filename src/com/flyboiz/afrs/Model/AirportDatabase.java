@@ -68,6 +68,15 @@ public class AirportDatabase
         return airport.toString();
     }
 
+    /**
+     * Checks to see if the airportCode exists
+     * @param airportCode- 3 letter string specifying the airport
+     * @return true if the airport exists, false otherwise
+     */
+    public Boolean isAirportReal(String airportCode){
+        return airports.containsKey(airportCode);
+    }
+
 
 
 

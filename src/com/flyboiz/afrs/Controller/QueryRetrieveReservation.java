@@ -25,8 +25,17 @@ public class QueryRetrieveReservation implements Query {
 
     public String generateResponse()
     {
+        // Check origin airport for validity
+        if (!airportDB.isAirportReal(origin)){
+            return "error,unknown origin";
+        }
+        // Check destination airport for validity
+        if (!airportDB.isAirportReal(destination)){
+            return "error,unknown destination";
+        }
+
+        // Create output from reservations
         List<Reservation> reservations;
-        if (airportDB.)
         if (origin.equals("")){
             reservations = reservationDB.retrieveReservations(name);
         } else {
