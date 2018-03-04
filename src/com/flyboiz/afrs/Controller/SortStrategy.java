@@ -4,7 +4,8 @@ import com.flyboiz.afrs.Model.Itinerary;
 
 import java.util.List;
 
-public interface SortStrategy
-{
+public interface SortStrategy {
+
 	public void sort(List<Itinerary> list);
+
 }
