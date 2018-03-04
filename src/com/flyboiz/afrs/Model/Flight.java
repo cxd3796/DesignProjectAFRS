@@ -33,7 +33,7 @@ public class Flight
         this.airfare = airfare;
     }
 
-    // Behaviour //
+    // Getters & Setters //
     int getFlightNumber() {
         return this.flightNumber;
     }
@@ -48,5 +48,13 @@ public class Flight
 
     String getDestination() {
         return this.destinationAirport;
+    }
+
+    Time getDepartureTime(){
+        return departureTime;
+    }
+
+    Time getArrivalTime(){
+        return arrivalTime;
     }
 }

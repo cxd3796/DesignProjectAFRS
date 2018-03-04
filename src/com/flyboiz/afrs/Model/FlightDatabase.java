@@ -7,6 +7,7 @@ package com.flyboiz.afrs.Model;
 
 // Imports //
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 // Implementation //
@@ -18,10 +19,6 @@ public class FlightDatabase {
     // Constructors //
     public FlightDatabase() {
         this.flights = new ArrayList<>();
-    }
-
-    public FlightDatabase(List<Flight> flights) {
-        this.flights = flights;
     }
 
     // Behavior //
@@ -36,10 +33,49 @@ public class FlightDatabase {
         flights.add(newFlight);
     }
 
-    public Itinerary createItinerary(List<Flight> flights)
-    {
-        Itinerary itinerary = new Itinerary(flights);
-        return itinerary;
+    public Itinerary createItinerary(List<Flight> flights) {
+        return new Itinerary(flights);
+    }
+
+    /**
+     * This method returns a list of flights with the given code as their origin
+     * @param originCode only add flights to the list if they have this as their origin
+     * @return a list of flights.
+     */
+    private List<Flight> getFlightsFromOrigin(String originCode) {
+        List<Flight> possibleFlights = new LinkedList<>();
+        for (Flight f : flights) {
+            if (f.getOrigin().equals(originCode)) {
+                possibleFlights.add(f); // add it to the returned list if it has that as the origin
+            }
+        }
+        return possibleFlights;
+    }
+
+    /**
+     * This method returns a list of flights
+     * @param destinationCode only add flights to the list if they have this as their destination
+     * @return a list of flights.
+     */
+    private List<Flight> getFlightsFromDestination(String destinationCode) {
+        List<Flight> possibleFlights = new LinkedList<>();
+        for (Flight f : flights) {
+            if (f.getOrigin().equals(destinationCode)) {
+                possibleFlights.add(f); // add it to the returned list if it has that as the origin
+            }
+        }
+        return possibleFlights;
+    }
+
+    public List<Itinerary> getPotentialItineraries(String originCode, String destinationCode, int maxConnections) {
+        // code
+        List<Itinerary> potentialItineraries = new LinkedList<>();
+
+        // bfs
+
+
+        // stub code
+        return potentialItineraries;
     }
 
     public Flight getFlightFromNumber(int flightNumber) {
