@@ -22,22 +22,12 @@ public class QueryDeleteReservation implements Query {
      * @return String that represents the result of the operation
      */
     public String generateResponse(){
-        Reservation reservation;
-        if (origin.equals("")){
-            reservation = reservationDB.retrieveReservation(name);
-        } else {
-            if (destination.equals("")){
-                reservation = reservationDB.retrieveReservation(name, origin);
-            } else {
-                reservation = reservationDB.retrieveReservation(name, origin, destination);
-            }
-        }
-        if (reservation == null) {
-            return "error,reservation not found";
+        if (reservationDB.deleteReservation(name, origin, destination)) {
+            return "delete,successful";
         }
         else{
             reservationDB.deleteReservation(name, origin, destination);
-            return "delete,successful";
+            return "error,reservation not found";
         }
     }
 }

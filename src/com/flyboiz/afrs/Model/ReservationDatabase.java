@@ -38,60 +38,65 @@ public class ReservationDatabase
 		bookReservation(itinerary, passengerName);
 	}
 
-	public void deleteReservation(String passengerName, String origin, String destination) {
+	public boolean deleteReservation(String passengerName, String origin, String destination) {
 		for (Reservation r : reservations) {
 			if(r.getPassengerName().equals(passengerName)){
 				Itinerary i = r.getItinerary();
 				if(i.getOrigin().equals(origin) && i.getDestination().equals(destination)){
 					reservations.remove(r);
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 
 	/**
-	 * Returns the reservation that first matches the passenger's name
+	 * Returns all of the reservations that matches the passenger's name
 	 * @param pName- name of the passenger
-	 * @return null or Reservation object
+	 * @return list of all reservations that match
 	 */
-	public Reservation retrieveReservation(String pName){
+	public List<Reservation> retrieveReservations(String pName){
+		ArrayList<Reservation> matchedReservations = new ArrayList<>();
 		for (Reservation r:reservations){
 			if (pName.equals(r.getPassengerName())){
-				return r;
+				matchedReservations.add(r);
 			}
 		}
-		return null;
+		return matchedReservations;
 	}
 
 	/**
-	 * Returns the reservation that first matches the passenger's name and the origin
+	 * Returns all of the reservations that matches the passenger's name and the origin
 	 * @param pName- name of the passenger
 	 * @param origin- code of the origin airport
-	 * @return null or Reservation object
+	 * @return list of all reservations that match
 	 */
-	public Reservation retrieveReservation(String pName, String origin){
+	public List<Reservation> retrieveReservations(String pName, String origin){
+		ArrayList<Reservation> matchedReservations = new ArrayList<>();
 		for (Reservation r:reservations){
 			if (pName.equals(r.getPassengerName()) && origin.equals(r.getOrigin())){
-				return r;
+				matchedReservations.add(r);
 			}
 		}
-		return null;
+		return matchedReservations;
 	}
 
 	/**
-	 * Returns the reservation that first matches the passenger's name, the origin, and destination
+	 * Returns all of the reservations that matches the passenger's name, the origin, and destination
 	 * @param pName- name of the passenger
 	 * @param origin- code of the origin airport
 	 * @param des- code of the destination airport
-	 * @return null or Reservation object
+	 * @return list of all reservations that match
 	 */
-	public Reservation retrieveReservation(String pName, String origin, String des){
+	public List<Reservation> retrieveReservations(String pName, String origin, String des){
+		ArrayList<Reservation> matchedReservations = new ArrayList<>();
 		for (Reservation r:reservations){
 			if (pName.equals(r.getPassengerName()) && origin.equals(r.getOrigin()) && des.equals(r.getDestination())){
-				return r;
+				matchedReservations.add(r);
 			}
 		}
-		return null;
+		return matchedReservations;
 	}
 
 }
