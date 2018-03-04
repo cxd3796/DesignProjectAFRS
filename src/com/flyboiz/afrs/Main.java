@@ -30,7 +30,7 @@ public class Main
         readFile.storeData();
 
         // Instantiate controller objects. //
-		    QueryExecutor queryExecutor = new QueryExecutor();
+		QueryExecutor queryExecutor = new QueryExecutor();
         QueryMaker queryMaker = new QueryMaker(queryExecutor, flightDatabase, airportDatabase, reservationDatabase);
         InputReader reader = new InputReader(queryMaker);
         Output output = new OutputSender(reader);
