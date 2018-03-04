@@ -49,11 +49,9 @@ public class Itinerary
 		String toString = getAirfare() + "," + flights.size();
 		Flight f;
 		for (int i = 0; i < flights.size(); i++) {
+			toString += ",";
 			f = flights.get(i);
 			toString += f.toString();
-			if (i < flights.size() - 1) {
-				toString += ",";
-			}
 		}
 		return toString;
 	}

@@ -121,6 +121,7 @@ public class FlightDatabase {
      */
     private void recursiveTryItinerary(List<Flight> checkFlights, String destinationCode, List<Itinerary> existingItineraries, List<Flight> currentFlights, int depth) {
         String nextOrigin = "";
+        System.out.println(checkFlights);
         for (Flight f : checkFlights) {
             nextOrigin = f.getDestination();
             currentFlights.add(f);
