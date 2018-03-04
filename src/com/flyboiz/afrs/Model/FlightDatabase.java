@@ -36,6 +36,12 @@ public class FlightDatabase {
         flights.add(newFlight);
     }
 
+    public Itinerary createItinerary(List<Flight> flights)
+    {
+        Itinerary itinerary = new Itinerary(flights);
+        return itinerary;
+    }
+
     public Flight getFlightFromNumber(int flightNumber) {
         Flight f = null;
         for (int i = 0; i < flights.size(); i++) {

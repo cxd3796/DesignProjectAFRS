@@ -24,10 +24,10 @@ public class ReservationDatabase
 		List<Flight> flightList = new ArrayList<>();
 		for(String number : flightNumbers)
 		{
-		//	flightList.add(flightDatabase.getFlight(number));
+			flightList.add(flightDatabase.getFlightFromNumber(Integer.parseInt(number)));
 		}
-		//Itinerary itinerary = flightDatabase.createItinerary(flightList);
-		//Reservation reservation = new Reservation(itinerary, passengerName);
+		Itinerary itinerary = flightDatabase.createItinerary(flightList);
+		Reservation reservation = new Reservation(itinerary, passengerName);
 	}
 
 	public void deleteReservation(String passengerName, String origin, String destination)
