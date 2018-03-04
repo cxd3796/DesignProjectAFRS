@@ -105,6 +105,7 @@ public class ReadFile
 		List<String[]> flightList = readCSV(FLIGHT_FILE);
 	 	for (String[] flightInfo : flightList)
 		{
+			flightDatabase.generateFlight(flightInfo[0],flightInfo[1], flightInfo[2], flightInfo[3], flightInfo[4], flightInfo[5]);
 			//TODO discuss creation format for flight, will need a 6 parameter method if we want to do it all at once
 		}
 
