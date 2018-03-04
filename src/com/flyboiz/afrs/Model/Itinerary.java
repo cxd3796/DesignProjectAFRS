@@ -24,4 +24,14 @@ public class Itinerary
 			this.fare = this.fare + f.getAirfare();
 		}
 	}
+
+	// Standard getter
+	public String getOrigin() {
+		return origin;
+	}
+
+	// Standard getter
+	public String getDestination() {
+		return destination;
+	}
 }

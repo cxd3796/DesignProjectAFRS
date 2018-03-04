@@ -21,10 +21,6 @@ public class FlightDatabase {
         this.flights = new ArrayList<>();
     }
 
-    public FlightDatabase(List<Flight> flights) {
-        this.flights = flights;
-    }
-
     // Behavior //
     public void generateFlight(String originAirport,
                                String destinationAirport,
