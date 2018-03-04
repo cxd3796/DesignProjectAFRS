@@ -47,7 +47,13 @@ public class Time implements Comparator {
 
     @Override
     public String toString(){
-        return null;
+        String tmp = "a";
+        int localHours = this.hours;
+        if(localHours >= 12){
+            localHours -= 12;
+            tmp = "p";
+        }
+        return localHours + ":" + minutes + tmp;
     }
 
     @Override
@@ -61,7 +67,7 @@ public class Time implements Comparator {
             // Otherwise compare hours
             return Integer.compare(((Time) o1).getHours(), ((Time) o2).getHours());
         }
-            
+
         return 0;
     }
 }

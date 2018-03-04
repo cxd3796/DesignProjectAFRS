@@ -2,21 +2,37 @@
 package com.flyboiz.afrs.View;
 
 /* Imports */
-
-import java.io.Console;
+import com.flyboiz.afrs.Controller.QueryMaker;
+import java.util.Scanner;
 
 /**
  * This class is in charge of getting the input from the user
  */
 public class InputReader
 {
+    // State //
+    private final Scanner scanner;
+    private final QueryMaker queryMaker;
+
+    // Constructor //
+    public InputReader(QueryMaker qm) {
+        this.scanner = new Scanner(System.in);
+        this.queryMaker = qm;
+    }
+
     /**
-     * Todo- implement the function. This could even a part of observable, or a loop waiting for inpu.
-     *
-     *
-     * @return
+     * Gets a line of input from the console.
+     * @return a String of input from the console.
      */
-    public String readInput(){
-        return null;
+    private String getInputLine(){
+        return scanner.nextLine();
+    }
+
+    /**
+     * Wait for a string to be entered, then send it to the QueryMaker to be parsed.
+     */
+    public void waitOnInput() {
+        String input = getInputLine();
+        queryMaker.makeQuery(input);
     }
 }
