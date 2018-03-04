@@ -1,45 +1,32 @@
+/* created by Kent Brown on 3/3/2018 */
+
+/* package */
 package com.flyboiz.afrs.Model;
 
-/**
- * designproject-flyboiz
- * Created by Trevor Lezynski on 3/3/2018.
- */
+/* imports */
+
+/* implementation */
 public class Time {
 
+    // STATE //
     private int hours;
     private int minutes;
-    private timeOfDay tod;
 
-    enum timeOfDay{
-        AM, PM
+    // CONSTRUCTOR //
+    public Time(int h, int m) {
+        this.hours = h;
+        this.minutes = m;
     }
 
-    public Time(int hours, int minutes, String timeOfDay){
-        this.hours = hours;
-        this.minutes = minutes;
-
-        if (timeOfDay.equals("p")){
-            this.tod = Time.timeOfDay.AM;
-        }
-        else if (timeOfDay.equals("a")){
-            this.tod = Time.timeOfDay.PM;
-        }
+    // GETTERS & SETTERS //
+    public int getHours() {
+        return hours;
     }
 
-    @Override
-    public String toString(){
-        String timeOfDay = "";
-
-        if (this.tod.equals(Time.timeOfDay.AM)){
-            timeOfDay = "a";
-        }
-        else if (this.tod.equals(Time.timeOfDay.PM)){
-            timeOfDay = "p";
-        }
-
-        return hours + ":" + minutes + timeOfDay;
+    public int getMinutes () {
+        return minutes;
     }
 
-
+    // BEHAVIOUR //
 
 }

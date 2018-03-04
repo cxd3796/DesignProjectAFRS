@@ -17,6 +17,6 @@ public class InputReader
      * @return
      */
     public String readInput(){
-        return System.console().getClass()
+        return null;
     }
 }

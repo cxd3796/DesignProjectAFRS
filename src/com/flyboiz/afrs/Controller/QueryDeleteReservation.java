@@ -16,5 +16,7 @@ public class QueryDeleteReservation implements Query {
         this.reservationDB = reservationDB;
     }
 
-    public String generateResponse(){return null;}
+    public String generateResponse(){
+        return null;
+    }
 }
