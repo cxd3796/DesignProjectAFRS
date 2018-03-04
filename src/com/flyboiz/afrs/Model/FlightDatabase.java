@@ -67,7 +67,7 @@ public class FlightDatabase {
         return possibleFlights;
     }
 
-    public List<Itinerary> getPotentialItineraries(String originCode, String destinationCode, int maxConnections, String sortOrder) {
+    public List<Itinerary> getPotentialItineraries(String originCode, String destinationCode, int maxConnections) {
         // code
         List<Itinerary> potentialItineraries = new LinkedList<>();
 
