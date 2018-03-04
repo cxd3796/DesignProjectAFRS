@@ -54,7 +54,7 @@ public class QueryMaker {
             case "reserve":
                 int id = Integer.parseInt(fields[1]);
                 String name = fields[2];
-                return new QueryMakeReservation(id, name, reservationDB);
+                return new QueryMakeReservation(id, name, reservationDB, queryExecutor);
 
             case "retrieve":
                 passenger = fields[1];

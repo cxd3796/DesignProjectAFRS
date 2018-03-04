@@ -31,9 +31,28 @@ public class QueryItineraryInfo implements Query {
     }
 
     public String generateResponse(){
-        if (sortType ==null){
-
+        if (!airportDB.isAirportReal(origin)){
+            return "error,unknown origin";
         }
+        if(!airportDB.isAirportReal(destination)){
+            return "error,unknown destination";
+        }
+        if (maxConnection <0 || maxConnection <2){
+            return "error,invalid connection limit";
+        }
+        if (sortType ==null){
+            return "error,invalid sort order";
+        }
+        //TODO add call to flightDB to generate list, then
+        //TODO iterate over to generate proper output string
+        return "";
+    }
 
-        return "";}
+    public Itinerary getItinerary(int index){
+        return itineraries.get(index-1);
+    }
+
+    public List<Itinerary> getItineraries() {
+        return itineraries;
+    }
 }

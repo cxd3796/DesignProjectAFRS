@@ -32,4 +32,8 @@ public class QueryExecutor
         currentQuery = query;
         currentQuery.generateResponse();
     }
+
+    public Query getLastQuery() {
+        return lastQuery;
+    }
 }
