@@ -10,5 +10,7 @@ public class QueryItineraryInfo implements Query {
     private FlightDatabase flightDB;
 
 
-    public void generateResponse(){}
+    public String generateResponse(){
+        return null;
+    }
 }
