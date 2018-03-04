@@ -34,4 +34,21 @@ public class Itinerary
 	public String getDestination() {
 		return destination;
 	}
+
+	// Standard getter
+	public int getFare(){
+		return fare;
+	}
+
+	// Returns departure time of the first flight
+	public Time getDepartureTime(){
+		Flight departureFlight = flights.get(0);
+		return departureFlight.getDepartureTime();
+	}
+
+	// Returns arrival time of the last flight.
+	public Time getArrivalTime(){
+		Flight arrivalFlight = flights.get(flights.size()-1);
+		return arrivalFlight.getArrivalTime();
+	}
 }

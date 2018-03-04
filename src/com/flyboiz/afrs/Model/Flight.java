@@ -49,4 +49,12 @@ public class Flight
     String getDestination() {
         return this.destinationAirport;
     }
+
+    Time getDepartureTime(){
+        return departureTime;
+    }
+
+    Time getArrivalTime(){
+        return arrivalTime;
+    }
 }
