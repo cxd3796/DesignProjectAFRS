@@ -14,6 +14,7 @@ public class Time {
 
     // CONSTRUCTOR //
     public Time(int h, int m) {
+        //TODO this needs to be revamped. This should take a String object and parse it, then calculate the time in military time
         this.hours = h;
         this.minutes = m;
     }
@@ -28,5 +29,14 @@ public class Time {
     }
 
     // BEHAVIOUR //
+
+    public Time calculateDifference(Time t){
+        return null;
+    }
+
+    @Override
+    public String toString(){
+        return null;
+    }
 
 }
