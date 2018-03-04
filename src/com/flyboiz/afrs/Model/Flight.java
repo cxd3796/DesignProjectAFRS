@@ -34,7 +34,19 @@ public class Flight
     }
 
     // Behaviour //
-    public int getFlightNumber() {
-        return flightNumber;
+    int getFlightNumber() {
+        return this.flightNumber;
+    }
+
+    int getAirfare() {
+        return this.airfare;
+    }
+
+    String getOrigin() {
+        return this.originAirport;
+    }
+
+    String getDestination() {
+        return this.destinationAirport;
     }
 }
