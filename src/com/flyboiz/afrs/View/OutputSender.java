@@ -6,20 +6,37 @@ package com.flyboiz.afrs.View;
  */
 public class OutputSender implements Output
 {
+    // State //
+    private final InputReader reader;
+
+    /* Note concerning the inclusion of the InputReader in this OutputSender class:
+    Given the cyclic nature of this text-based application, it is paramount that the OutputSender know about the
+    application's InputReader. The application must operate using this format because the console is only able to
+    enter data via polling. This means that no input may occur while the application is performing the query, and
+    therefore there must be a way for the output to notify the reader that operations are completed, so that polling
+    may be resumed. The application achieves this by providing the outputreader with access to the inputreader and
+    the capability to start the polling process via the waitOnInput() method.
+     */
+
+    // Constructor //
+    public OutputSender(InputReader ir) {
+        this.reader = ir;
+    }
+
     /**
-     * Todo- implement
      * @param updateText - String of text that the user will see
      */
     @Override
     public void update(String updateText) {
-
+        sendOutput(updateText);
+        reader.waitOnInput(); // Once the sender has sent its output, the reader should wait on new input.
     }
 
     /**
-     * Todo- implement. Can either be parameterless if using a class state or string parameter if passing value in. this function could be redundant
+     * Sends the given line of text to the console output.
      * @param updateText - String of text
      */
-    public void sendOutput(String updateText){
-
+    private void sendOutput(String updateText){
+        System.out.println(updateText); // Print the supplied string.
     }
 }

@@ -1,12 +1,17 @@
+/* Authors:
+Kent Brown
+*/
+
+// Package //
 package com.flyboiz.afrs.Controller;
 
+// Imports //
 import com.flyboiz.afrs.Model.Itinerary;
-import com.flyboiz.afrs.Model.Itinerary;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public interface SortStrategy
-{
+public interface SortStrategy {
+
+	// Behaviors //
 	void sort(List<Itinerary> list);
+
 }
