@@ -33,7 +33,7 @@ public class Flight
         this.airfare = airfare;
     }
 
-    // Behaviour //
+    // Getters & Setters //
     int getFlightNumber() {
         return this.flightNumber;
     }

@@ -1,8 +1,16 @@
+/* Authors
+Calvin Do
+Kent Brown
+*/
+
+/* Package */
 package com.flyboiz.afrs.Model;
 
+/* Imports */
 import java.util.ArrayList;
 import java.util.List;
 
+/* Implementation */
 public class Airport
 {
     private String airportCode;

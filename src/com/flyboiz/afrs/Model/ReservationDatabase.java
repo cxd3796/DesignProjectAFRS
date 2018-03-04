@@ -1,8 +1,16 @@
+/* Authors
+Calvin Do
+Kent Brown
+ */
+
+/* Package */
 package com.flyboiz.afrs.Model;
 
+/* Import */
 import java.util.ArrayList;
 import java.util.List;
 
+/* Implementation */
 public class ReservationDatabase
 {
 	private List<Reservation> reservations;
