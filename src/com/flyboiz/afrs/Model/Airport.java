@@ -101,7 +101,4 @@ public class Airport
         return String.format("%s,%s,%d", airportCode, getWeather(), delayTime);
     }
 
-
-
-
 }

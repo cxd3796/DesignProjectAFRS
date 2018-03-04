@@ -1,6 +1,7 @@
-package com.flyboiz.afrs.Controller;
+package Controller;
 
-import com.flyboiz.afrs.Model.FlightDatabase;
+import Model.FlightDatabase;
+import Model.Itinerary;
 
 public class QueryItineraryInfo implements Query {
     private String origin;
@@ -9,8 +10,18 @@ public class QueryItineraryInfo implements Query {
     private SortStrategy sortType;
     private FlightDatabase flightDB;
 
-
-    public String generateResponse(){
-        return null;
+  
+    public QueryItineraryInfo(String origin, String destination, int maxConnection, SortStrategy sortType,
+                              FlightDatabase flightDB){
+        this.origin = origin;
+        this.destination = destination;
+        this.maxConnection = maxConnection;
+        this.sortType = sortType;
+        this.flightDB = flightDB;
     }
+  
+    //TODO
+    public String generateResponse() {
+      return "";
+    } 
 }
