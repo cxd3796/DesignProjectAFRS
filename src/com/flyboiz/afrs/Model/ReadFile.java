@@ -17,13 +17,13 @@ public class ReadFile
 	//	 private String AIRPORT_FILE = "D:\\College\\SWEN\\SWEN 262\\DesignProject\\designproject-flyboiz\\src\\com\\flyboiz\\afrs\\Data\\airports.txt"; //You can use absolute file paths or relative
 
 	//Using relative paths here, requires setting the working directory
-	 private String CONNECTION_FILE = "..\\src\\com\\flyboiz\\afrs\\Data\\connections.txt";
-	 private String AIRPORT_FILE =    "..\\src\\com\\flyboiz\\afrs\\Data\\airports.txt";
-	 private String DELAY_FILE =      "..\\src\\com\\flyboiz\\afrs\\Data\\delays.txt";
-	 private String FLIGHT_FILE =     "..\\src\\com\\flyboiz\\afrs\\Data\\flights.txt";
-	 private String WEATHER_FILE =    "..\\src\\com\\flyboiz\\afrs\\Data\\weather.txt";
+	 private final String CONNECTION_FILE = "..\\src\\com\\flyboiz\\afrs\\Data\\connections.txt";
+	 private final String AIRPORT_FILE =    "..\\src\\com\\flyboiz\\afrs\\Data\\airports.txt";
+	 private final String DELAY_FILE =      "..\\src\\com\\flyboiz\\afrs\\Data\\delays.txt";
+	 private final String FLIGHT_FILE =     "..\\src\\com\\flyboiz\\afrs\\Data\\flights.txt";
+	 private final String WEATHER_FILE =    "..\\src\\com\\flyboiz\\afrs\\Data\\weather.txt";
 
-	 private String FILE_DELIMETER = ",";
+	 private final String FILE_DELIMETER = ",";
 
 	 BufferedReader br;
 
@@ -85,36 +85,38 @@ public class ReadFile
 	 	for (String[] airportInfo :airportList)
 		{
 			airportDatabase.generateAirport(airportInfo[0]);
-			System.out.println(airportInfo[0]);
+			//airportDatabase.storeAirportName(airportInfo[1]); //TODO uncomment this after john commits
+//			System.out.println(airportInfo[0]);
 		}
 
 		List<String[]> connectionList = readCSV(CONNECTION_FILE);
 	 	for (String[] connectionInfo : connectionList)
 		{
 			airportDatabase.storeAirportConnectionTime(connectionInfo[0],Integer.parseInt(connectionInfo[1]));
-			System.out.println(connectionInfo[0] + " " + connectionInfo [1]);
+//			System.out.println(connectionInfo[0] + " " + connectionInfo [1]);
 		}
 
 		List<String[]> delayList = readCSV(DELAY_FILE);
 	 	for(String[] delayInfo : delayList)
 		{
 			airportDatabase.storeAirportDelay(delayInfo[0], Integer.parseInt(delayInfo[1]));
-			System.out.println(delayInfo[0] + " " + delayInfo[1]);
+//			System.out.println(delayInfo[0] + " " + delayInfo[1]);
 		}
 
 		List<String[]> flightList = readCSV(FLIGHT_FILE);
 	 	for (String[] flightInfo : flightList)
 		{
-			flightDatabase.generateFlight(flightInfo[0],flightInfo[1], flightInfo[2], flightInfo[3], flightInfo[4], flightInfo[5]);
-			//TODO discuss creation format for flight, will need a 6 parameter method if we want to do it all at once
+			flightDatabase.generateFlight(flightInfo[0],flightInfo[1], new Time(flightInfo[2]), new Time(flightInfo[3]), Integer.parseInt(flightInfo[4]), Integer.parseInt(flightInfo[5]));
+//			System.out.println(flightInfo[0] + " " + flightInfo[1] + " " + flightInfo[2] + " " + flightInfo[3] + " " + flightInfo[4] + " " + flightInfo[5]);
 		}
 
 		List<String[]> weatherList = readCSV(WEATHER_FILE);
 	 	for(String[] weatherInfo : weatherList)
 		{
-			for(String weatherSnippet : weatherInfo)
+			for (int x = 1; x < weatherInfo.length ; x = x + 2)
 			{
-				//airportDatabase.storeAirportWeather(); //TODO Create weather objects and add those to the airport by weather objects into a list that can store the weathers
+				airportDatabase.storeAirportWeather(weatherInfo[0], weatherInfo[x], Integer.parseInt(weatherInfo[x+1]));
+//				System.out.println(weatherInfo[0] + " " + weatherInfo[x] + " " + weatherInfo[x+1] );
 			}
 		}
 
