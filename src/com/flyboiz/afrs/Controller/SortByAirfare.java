@@ -3,12 +3,24 @@ package com.flyboiz.afrs.Controller;
 import com.flyboiz.afrs.Model.FlightDatabase;
 import com.flyboiz.afrs.Model.Itinerary;
 
-import java.util.List;
+import java.util.*;
 
-public class SortByAirfare implements SortStrategy
-{
-	@Override
-	public void sort(List<Itinerary> list){
+public class SortByAirfare implements SortStrategy {
+
+	public void sort(List<Itinerary> itineraries){
+		int n = itineraries.size();
+		for(int i = 1; i<n; i++){
+			Itinerary key = itineraries.get(i);
+			int j = i-1;
+			while(j>= 0 && itineraries.get(j).getFare()>key.getFare()){
+				itineraries.set(j+1,itineraries.get(j));
+				j= j-1;
+			}
+			itineraries.set(j+1, key);
+		}
 
 	}
+
+
+
 }

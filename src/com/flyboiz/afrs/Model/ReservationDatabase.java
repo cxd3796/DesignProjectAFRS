@@ -38,16 +38,67 @@ public class ReservationDatabase
 		bookReservation(itinerary, passengerName);
 	}
 
-	public void deleteReservation(String passengerName, String origin, String destination) {
+	public boolean deleteReservation(String passengerName, String origin, String destination) {
 		for (Reservation r : reservations) {
 			if(r.getPassengerName().equals(passengerName)){
 				Itinerary i = r.getItinerary();
 				if(i.getOrigin().equals(origin) && i.getDestination().equals(destination)){
 					reservations.remove(r);
+					return true;
 				}
 			}
 		}
+		return false;
 	}
+
+	/**
+	 * Returns all of the reservations that matches the passenger's name
+	 * @param pName- name of the passenger
+	 * @return list of all reservations that match
+	 */
+	public List<Reservation> retrieveReservations(String pName){
+		ArrayList<Reservation> matchedReservations = new ArrayList<>();
+		for (Reservation r:reservations){
+			if (pName.equals(r.getPassengerName())){
+				matchedReservations.add(r);
+			}
+		}
+		return matchedReservations;
+	}
+
+	/**
+	 * Returns all of the reservations that matches the passenger's name and the origin
+	 * @param pName- name of the passenger
+	 * @param origin- code of the origin airport
+	 * @return list of all reservations that match
+	 */
+	public List<Reservation> retrieveReservations(String pName, String origin){
+		ArrayList<Reservation> matchedReservations = new ArrayList<>();
+		for (Reservation r:reservations){
+			if (pName.equals(r.getPassengerName()) && origin.equals(r.getOrigin())){
+				matchedReservations.add(r);
+			}
+		}
+		return matchedReservations;
+	}
+
+	/**
+	 * Returns all of the reservations that matches the passenger's name, the origin, and destination
+	 * @param pName- name of the passenger
+	 * @param origin- code of the origin airport
+	 * @param des- code of the destination airport
+	 * @return list of all reservations that match
+	 */
+	public List<Reservation> retrieveReservations(String pName, String origin, String des){
+		ArrayList<Reservation> matchedReservations = new ArrayList<>();
+		for (Reservation r:reservations){
+			if (pName.equals(r.getPassengerName()) && origin.equals(r.getOrigin()) && des.equals(r.getDestination())){
+				matchedReservations.add(r);
+			}
+		}
+		return matchedReservations;
+	}
+
 
 
 }
