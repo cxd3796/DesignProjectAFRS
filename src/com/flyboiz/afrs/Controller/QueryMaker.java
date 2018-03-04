@@ -36,11 +36,18 @@ public class QueryMaker {
                     connection = Integer.parseInt(fields[3]);
                 }
                 if(fields.length == 5){
-                    if (fields[4].equals("arrival")){
+                    String sort = fields[4];
+                    if (sort.equals("arrival")){
                         sortOrder = new SortByArrival();
                     }
-                    else if (fields[4].equals("airfare")){
+                    else if(sort.equals("departure")){
+                        sortOrder = new SortByDeparture();
+                    }
+                    else if (sort.equals("airfare")){
                         sortOrder = new SortByAirfare();
+                    }
+                    else if (!sort.equals("")){   //if invalid sort is inputted, null is passed in
+                        sortOrder = null;
                     }
                 }
                 return new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB, airportDB);
