@@ -5,10 +5,8 @@ package com.flyboiz.afrs.Model;
 
 /* imports */
 
-import java.util.Comparator;
-
 /* implementation */
-public class Time implements Comparator {
+public class Time implements Comparable {
 
     // STATE //
     private int hours;
@@ -56,18 +54,19 @@ public class Time implements Comparator {
         return localHours + ":" + minutes + tmp;
     }
 
+
     @Override
-    public int compare(Object o1, Object o2) {
-        // Make sure they are Time objects
-        if(o1 instanceof Time && o2 instanceof Time){
+    public int compareTo(Object o) {
+        // Make sure it is a Time object
+        if(o instanceof Time){
             // If it's in the same hour, compare minutes
-            if(((Time) o1).getHours() == ((Time) o2).getHours()){
-                return Integer.compare(((Time) o1).getMinutes(), ((Time) o2).getMinutes());
+            if(this.hours == ((Time) o).getHours()){
+                return Integer.compare(getMinutes(), ((Time) o).getMinutes());
             }
             // Otherwise compare hours
-            return Integer.compare(((Time) o1).getHours(), ((Time) o2).getHours());
+            return Integer.compare(getHours(), ((Time) o).getHours());
         }
-
         return 0;
     }
+    
 }
