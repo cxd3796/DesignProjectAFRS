@@ -13,10 +13,19 @@ public class Time {
     private int minutes;
 
     // CONSTRUCTOR //
-    public Time(int h, int m) {
-        //TODO this needs to be revamped. This should take a String object and parse it, then calculate the time in military time
-        this.hours = h;
-        this.minutes = m;
+    // Pre-condition : s is of the form "H:MM(char)" or "HH:MM(char)"
+    public Time(String s) {
+        String[] initialSplit = s.split(":");
+
+        this.hours = Integer.parseInt(initialSplit[0]);
+
+        if(initialSplit[1].contains("p")){
+            this.hours += 12;
+        }
+
+        String tmp = initialSplit[1].substring(0, 2);
+
+        this.minutes = Integer.parseInt(tmp);
     }
 
     // GETTERS & SETTERS //
