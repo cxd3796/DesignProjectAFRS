@@ -82,7 +82,7 @@ public class FlightDatabase {
         Flight f = null;
         for (int i = 0; i < flights.size(); i++) {
             f = flights.get(i);
-            if (f.getFlightNumber() == i) {
+            if (f.getFlightNumber() == flightNumber) {
                 return f;
             }
         }

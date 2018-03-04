@@ -19,6 +19,7 @@ public class ReservationDatabase
 	// Constructor
 	public ReservationDatabase(FlightDatabase flightDatabase)
 	{
+		this.reservations = new ArrayList<>();
 		this.flightDatabase = flightDatabase;
 	}
 

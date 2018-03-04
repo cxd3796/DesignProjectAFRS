@@ -17,11 +17,12 @@ public class ReadFile
 	//	 private String AIRPORT_FILE = "D:\\College\\SWEN\\SWEN 262\\DesignProject\\designproject-flyboiz\\src\\com\\flyboiz\\afrs\\Data\\airports.txt"; //You can use absolute file paths or relative
 
 	//Using relative paths here, requires setting the working directory
-	 private final String CONNECTION_FILE = "..\\src\\com\\flyboiz\\afrs\\Data\\connections.txt";
-	 private final String AIRPORT_FILE =    "..\\src\\com\\flyboiz\\afrs\\Data\\airports.txt";
-	 private final String DELAY_FILE =      "..\\src\\com\\flyboiz\\afrs\\Data\\delays.txt";
-	 private final String FLIGHT_FILE =     "..\\src\\com\\flyboiz\\afrs\\Data\\flights.txt";
-	 private final String WEATHER_FILE =    "..\\src\\com\\flyboiz\\afrs\\Data\\weather.txt";
+	 private final String CONNECTION_FILE =  "..\\src\\com\\flyboiz\\afrs\\Data\\connections.txt";
+	 private final String AIRPORT_FILE =     "..\\src\\com\\flyboiz\\afrs\\Data\\airports.txt";
+	 private final String DELAY_FILE =       "..\\src\\com\\flyboiz\\afrs\\Data\\delays.txt";
+	 private final String FLIGHT_FILE =      "..\\src\\com\\flyboiz\\afrs\\Data\\flights.txt";
+	 private final String WEATHER_FILE =     "..\\src\\com\\flyboiz\\afrs\\Data\\weather.txt";
+	 private final String RESERVATION_FILE = "..\\src\\com\\flyboiz\\afrs\\Data\\reservations.txt";
 
 	 private final String FILE_DELIMETER = ",";
 
@@ -85,7 +86,7 @@ public class ReadFile
 	 	for (String[] airportInfo :airportList)
 		{
 			airportDatabase.generateAirport(airportInfo[0]);
-			//airportDatabase.storeAirportName(airportInfo[1]); //TODO uncomment this after john commits
+//			airportDatabase.storeAirportName(airportInfo[1]); //TODO uncomment this after john commits
 //			System.out.println(airportInfo[0]);
 		}
 
@@ -118,6 +119,17 @@ public class ReadFile
 				airportDatabase.storeAirportWeather(weatherInfo[0], weatherInfo[x], Integer.parseInt(weatherInfo[x+1]));
 //				System.out.println(weatherInfo[0] + " " + weatherInfo[x] + " " + weatherInfo[x+1] );
 			}
+		}
+
+		List<String[]> reservationList = readCSV(RESERVATION_FILE);
+	 	for(String[] reservationInfo : reservationList)
+		{
+			List<String> flightNumbers = new ArrayList<>();
+			for(int x = 1; x < reservationInfo.length; x++)
+			{
+				flightNumbers.add(reservationInfo[x]);
+			}
+			reservationDatabase.storeReservation(reservationInfo[0],flightNumbers);
 		}
 
 	 }
