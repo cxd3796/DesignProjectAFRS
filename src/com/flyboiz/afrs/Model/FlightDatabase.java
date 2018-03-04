@@ -20,10 +20,6 @@ public class FlightDatabase {
         this.flights = new ArrayList<>();
     }
 
-    public FlightDatabase(List<Flight> flights) {
-        this.flights = flights;
-    }
-
     // Behavior //
     public void generateFlight(String originAirport,
                                String destinationAirport,
@@ -36,8 +32,7 @@ public class FlightDatabase {
         flights.add(newFlight);
     }
 
-    public Itinerary createItinerary(List<Flight> flights)
-    {
+    public Itinerary createItinerary(List<Flight> flights) {
         Itinerary itinerary = new Itinerary(flights);
         return itinerary;
     }
