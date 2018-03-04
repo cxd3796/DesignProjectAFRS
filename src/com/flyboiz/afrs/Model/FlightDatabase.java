@@ -9,6 +9,7 @@ package com.flyboiz.afrs.Model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 // Implementation //
 public class FlightDatabase {
@@ -57,7 +58,7 @@ public class FlightDatabase {
      * @param destinationCode only add flights to the list if they have this as their destination
      * @return a list of flights.
      */
-    private List<Flight> getFlightsFromDestination(String destinationCode) {
+    private List<Flight> getFlightsToDestination(String destinationCode) {
         List<Flight> possibleFlights = new LinkedList<>();
         for (Flight f : flights) {
             if (f.getOrigin().equals(destinationCode)) {
@@ -67,18 +68,31 @@ public class FlightDatabase {
         return possibleFlights;
     }
 
-    public List<Itinerary> getPotentialItineraries(String originCode, String destinationCode, int maxConnections, String sortOrder) {
+    /**
+     * Gets a potential list of itineraries which satisfy the parameters
+     * @param originCode the origin airport of the itinerary
+     * @param destinationCode the destination airport for the itinerary
+     * @param maxConnections the maximum number of connections
+     * @return the list of itineraries
+     */
+    public List<Itinerary> getPotentialItineraries(String originCode, String destinationCode, int maxConnections) {
         // code
         List<Itinerary> potentialItineraries = new LinkedList<>();
 
-        // bfs
+        // sanity check, can't have fewer than 0 connecting flights, nor more than 2 (2 is default)
+        if (maxConnections < 0 || maxConnections > 2) {
+            maxConnections = 2;
+        }
 
+        // dfs
+        recursiveTryItinerary(getFlightsFromOrigin(originCode), destinationCode, potentialItineraries, new LinkedList<Flight>(), maxConnections);
 
         // stub code
         return potentialItineraries;
     }
 
-    public Flight getFlightFromNumber(int flightNumber) {
+    // A private method to get a flight whose flightNumber matches the provided parameter
+    Flight getFlightFromNumber(int flightNumber) {
         Flight f = null;
         for (int i = 0; i < flights.size(); i++) {
             f = flights.get(i);
@@ -88,4 +102,36 @@ public class FlightDatabase {
         }
         return f;
     }
+
+    // A private method to copy all the flights from one list into a new, separate list
+    // This is required in order to ensure that the flights in the itinerary are not modified by reference
+    private List<Flight> copyFlights(List<Flight> flights) {
+        List<Flight> newList = new LinkedList<>();
+        newList.addAll(flights);
+        return newList;
+    }
+
+    /**
+     * Recursive function to build lists of itineraries.
+     * @param checkFlights the list of flights to check on this level of recursion
+     * @param destinationCode the final destination
+     * @param existingItineraries the current set of existing itineraries
+     * @param currentFlights the current set of flights for this level of recursion
+     * @param depth the current depth
+     */
+    private void recursiveTryItinerary(List<Flight> checkFlights, String destinationCode, List<Itinerary> existingItineraries, List<Flight> currentFlights, int depth) {
+        String nextOrigin = "";
+        for (Flight f : checkFlights) {
+            nextOrigin = f.getDestination();
+            currentFlights.add(f);
+            if (f.getDestination().equals(destinationCode)) {
+                // add a newly created itinerary whose flights are a copy of the current set of flights.
+                existingItineraries.add(createItinerary(copyFlights(currentFlights)));
+            } else if (depth > 0) {
+                recursiveTryItinerary(getFlightsFromOrigin(nextOrigin), destinationCode, existingItineraries, currentFlights,depth - 1);
+            }
+            currentFlights.remove(f);
+        }
+    }
+
 }
