@@ -1,7 +1,6 @@
-package Controller;
+package com.flyboiz.afrs.Controller;
 
-import Model.FlightDatabase;
-import Model.Itinerary;
+import com.flyboiz.afrs.Model.FlightDatabase;
 
 public class QueryItineraryInfo implements Query {
     private String origin;

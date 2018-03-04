@@ -1,6 +1,7 @@
 package com.flyboiz.afrs.Controller;
 
-import Model.ReservationDatabase;
+
+import com.flyboiz.afrs.Model.ReservationDatabase;
 
 public class QueryMakeReservation implements Query {
 	private int id;
