@@ -1,6 +1,7 @@
-package Controller;
+package com.flyboiz.afrs.Controller;
 
-import Model.Itinerary;
+import com.flyboiz.afrs.Model.FlightDatabase;
+import com.flyboiz.afrs.Model.Itinerary;
 
 import java.util.List;
 

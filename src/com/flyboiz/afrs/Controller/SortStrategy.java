@@ -1,4 +1,4 @@
-package Controller;
+package com.flyboiz.afrs.Controller;
 
 import Model.Itinerary;
 

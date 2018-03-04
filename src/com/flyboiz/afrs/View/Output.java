@@ -1,4 +1,4 @@
-package View;
+package com.flyboiz.afrs.View;
 
 public interface Output
 {
