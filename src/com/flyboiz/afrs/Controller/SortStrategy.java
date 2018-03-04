@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface SortStrategy
 {
-	List<Itinerary> sort(List<Itinerary> list);
+	void sort(List<Itinerary> list);
 }
