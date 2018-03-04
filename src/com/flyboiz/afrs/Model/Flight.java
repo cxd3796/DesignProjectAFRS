@@ -49,4 +49,13 @@ public class Flight
     String getDestination() {
         return this.destinationAirport;
     }
+
+    @Override
+    public String toString() {
+        return flightNumber       + "," +
+               originAirport      + "," +
+               departureTime      + "," +
+               destinationAirport + "," +
+               arrivalTime        ;
+    }
 }

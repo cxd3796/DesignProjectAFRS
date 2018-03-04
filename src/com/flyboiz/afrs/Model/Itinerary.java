@@ -8,7 +8,7 @@ public class Itinerary
 	private String origin;
 	private String destination;
 	private int time;
-	private int fare;
+	private int fare = -1;
 
 
 	public Itinerary (List<Flight> flights) {
@@ -34,4 +34,28 @@ public class Itinerary
 	public String getDestination() {
 		return destination;
 	}
+
+	// Standard getter for airfare
+	public int getAirfare() {
+		if (fare == -1) {
+			calculateAirfare();
+		}
+		return fare;
+	}
+
+	// get the flights as strings
+	@Override
+	public String toString() {
+		String toString = getAirfare() + "," + flights.size();
+		Flight f;
+		for (int i = 0; i < flights.size(); i++) {
+			f = flights.get(i);
+			toString += f.toString();
+			if (i < flights.size() - 1) {
+				toString += ",";
+			}
+		}
+		return toString;
+	}
+
 }

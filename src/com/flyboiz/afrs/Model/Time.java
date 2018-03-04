@@ -28,5 +28,21 @@ public class Time {
     }
 
     // BEHAVIOUR //
+    @Override
+    public String toString() {
+        int convertedHours = getHours();
+        String timeSuffix;
+        if (convertedHours > 12) {
+            convertedHours -= 12;
+            timeSuffix = "p";
+        } else {
+            timeSuffix = "a";
+        }
+        int minutes = getMinutes();
+        return Integer.toString(convertedHours) +
+                ":"                             +
+                Integer.toString(minutes)       +
+                timeSuffix                      ;
+    }
 
 }
