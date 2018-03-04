@@ -12,8 +12,12 @@ public class QueryAirportInfo implements Query {
         this.airportDB = airportDB;
     }
 
-
+    /**
+     * Gets a String representation of the airport
+     *
+     * @return String airportCode,weather,temperature,delay in string format
+     */
     public String generateResponse() {
-        return null;
+        return airportDB.getAirportInfo(airport);
     }
 }

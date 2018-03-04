@@ -53,6 +53,11 @@ public class AirportDatabase
         airport.storeAirportWeather(condition, temperature);
     }
 
+    public String getAirportInfo(String airportCode){
+        Airport airport = airports.get(airportCode);
+        return airport.toString();
+    }
+
 
 
 
