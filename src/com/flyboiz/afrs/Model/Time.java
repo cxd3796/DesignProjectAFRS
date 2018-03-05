@@ -79,12 +79,15 @@ public class Time implements Comparable {
     @Override
     public String toString(){
         String tmp = "a";
+        String min = Integer.toString(getMinutes());
         int localHours = this.hours;
         if(localHours >= 12){
             localHours -= 12;
             tmp = "p";
+        } if (getMinutes() < 10) {
+            min = "0" + min;
         }
-        return localHours + ":" + minutes + tmp;
+        return localHours + ":" + min + tmp;
     }
 
 
