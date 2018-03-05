@@ -14,9 +14,7 @@ public class ReadFile
 	 private ReservationDatabase reservationDatabase;
 
 
-	//	 private String AIRPORT_FILE = "D:\\College\\SWEN\\SWEN 262\\DesignProject\\designproject-flyboiz\\src\\com\\flyboiz\\afrs\\Data\\airports.txt"; //You can use absolute file paths or relative
-
-	//Using relative paths here, requires setting the working directory
+	 //Using relative paths here, requires setting the working directory
 	 private final String CONNECTION_FILE =  "..\\src\\com\\flyboiz\\afrs\\Data\\connections.txt";
 	 private final String AIRPORT_FILE =     "..\\src\\com\\flyboiz\\afrs\\Data\\airports.txt";
 	 private final String DELAY_FILE =       "..\\src\\com\\flyboiz\\afrs\\Data\\delays.txt";
