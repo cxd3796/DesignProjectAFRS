@@ -4,8 +4,6 @@ import com.flyboiz.afrs.View.OutputSender;
 
 public class QueryExecutor
 {
-
-    private Query lastQuery;
     private Query currentQuery;
     private OutputSender outputSender;
     private QueryMaker queryMaker;
@@ -14,7 +12,6 @@ public class QueryExecutor
      * Constructor for the QueryExecutor object. When created, this object doesn't have any Query objects attached to it.
      */
     public QueryExecutor(OutputSender outputSender, QueryMaker queryMaker){
-        lastQuery = null;
         currentQuery = null;
         this.outputSender = outputSender;
         this.queryMaker = queryMaker;
@@ -45,7 +42,4 @@ public class QueryExecutor
         setCurrentQuery(query);
     }
 
-    public Query getLastQuery() {
-        return lastQuery;
-    }
 }

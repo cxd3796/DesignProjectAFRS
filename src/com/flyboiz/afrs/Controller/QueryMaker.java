@@ -6,29 +6,29 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 
 
 public class QueryMaker {
-    private String query;
-    private QueryExecutor queryExecutor;
+    private Query lastQuery;
     private FlightDatabase flightDB;
     private AirportDatabase airportDB;
     private ReservationDatabase reservationDB;
 
-    public QueryMaker(QueryExecutor queryExecutor, FlightDatabase flightDB, AirportDatabase airportDB,
+    public QueryMaker(FlightDatabase flightDB, AirportDatabase airportDB,
                       ReservationDatabase reservationDB){
-        this.queryExecutor = queryExecutor;
         this.flightDB = flightDB;
         this.airportDB = airportDB;
         this.reservationDB = reservationDB;
+        this.lastQuery = null;
     }
 
     public Query makeQuery(String input){
         String[] fields = input.split(",");
         String origin = "";
-        String passenger ="";
-        String destination ="";
+        String passenger = "";
+        String destination = "";
+        Query query = null;
         switch (fields[0]){
             case "info":
                 if(fields.length<3 || fields.length >5 ){ //missing or extra required params
-                    return null;
+                    query = null;
                 }
                 origin = fields[1];
                 destination = fields[2];
@@ -53,14 +53,14 @@ public class QueryMaker {
                     }
                 }
 
-                return new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB, airportDB);
+                query = new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB, airportDB);
             case "reserve":
                 if(fields.length != 3){
                     return null;
                 }
                 int id = Integer.parseInt(fields[1]);
                 String name = fields[2];
-                return new QueryMakeReservation(id, name, reservationDB, queryExecutor);
+                return new QueryMakeReservation(id, name, reservationDB, lastQuery);
 
             case "retrieve":
                 if(fields.length<2 || fields.length> 4){
@@ -89,8 +89,8 @@ public class QueryMaker {
                     return null;
                 }
                 String airport = fields[1];
-                return new QueryAirportInfo(airport, airportDB);
+                query = new QueryAirportInfo(airport, airportDB);
         }
-        return null;
+        return query;
     }
 }
