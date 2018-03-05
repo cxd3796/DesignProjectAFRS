@@ -16,10 +16,15 @@ public class FlightDatabase {
 
     // State //
     private List<Flight> flights;
+    private AirportDatabase adb;
+
+    private final int MAX_CONNECTIONS = 2;
+    private final int DEFAULT_CONNECTIONS = 2;
 
     // Constructors //
-    public FlightDatabase() {
+    public FlightDatabase(AirportDatabase adb) {
         this.flights = new ArrayList<>();
+        this.adb = adb;
     }
 
     // Behavior //
@@ -80,16 +85,15 @@ public class FlightDatabase {
         List<Flight> flightsToCheck = getFlightsFromOrigin(originCode);
         List<Itinerary> potentialItineraries = new LinkedList<>();
         List<String> visitedAirports = new LinkedList<>();
-        visitedAirports.add(originCode);
         List<Flight> currentFlights = new LinkedList<>();
 
         // sanity check, can't have fewer than 0 connecting flights, nor more than 2 (2 is default)
-        if (maxConnections < 0 || maxConnections > 2) {
-            maxConnections = 2;
+        if (maxConnections < 0 || maxConnections > MAX_CONNECTIONS) {
+            maxConnections = DEFAULT_CONNECTIONS;
         }
 
         // dfs
-        recursiveTryItinerary(flightsToCheck, destinationCode, potentialItineraries, visitedAirports, currentFlights, maxConnections);
+        recursiveTryItinerary(destinationCode, maxConnections, null, flightsToCheck, potentialItineraries, visitedAirports, currentFlights);
 
         // stub code
         return potentialItineraries;
@@ -100,7 +104,7 @@ public class FlightDatabase {
         Flight f = null;
         for (int i = 0; i < flights.size(); i++) {
             f = flights.get(i);
-            if (f.getFlightNumber() == i) {
+            if (f.getFlightNumber() == flightNumber) {
                 return f;
             }
         }
@@ -123,22 +127,55 @@ public class FlightDatabase {
      * @param currentFlights the current set of flights for this level of recursion
      * @param depth the current depth
      */
-    private void recursiveTryItinerary(List<Flight> checkFlights, String destinationCode, List<Itinerary> existingItineraries, List<String> visitedAirports, List<Flight> currentFlights, int depth) {
+    private void recursiveTryItinerary(String destinationCode, int depth, Time arrivalTime, List<Flight> checkFlights, List<Itinerary> existingItineraries, List<String> visitedAirports, List<Flight> currentFlights) {
+
+        // this method does nothing if there are no flights so
+        if (checkFlights.size() == 0) { return; }
+
         String nextOrigin = "";
+        String currentOrigin = checkFlights.get(0).getOrigin();
+        boolean recurse;
+        int layoverTime = -1;
+        visitedAirports.add(currentOrigin);
         for (Flight f : checkFlights) {
-            System.out.println("depth " + depth + ", vc: " + visitedAirports + ", flights: " + checkFlights + ", cf: " + currentFlights + ", et: " + existingItineraries);
+
+            // get a reference to the current departure time
+            Time depTime = f.getDepartureTime();
+
+            if (arrivalTime != null) {
+                layoverTime = adb.getLayoverTime(f.getOrigin());
+            }
+
+            if (currentFlights.size() == 0 || layoverTime == -1) {
+                recurse = true;
+            } else if (arrivalTime.stillBefore(depTime, layoverTime)) {
+                //System.out.println(arrivalTime + " + (" + layoverTime + ") -> " + depTime);
+                recurse = true;
+            } else {
+                //System.out.println("immediate boolean");
+                recurse = false;
+            }
+
+            // print debug, and add f to all the guacamole
+            //System.out.println("depth " + depth + ", vc: " + visitedAirports + ", flights: " + checkFlights + ", cf: " + currentFlights);
             nextOrigin = f.getDestination();
             currentFlights.add(f);
+
+            // determine whether to recurse or
             if (f.getDestination().equals(destinationCode)) {
                 // add a newly created itinerary whose flights are a copy of the current set of flights.
-                existingItineraries.add(createItinerary(copyFlights(currentFlights)));
-            } else if (depth > 0 && !(visitedAirports.contains(nextOrigin))) {
-                visitedAirports.add(nextOrigin);
-                recursiveTryItinerary(getFlightsFromOrigin(nextOrigin), destinationCode, existingItineraries, visitedAirports, currentFlights,depth - 1);
+                if (((arrivalTime != null) && arrivalTime.stillBefore(depTime, layoverTime)) || layoverTime == -1) {
+                    existingItineraries.add(createItinerary(copyFlights(currentFlights)));
+                }
+                //System.out.println("et: " + existingItineraries);
+            } else if (depth > 0 && !(visitedAirports.contains(nextOrigin)) && recurse) {
+                recursiveTryItinerary(destinationCode, depth - 1, f.getDepartureTime(), getFlightsFromOrigin(nextOrigin), existingItineraries, visitedAirports, currentFlights);
             }
-            visitedAirports.remove(nextOrigin);
+
+            // remove f from all the guacamole
             currentFlights.remove(f);
         }
+        visitedAirports.remove(currentOrigin);
     }
 
 }

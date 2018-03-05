@@ -5,6 +5,7 @@ package com.flyboiz.afrs.Testing;
 
 /* imports */
 
+import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.FlightDatabase;
 import com.flyboiz.afrs.Model.Itinerary;
 import com.flyboiz.afrs.Model.Time;
@@ -18,6 +19,9 @@ public class TestItineraryGeneration {
     private static final String AIRPORT1 = "ABC";
     private static final String AIRPORT2 = "DEF";
     private static final String AIRPORT3 = "GHI";
+
+    private static final int CONNECTION_TIME = 15;
+    private static final int DELAY_TIME = 0;
 
     private static final Time TIME1 = new Time(10,0);
     private static final Time TIME2 = new Time( 10, 30);
@@ -36,11 +40,22 @@ public class TestItineraryGeneration {
     public static void main(String args[]) {
 
         // create and populate test database
-        FlightDatabase CuT = new FlightDatabase();
+        AirportDatabase additional = new AirportDatabase();
+        FlightDatabase CuT = new FlightDatabase(additional);
         CuT.generateFlight(AIRPORT1, AIRPORT2, TIME1, TIME2, 1, AIRFARE);
         CuT.generateFlight(AIRPORT2, AIRPORT3, TIME3, TIME4, 2, AIRFARE);
         CuT.generateFlight(AIRPORT2, AIRPORT1, TIME3, TIME4, 3, AIRFARE);
         CuT.generateFlight(AIRPORT1, AIRPORT3, TIME5, TIME6, 4, AIRFARE);
+        CuT.generateFlight(AIRPORT1, AIRPORT2, TIME5, TIME6, 5, AIRFARE);
+        additional.generateAirport(AIRPORT1);
+        additional.generateAirport(AIRPORT2);
+        additional.generateAirport(AIRPORT3);
+        additional.storeAirportConnectionTime(AIRPORT1, CONNECTION_TIME);
+        additional.storeAirportConnectionTime(AIRPORT2, CONNECTION_TIME);
+        additional.storeAirportConnectionTime(AIRPORT3, CONNECTION_TIME);
+        additional.storeAirportDelay(AIRPORT1, DELAY_TIME);
+        additional.storeAirportDelay(AIRPORT2, DELAY_TIME);
+        additional.storeAirportDelay(AIRPORT3, DELAY_TIME);
 
         // run it
         List<Itinerary> result = CuT.getPotentialItineraries(AIRPORT1, AIRPORT3, 2);

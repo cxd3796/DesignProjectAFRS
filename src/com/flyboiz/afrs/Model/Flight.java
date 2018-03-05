@@ -50,6 +50,10 @@ public class Flight
         return this.destinationAirport;
     }
 
+    Time getDepartureTime() {
+        return departureTime;
+    }
+
     @Override
     public String toString() {
         return flightNumber       + "," +
