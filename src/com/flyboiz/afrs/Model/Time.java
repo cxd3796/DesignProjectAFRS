@@ -5,6 +5,8 @@ package com.flyboiz.afrs.Model;
 
 /* imports */
 
+import javax.rmi.CORBA.Tie;
+
 /* implementation */
 public class Time implements Comparable {
 
@@ -28,6 +30,11 @@ public class Time implements Comparable {
         this.minutes = Integer.parseInt(tmp);
     }
 
+    public Time (int hrs, int mins) {
+        this.hours = hrs;
+        this.minutes = mins;
+    }
+
     // GETTERS & SETTERS //
     public int getHours() {
         return hours;
@@ -38,6 +45,32 @@ public class Time implements Comparable {
     }
 
     // BEHAVIOUR //
+
+    // method returns true if this time occurs before parameter time
+    public boolean occursBefore(Time t) {
+        if (getHours() < t.getHours()) {
+            return true;
+        } else if (getHours() > t.getHours()) {
+            return false;
+        } else {
+            return (getMinutes() < t.getMinutes());
+        }
+    }
+
+    // method returns true if this time still occurs before time T, even when additional minutes are added
+    public boolean stillBefore(Time t, int additionalMinutes) {
+        int addHours = additionalMinutes / 60;
+        int addMinutes = additionalMinutes % 60;
+        Time newTime = new Time(getHours() + addHours, getMinutes() + addMinutes);
+        return newTime.occursBefore(t);
+    }
+
+    // method to determine the number of minutes that must pass until this time reaches parameter time
+    public int totalMinutesUntil(Time t) {
+        int hrs = t.getHours() - getHours();
+        int mins = t.getMinutes() - getMinutes();
+        return (hrs * 60) + mins;
+    }
 
     public Time calculateDifference(Time t){
         return null;

@@ -22,8 +22,8 @@ public class Main
 {
     public static void main(String[] args) {
     	//Instantiate Databases and store data
-        FlightDatabase flightDatabase = new FlightDatabase();
         AirportDatabase airportDatabase = new AirportDatabase();
+        FlightDatabase flightDatabase = new FlightDatabase(airportDatabase);
         ReservationDatabase reservationDatabase = new ReservationDatabase(flightDatabase);
         ReadFile readFile = new ReadFile(flightDatabase,airportDatabase,reservationDatabase);
 
