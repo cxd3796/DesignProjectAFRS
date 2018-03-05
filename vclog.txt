@@ -1,0 +1,841 @@
+commit fb0a7ed4ab869aef31ab692dd65ef97d55092ed8
+Merge: c0bc707 4dd1c56
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Mon Mar 5 00:28:23 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+
+commit c0bc707a71a527083ccb51fa2c879defdb191955
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Mon Mar 5 00:27:02 2018 -0500
+
+    change to Time to add a leading 0 to single digit minutes
+
+commit 4dd1c562da5a767b05994425c33b5c040c1c052d
+Merge: 75cc02c 24af2cf
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 23:36:49 2018 -0500
+
+    Merge pull request #7 from BobbySwen262/testing
+    
+    Testing
+
+commit 24af2cf4d924fea8cdba310f0622cf1bab50b384
+Merge: 7805daf 75cc02c
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 23:32:22 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into testing
+    
+    # Conflicts:
+    #       src/com/flyboiz/afrs/Model/Itinerary.java
+
+commit 7805dafa1eeba0b607f9eaecb04c1c362b793a02
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 23:30:51 2018 -0500
+
+    Fixing Reservation reading/writing
+
+commit 75cc02cf684c1d5f8893f9d38d6c10c01ce1adc3
+Merge: 121a176 42b8755
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 23:26:53 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+
+commit 121a176bc2dba4187c6826e8601a3116906fe189
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 23:26:42 2018 -0500
+
+    Kent Brown:
+    - fixed semantic error in QueryItineraryInfo that prevented the connection limit being less than 2
+
+commit 42b875534cdc80dc523c640a342a5bd370758c56
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 23:12:26 2018 -0500
+
+    Fixed some formatting
+
+commit 01c86095b9ad69275dfd99995901c02da7886c7b
+Merge: cf8ed23 437adfd
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 22:26:36 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into testing
+
+commit cf8ed23250194dd8bb67b206193fede1f763579a
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 22:26:22 2018 -0500
+
+    Adding in a few tests and adding in ability to write to a file
+
+commit 437adfd411550bfbfe7ab30cdbc3dd07d0327ad1
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 21:48:53 2018 -0500
+
+    Joanna: fixed a bug in queryMakeReservation, indexing was off
+
+commit b3ccd73badaa07b4c54ee4fe06048c730ff74a55
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 20:56:31 2018 -0500
+
+    Kent Brown:
+    - increased partial request functionality
+
+commit fba1387e217c57bc66363c664281b8146a2d5748
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 20:42:32 2018 -0500
+
+    Adding test for flight database flight generation (Kent's test modified)
+
+commit 54d4706659eb0faf33b220c6d1cbc8357cfcbbd8
+Merge: bbc02ac 208f6dc
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 20:39:26 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into testing
+
+commit 208f6dc56bd29d90dd48d72fdc32048a4784cc64
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 20:34:07 2018 -0500
+
+    Kent Brown:
+    - hotfixed some commas in itinerary tostring
+
+commit bbc02ac8dc0f68e516e801b402dbe405a3e642c0
+Merge: 449b6d7 b5574fb
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 20:22:05 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into testing
+
+commit b5574fbbb55d301840f2553612e3f537f42bd9ed
+Merge: 916951d 161f153
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 20:20:53 2018 -0500
+
+    Merge pull request #5 from BobbySwen262/ReadoFileo
+    
+    Read file
+
+commit 916951d8c8f839eef0b85707a42e3fb098966d7d
+Merge: 1c99edf 69fbd46
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 20:17:33 2018 -0500
+
+    Merge pull request #6 from BobbySwen262/potential_itineraries
+    
+    Potential itineraries
+
+commit 69fbd467c6b2d95749bab214a2da97f1b7044f6e
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 20:04:13 2018 -0500
+
+    Kent Brown:
+    - readded time constructor
+    - reordered instantiation in main
+
+commit 83b5056b0beb62afa052fc5a98a08abe7e2e1f01
+Merge: 3b0a4d1 1c99edf
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 20:02:59 2018 -0500
+
+    Kent Brown:
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into potential_itineraries
+    
+    # Conflicts:
+    #       src/com/flyboiz/afrs/Model/AirportDatabase.java
+    #       src/com/flyboiz/afrs/Model/Flight.java
+    #       src/com/flyboiz/afrs/Model/FlightDatabase.java
+    #       src/com/flyboiz/afrs/Model/Itinerary.java
+
+commit 161f1535b0e7aba6fe4426214b9306bc135b4a85
+Merge: 5b9ae08 1c99edf
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 19:53:40 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into ReadoFileo
+
+commit 449b6d7dbc9392f2df1c316e97e8aece1808602e
+Merge: 64e5fa2 1c99edf
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 19:52:51 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into testing
+
+commit 64e5fa23761df43ddddcb9b80f88ecfa8d24ccb7
+Merge: 483d9dd df622ec
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 19:51:21 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into testing
+
+commit 1c99edfb9c8dca858ff89acd667b7beda7dc8c84
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 19:50:45 2018 -0500
+
+    Fixed several bugs, moved dependencies
+
+commit 3b0a4d134d322f4026927f16f84fd743b45b1439
+Merge: 6598629 7c32ae3
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 19:37:18 2018 -0500
+
+    Merge branch 'potential_itineraries' of https://github.com/BobbySwen262/designproject-flyboiz into potential_itineraries
+
+commit df622ec4cf4ce85f0022c6e4829ba4f3aade0fc9
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sun Mar 4 19:37:09 2018 -0500
+
+    completed queryItineraryinfo
+
+commit 6598629c930ce1902913084960513a0b60ec97ae
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 19:37:02 2018 -0500
+
+    Kent Brown:
+    - changed some comments in the flight database
+
+commit d2488e1a4e19d389f881de11f03ac3802ad8b88c
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 19:33:21 2018 -0500
+
+    Kent Brown:
+    - added airportDatabase functionality to get layover time
+    - added flight functionality to get departure time
+    - flightdatabase now has a reference to the airportdatabase
+    - flightdatabase now has a "working" itinerary search
+    - oodles of noodles of new time functionality
+    - tests for itinerary generation
+
+commit 483d9dd3b05246a3c75262e41168e91fb40e028a
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 19:27:46 2018 -0500
+
+    Adding Test for storing airport info
+
+commit baf0e7f1d565d28b112d091698c70f4dd797887c
+Merge: ad6ccd7 14f3920
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 19:21:45 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into testing
+
+commit 14f392057517540437cc1273604897ab13dd05b9
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 19:20:12 2018 -0500
+
+    Fixed several bugs, moved dependencies
+
+commit 5b9ae087119575a757f854f2a9a7b382e19316f2
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 19:18:05 2018 -0500
+
+    Finishing up readfile functionality.
+
+commit 312cd56d69b054370b978706ff8f781d9f3603c0
+Merge: b2a2f05 d593ed7
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 19:13:14 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into ReadoFileo
+
+commit d593ed70a44978f31e204577bfcceb0120a8e8b3
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sun Mar 4 19:12:40 2018 -0500
+
+    added errorhandling in queryMaker to check for invalid number of request parameters
+
+commit b2a2f055abe9a89e55fc2765054d940fe50d1590
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 19:12:27 2018 -0500
+
+    Finishing up readfile functionality.
+
+commit a9387644002c475de15a8edd586d212a3d2e2805
+Merge: ad57b31 dcefb6f
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 19:01:31 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into ReadoFileo
+
+commit ad6ccd7d1540fb51c6942b56aba2287608bbad84
+Merge: fa26c74 dcefb6f
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 19:00:07 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into testing
+
+commit fa26c7432b94feebd43e3d820fe7751605c1658c
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 18:59:50 2018 -0500
+
+    Adding Tests
+
+commit dcefb6f9bde67d4c8f92df4737717f08bbb5f3fd
+Merge: 9db8172 fcba66a
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 18:11:58 2018 -0500
+
+    Merge remote-tracking branch 'remotes/origin/Query'
+
+commit fcba66a5366edfa7f5bd4ca079caa82d9fa39faf
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sun Mar 4 18:08:31 2018 -0500
+
+    finished queryMakeReservation, added queryExecutor to constructor.
+
+commit ad57b31739b46614aba238f5efc6aec5f60ead7c
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 17:26:29 2018 -0500
+
+    Adding functionality to read reservations from a file
+
+commit a5f7a1f68b6374e4514886a08be4da85ebf83c1e
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sun Mar 4 17:11:29 2018 -0500
+
+    added airportDB to queryItinerayInfo constructor, added error checking to QueryMaker for improper sortorder inputs
+
+commit 3c6c734d628e2bd5565156ebe33a330967a39e04
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 17:09:40 2018 -0500
+
+    Added more to QueryMaker and added several toStrings for the model objects
+
+commit 70d5e6510ca9d220d2c06cbab728a156a9b524e3
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 17:01:05 2018 -0500
+
+    Added more to QueryMaker and added several toStrings for the model objects
+
+commit 9db8172dc75ca3c6d282858abbb2d9f165df43ac
+Author: Trevor Lezynski <tdog8095@yahoo.com>
+Date:   Sun Mar 4 16:48:57 2018 -0500
+
+    Revert "Literally just indentation"
+    
+    This reverts commit e12aa87e9a3a41c7249993409d77024d70b36667.
+
+commit 96092721c1295864b35fed1691a80b0ac3746a63
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 14:42:28 2018 -0500
+
+    Kent Brown:
+    - dfs works maybe?
+
+commit 33c368b71541456cdea54896f1d164ff0d413fc2
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 14:36:25 2018 -0500
+
+    Merged master into Query branch
+
+commit 7c32ae3f3b8d1568689b12946fe4471af6cc5c73
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Sun Mar 4 14:26:58 2018 -0500
+
+    Fixed Time toString()
+    
+    Now it accounts for single digit minutes
+
+commit d820e150bad350063627930d0ed0c939c58dbae9
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 14:12:41 2018 -0500
+
+    Merged master into Query branch
+
+commit 4fa4e84f38ec94f4ce5b00de2e12ea991d1dbab6
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sun Mar 4 14:11:40 2018 -0500
+
+    implemented all the sorts. testing not yet done
+
+commit 1a0911440caaabc3fa3b7c2f8722ab3f4dd51445
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 14:01:08 2018 -0500
+
+    Kent Brown:
+    - fixed itinerary tostring
+
+commit 1ce5bb4c13444032235ecbda1864befb77b2e587
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Sun Mar 4 14:00:29 2018 -0500
+
+    Comparator != Comparable
+    
+    Lol oops
+
+commit 09dec517880bc8e0f68705bb4f8eeed4cd4a53ff
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 13:56:30 2018 -0500
+
+    Kent Brown:
+    - flight toString
+    - itinerary toString
+    - time toString
+    - testing for ItineraryGeneration
+
+commit 3825b6ce8d7f12b310841fe9209cc4bf2562a818
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 13:52:03 2018 -0500
+
+    Update ReadMe
+    
+    Updating instructions.
+
+commit e12aa87e9a3a41c7249993409d77024d70b36667
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Sun Mar 4 13:50:52 2018 -0500
+
+    Literally just indentation
+
+commit eb2bedec16293db1c1881ed34dac2e7252c9ec43
+Merge: 4b4962d 3054599
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 13:46:13 2018 -0500
+
+    Merge pull request #4 from BobbySwen262/ReadoFileo
+    
+    ReadFile
+
+commit 226cc1f47223470e6d99cb05fdf1080a8207e804
+Merge: ed29cf2 4b4962d
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 13:45:06 2018 -0500
+
+    Merged master into Query branch
+
+commit 3054599ab1a6bfbd183109186b152d3d44cdd5bc
+Merge: 986d4e6 4b4962d
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 13:37:39 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into ReadoFileo
+    
+    # Conflicts:
+    #       src/com/flyboiz/afrs/Main.java
+
+commit 4b4962df12aedfbbd00e29a719c693d7b58f8129
+Merge: 3e49b0f dfc77e3
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Sun Mar 4 13:32:38 2018 -0500
+
+    Merging input_output to Master
+    
+    Resolved Merge Conflicts
+
+commit ed29cf21f2d9c79b90b7edb42f7dc33305f5bf12
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sun Mar 4 13:32:08 2018 -0500
+
+    implemented sort by airfare, unable to test until flights & itineraries implemented
+
+commit 986d4e6623ef76c50e3e21ab7b425f040d184d02
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 13:31:43 2018 -0500
+
+    Changing ReadFile, adding functionality to flight and weather portions
+
+commit 1ced675178d57d8e4fccdfa02fa68382a398ec58
+Merge: cda60a1 e7e572b
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 13:31:09 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into ReadoFileo
+    
+    # Conflicts:
+    #       src/com/flyboiz/afrs/Model/ReadFile.java
+
+commit 3e49b0f5c9f15e4c6e2ded95421458e2b9a81cc8
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Sun Mar 4 13:17:43 2018 -0500
+
+    Time toString()
+    
+    Implemented time toString method
+
+commit 85e05a66b2c692101f321df389a71cfceeb81e37
+Merge: d19e21f 283b91c
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 13:12:21 2018 -0500
+
+    Merged master into Query branch
+
+commit 283b91cba8af9fff1188a26c10437f70b96c733e
+Merge: 76e838c e7e572b
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sun Mar 4 13:07:03 2018 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit cda60a11f8bf1d4ee9753bff0b836ff5cd606087
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 13:06:06 2018 -0500
+
+    Have to commit before I can pull from master, adding changes to flights
+
+commit 76e838c4041311ebe7bea9e7ff0dccbb3e42fa0f
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sun Mar 4 13:05:36 2018 -0500
+
+    Querymaker
+
+commit e7e572b62564b2e1383fc1ffc97cc382fe1cb9d3
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Sun Mar 4 13:03:49 2018 -0500
+
+    Wrote Comparator
+    
+    Time comparator finished
+
+commit 9a74ad7756495945d4992d7f704b0e5f926b13db
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sun Mar 4 12:54:57 2018 -0500
+
+    Adding gets for flights and some changes for itinerary objects
+
+commit 3af14c059363550396add35760196c6740015199
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Sun Mar 4 12:50:38 2018 -0500
+
+    Constructor for Time
+    
+    Wrote the constructor for the Time object
+
+commit 3daf451f32e7b45c6ff5106c706fbdea44f7b4ee
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Mar 4 12:33:58 2018 -0500
+
+    Adding some file parsing into the readfile.
+
+commit d19e21fcbd186e778d8daf7a1e64699367667445
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sun Mar 4 12:23:11 2018 -0500
+
+    updating master, starting sorts
+
+commit 562352e227661352b17f00527a783bac773e22bc
+Author: Trevor Lezynski <tdog8095@yahoo.com>
+Date:   Sun Mar 4 11:47:30 2018 -0500
+
+    Update Time object functionality
+    
+    Stubbed methods and described how the contrstuctor should work in Time
+
+commit 5e0df8efcd96d717fa95d1a86c24ad30ce911619
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 02:00:49 2018 -0500
+
+    Kent Brown:
+    - created a bfs to generate itineraries
+    - code compiles, but unable to test for semantic erros with no way to generate flights
+    - oof
+
+commit 9e9c2f1673da5d30acb32aa53d266d591134ae77
+Author: Trevor Lezynski <tdog8095@yahoo.com>
+Date:   Sun Mar 4 00:35:05 2018 -0500
+
+    Some minor changes
+    
+    Fixed some minor visual things, and stubbed Query
+
+commit 8cfe99a769926aa3bec6b75002027a9e4cce1491
+Merge: 5648ec9 42337f6
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 00:26:27 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+    
+    # Conflicts:
+    #       src/com/flyboiz/afrs/Model/FlightDatabase.java
+
+commit 5648ec9f00cb8f982315314e15a222dee493491a
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Mar 4 00:25:17 2018 -0500
+
+    Kent Brown:
+    - additional comments in airport
+    - additional comments in flight
+    - added functionality to flightdatabase
+    - added comments to reservationdatabase
+
+commit 42337f6017cee03ae67fdb60cac857254e86e1df
+Author: Trevor Lezynski <tdog8095@yahoo.com>
+Date:   Sun Mar 4 00:23:14 2018 -0500
+
+    Itinerary Getters
+    
+    Added two getters in itinerary
+
+commit c420b05c82ae0fe799d5ebbbd7e0e24d509d32d2
+Author: Trevor Lezynski <tdog8095@yahoo.com>
+Date:   Sun Mar 4 00:22:35 2018 -0500
+
+    Productive and stylish
+    
+    Added a few getters as needed.
+    Implemented "deleteReservation" in ReservationDatabase
+    Fixed some next line { with same line {
+
+commit d8c5f75fc919c523b679b0b88b36be2a1aec8c8f
+Merge: 7a35009 906d162
+Author: Trevor Lezynski <txl3828@rit.edu>
+Date:   Sun Mar 4 00:00:47 2018 -0500
+
+    Merge pull request #3 from BobbySwen262/ReadoFileo
+    
+    Readofileo
+
+commit 906d162d4a4e94d58c559869d4cd42c92f1a1ca2
+Author: Trevor Lezynski <tdog8095@yahoo.com>
+Date:   Sat Mar 3 23:57:36 2018 -0500
+
+    More compilation errors
+    
+    How are there so many
+
+commit a9630e96c8c59409e380a16b55c7078fd60f98b9
+Author: Trevor Lezynski <tdog8095@yahoo.com>
+Date:   Sat Mar 3 23:56:37 2018 -0500
+
+    More compilation problems
+    
+    Yipee for broken code
+
+commit 88d49e3187bea9e56fb032661446a8fb09b83c0c
+Merge: b0cfb78 7a35009
+Author: Trevor Lezynski <txl3828@rit.edu>
+Date:   Sat Mar 3 23:50:36 2018 -0500
+
+    Merge branch 'master' into ReadoFileo
+
+commit b0cfb786431a0522d3e32d924d9fa38fc7191964
+Author: Trevor Lezynski <tdog8095@yahoo.com>
+Date:   Sat Mar 3 23:36:54 2018 -0500
+
+    Fixed code so it will now compile
+    
+    void != String
+
+commit 9a650959bcb47ef455ccfa59ed820a13f84ec713
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sat Mar 3 23:33:54 2018 -0500
+
+    Kent Brown:
+    - added package private accessors to the flight class
+    - added some field initialization to the itinerary constructor
+
+commit 7a35009ee0755ed22dd6780320ee65f719d24b6e
+Author: Trevor Lezynski <tdog8095@yahoo.com>
+Date:   Sat Mar 3 22:24:18 2018 -0500
+
+    Starting to implemented the model
+    
+    I also created a Time object, which needs to be added to the design
+    document at some point.
+
+commit da859376aa664193cee87deb5e3dde321d0f1d06
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sat Mar 3 20:08:47 2018 -0500
+
+    Added some Reservation and Flight Database edits. Lots to do...
+
+commit 4658d47d81d9400a1d6c27885766099e08b30bba
+Merge: 9e74593 6cb32b2
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sat Mar 3 20:02:56 2018 -0500
+
+    Merge branch 'ReadoFileo' of https://github.com/BobbySwen262/designproject-flyboiz into ReadoFileo
+
+commit 6cb32b2e9e7b0b154f372821e74e87d5121f84ec
+Merge: 6cf38b6 be2a740
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sat Mar 3 20:02:28 2018 -0500
+
+    Merge branch 'ReadoFileo' of https://github.com/BobbySwen262/designproject-flyboiz into ReadoFileo
+
+commit 6cf38b6a2ae3773f1a517a7b725e78e76c75665e
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sat Mar 3 20:01:45 2018 -0500
+
+    Kent Brown:
+    - I'm not entirely sure what I accomplished.
+
+commit 9e745938ab88a2d4e8b33777c0d8a568dffccfb1
+Merge: 05f7b3c be2a740
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sat Mar 3 19:56:53 2018 -0500
+
+    Merge branch 'ReadoFileo' of https://github.com/BobbySwen262/designproject-flyboiz into ReadoFileo
+
+commit 05f7b3c7acdc5fc73ed5fde3a914ddcf2adc676a
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sat Mar 3 19:56:33 2018 -0500
+
+    Data files for reading into databases.
+
+commit 849f23a65dfe44d665ae307dc63bb336db5dfcd0
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sat Mar 3 19:56:11 2018 -0500
+
+    Reservation and Reservation Database
+
+commit be2a740243944637c4bfc0e8059d5eecb05286b7
+Author: jjt4263 <jjt4263@rit.edu>
+Date:   Sat Mar 3 19:46:50 2018 -0500
+
+    Finished implementation of Airport and Airport Database classes.
+    Jajajajaja
+
+commit 0a838180f3a62fb49417d0aecd526ff3e894cf13
+Merge: 30dd27b 3bb8c6a
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sat Mar 3 19:25:49 2018 -0500
+
+    Merge pull request #1 from BobbySwen262/Query
+    
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into Query
+
+commit 3bb8c6af7c9276d3f6d03ae6c5fc1404382d330d
+Merge: 8235695 30dd27b
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sat Mar 3 19:20:17 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz into Query
+    
+    # Conflicts:
+    #       src/Controller/QueryMaker.java
+    #       src/Controller/QueryRetrieveReservation.java
+    #       src/com/flyboiz/afrs/Controller/QueryItineraryInfo.java
+
+commit 8235695cdf4285846940071413d2331f8ce11491
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sat Mar 3 19:12:21 2018 -0500
+
+    Finished QueryMaker classes, added attributes to concrete queries. Added DB references to QueryMaker and passed that into constructors for concrete queries
+
+commit 32ee2bf65df324b4b3e30fd43ea0e5f5ea4c015e
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sat Mar 3 18:58:57 2018 -0500
+
+    Setting up ReadFile, pausing implementation shortly
+
+commit dfc77e3da6affe4e1fcb68f709b780c843f6ca5b
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sat Mar 3 18:57:59 2018 -0500
+
+    Kent Brown:
+    - Added additional comments to the OutputSender class regarding
+
+commit 4aebab15494154115840e2551fc799fa5f2eb2a9
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sat Mar 3 18:39:05 2018 -0500
+
+    Kent Brown:
+    - Refactored some queries (to remove red-text errors, this is not actual code).
+    - Started and finished implementation of InputReader.
+    - Built a stub class of QueryMaker to pass as arg to InputReader constructor.
+    - Completed OutputSender class.
+
+commit 30dd27bb5be104aded7c879cf27dcbfff4f60792
+Merge: 02e51d8 943ae9f
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sat Mar 3 17:31:48 2018 -0500
+
+    Kent Brown: Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+    
+    # Conflicts:
+    #       src/com/flyboiz/afrs/Controller/QueryRetrieveReservation.java
+    #       src/com/flyboiz/afrs/Controller/SortByAirfare.java
+    #       src/com/flyboiz/afrs/Controller/SortByArrival.java
+    #       src/com/flyboiz/afrs/Controller/SortByDeparture.java
+
+commit 02e51d8ff60f6a4594b6b46caecd96eecba71821
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sat Mar 3 17:28:07 2018 -0500
+
+    Kent Brown: Refactored class locations inside of packages. Placed all classes and subpackages inside of the com.flyboiz.afrs package.
+
+commit 943ae9fb8ba8f8ec376e977ad2209ae6a63b3d29
+Merge: 0264b73 7a7fce1
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sat Mar 3 17:16:40 2018 -0500
+
+    Merge Conflicts
+    
+    Uh yeah.
+
+commit 0264b73b256b44cd1bf25e7d0c290782d0e12ef9
+Author: Calvin Do <cxd3796@rit.edu>
+Date:   Sat Mar 3 17:05:14 2018 -0500
+
+    Adding ConcreteSort Stubs,
+    Adding ConcreteQuery Stubs,
+
+commit 7a7fce1cbc4914b0393a09994bfb513b7d41ed2f
+Author: John Tang <jjt4623@rit.edu>
+Date:   Sat Mar 3 05:13:03 2018 -0500
+
+    Adding comments and some basic functions.
+
+commit 4b7585cd29eaee63bc7b8941130956f9c1f6907a
+Author: Joanna Ye <jxy1164@rit.edu>
+Date:   Sat Mar 3 03:20:37 2018 -0500
+
+    added remaining controller classes
+
+commit c2cfc1e02a669b56a34433455b6af1d4915ca996
+Author: Calvin Do <cxd3796@rit.edu>
+Date:   Sat Mar 3 01:31:05 2018 -0500
+
+    Sketching out MVC structure, empty classes.
+
+commit 812917b98cefd41e473967f131938c7a02392191
+Author: Calvin Do <cxd3796@rit.edu>
+Date:   Sat Mar 3 01:22:52 2018 -0500
+
+    I'm not sure what needs to be committed, but I'm going to start committing stuff.
+
+commit 63960086f7cf26c29eb018bf0dcb6c0c69481a3c
+Author: JO4IVIV4 <jxy1164@rit.edu>
+Date:   Thu Mar 1 16:47:46 2018 -0500
+
+    Update DesignDoc.md
+
+commit 0c19863be2170f0eb84417151fde2f01a030c0db
+Author: JO4IVIV4 <jxy1164@rit.edu>
+Date:   Thu Mar 1 16:37:17 2018 -0500
+
+    Update DesignDoc.md
+
+commit 3adf137580d9737fcb26820e296ff1b39bbddc15
+Author: JO4IVIV4 <jxy1164@rit.edu>
+Date:   Tue Feb 27 16:59:01 2018 -0500
+
+    Update DesignDoc.md
+
+commit 2e24a182146a3a1e58f6e628ddc112f0a9f08d70
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Sun Feb 25 19:58:48 2018 -0500
+
+    Filling out more of the design doc headers
+
+commit 4baddf39ba0418e5f10bf1c5330c298742b6085f
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Feb 18 15:49:08 2018 -0500
+
+    Discussion Topic Additions
+    
+    Added two discussion topics
+
+commit a0a82ddc2abbc186c3b19088410a4b0c7237c7f8
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Feb 18 15:35:10 2018 -0500
+
+    Kent: Added DesignDoc.md. Modified README.md (reformatting).
+
+commit fc401caaaee86207b3d8c156dbe91323e70e0306
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Sun Feb 18 15:32:00 2018 -0500
+
+    Initialized repo
