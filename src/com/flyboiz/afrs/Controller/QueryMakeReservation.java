@@ -19,6 +19,10 @@ public class QueryMakeReservation implements Query {
 		this.queryExecutor = queryExecutor;
 	}
 
+	/**
+	 * Creates a string that tells the user whether or not the operation was successful
+	 * @return String- error or success
+	 */
 	public String generateResponse() {
 		if(queryExecutor.getLastQuery() instanceof QueryItineraryInfo){
 			QueryItineraryInfo lastQuery = (QueryItineraryInfo)queryExecutor.getLastQuery();

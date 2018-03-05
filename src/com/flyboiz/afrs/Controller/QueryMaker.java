@@ -4,7 +4,6 @@ import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.FlightDatabase;
 import com.flyboiz.afrs.Model.ReservationDatabase;
 
-import java.util.ArrayList;
 
 public class QueryMaker {
     private String query;
@@ -28,6 +27,9 @@ public class QueryMaker {
         String destination ="";
         switch (fields[0]){
             case "info":
+                if(fields.length<3 || fields.length >5 ){ //missing or extra required params
+                    return null;
+                }
                 origin = fields[1];
                 destination = fields[2];
                 int connection = 2;
@@ -50,13 +52,20 @@ public class QueryMaker {
                         sortOrder = null;
                     }
                 }
+
                 return new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB, airportDB);
             case "reserve":
+                if(fields.length != 3){
+                    return null;
+                }
                 int id = Integer.parseInt(fields[1]);
                 String name = fields[2];
                 return new QueryMakeReservation(id, name, reservationDB, queryExecutor);
 
             case "retrieve":
+                if(fields.length<2 || fields.length> 4){
+                    return null;
+                }
                 passenger = fields[1];
                 if(fields.length>2){
                     origin = fields[2];
@@ -67,12 +76,18 @@ public class QueryMaker {
                 return new QueryRetrieveReservation(passenger, origin, destination, reservationDB, airportDB);
 
             case "delete":
+                if(fields.length != 4){
+                    return null;
+                }
                 passenger = fields[1];
                 origin = fields[2];
                 destination = fields[3];
                 return new QueryDeleteReservation(passenger, origin, destination, reservationDB);
 
             case "airport":
+                if(fields.length != 2){
+                    return null;
+                }
                 String airport = fields[1];
                 return new QueryAirportInfo(airport, airportDB);
         }
