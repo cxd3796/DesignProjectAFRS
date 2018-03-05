@@ -1,5 +1,5 @@
 # README.md
 
-1) Clone the source files.
-2) Set working directory to src folder.
-3) Run Program.
+1) Extract the files from the release folder.
+2) Ensure that the Data folder is in the same folder as the designproject-flyboiz.jar.
+3) Run start.bat.
