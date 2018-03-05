@@ -1,3 +1,123 @@
+commit 0dd73c7bcf2e0fad676dd9512eafc9c1da436d58
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Mon Mar 5 02:23:26 2018 -0500
+
+    Kent Brown:
+    - some important change
+
+commit 543e9007b575af344ab7ac53a95102e429319b78
+Merge: 921c41a 0d51ba3
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Mon Mar 5 02:22:30 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+    
+    # Conflicts:
+    #       src/com/flyboiz/afrs/Model/ReadFile.java
+
+commit 0d51ba39a6fd60a5ddb0eb63a623208d98a5370f
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Mon Mar 5 02:11:32 2018 -0500
+
+    Removed commented print statements
+    
+    Dead code should be removed when no longer debugging
+
+commit 921c41ae84edd5da48df7954e4cfd668bad6311e
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Mon Mar 5 02:10:59 2018 -0500
+
+    Kent Brown:
+    - Docstrings in Airport, Flight, FlightDatabase, and Itinerary
+
+commit 78e636e6d3c43f461fa7c54c6c3942877d1a9ebc
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Mon Mar 5 02:09:27 2018 -0500
+
+    More Javadocs
+    
+    JavaDocs in ReservationDatabase
+
+commit 89d2054ecceba9c990ac1471ab30aaa5fd597534
+Merge: 3ef9a24 8267d07
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Mon Mar 5 01:57:20 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+
+commit 3ef9a240c7c2ed7c6dc8117288c39126141c3d37
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Mon Mar 5 01:51:41 2018 -0500
+
+    Javadoc for time
+    
+    Did the Javadoc for Time
+
+commit 8267d07195f7e161d9bc034e0788f97acad7ac2d
+Merge: 881750e 3e4d449
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Mon Mar 5 01:50:32 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+
+commit 881750e8d435b61dd55f9de4a1f05d00cc9152fe
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Mon Mar 5 01:50:22 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+    
+    # Conflicts:
+    #       src/com/flyboiz/afrs/Model/Time.java
+
+commit 3f8bd2270bd43c6eafd8a176ecfc41f3d1f84ab9
+Merge: a5f5d92 3e4d449
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Mon Mar 5 01:26:52 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+
+commit a5f5d926ebf96b731b4ffb4a992a1ef71513f3da
+Merge: 83b8928 7ed4f27
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Mon Mar 5 01:26:35 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+    
+    # Conflicts:
+    #       src/com/flyboiz/afrs/Model/ReadFile.java
+    #       src/com/flyboiz/afrs/Model/ReservationDatabase.java
+
+commit 3e4d449cc7a96c4ac07aabca6f4137ab0c1df965
+Author: Trevor Lezynski <tlezynski@gmail.com>
+Date:   Mon Mar 5 01:21:21 2018 -0500
+
+    Made the log
+    
+    Git log established
+
+commit 83b8928568054ef1193cef48142e97ca32fa3527
+Author: Kent Brown <randall.k.brown.jr@gmail.com>
+Date:   Mon Mar 5 01:21:11 2018 -0500
+
+    Kent Brown:
+    - proper working relative data access
+
+commit 7ed4f27029c670eb6aefce3a2eded8419f95e841
+Merge: b1cae8b fb0a7ed
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Mon Mar 5 01:11:20 2018 -0500
+
+    Merge branch 'master' of https://github.com/BobbySwen262/designproject-flyboiz
+    
+    # Conflicts:
+    #       src/com/flyboiz/afrs/Model/Time.java
+
+commit b1cae8bc06c1867f5c9094e97df51576124806e8
+Author: Calvin Do <cxd3796@g.rit.edu>
+Date:   Mon Mar 5 01:08:48 2018 -0500
+
+    Reformatting code to meet standards.
+
 commit fb0a7ed4ab869aef31ab692dd65ef97d55092ed8
 Merge: c0bc707 4dd1c56
 Author: Kent Brown <randall.k.brown.jr@gmail.com>
