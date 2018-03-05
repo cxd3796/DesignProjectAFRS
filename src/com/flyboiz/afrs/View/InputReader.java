@@ -13,12 +13,11 @@ public class InputReader
 {
     // State //
     private final Scanner scanner;
-    private final QueryExecutor queryExecutor;
+    private QueryExecutor queryExecutor;
 
     // Constructor //
-    public InputReader(QueryExecutor queryExecutor) {
+    public InputReader() {
         this.scanner = new Scanner(System.in);
-        this.queryExecutor = queryExecutor;
     }
 
     /**
@@ -35,5 +34,11 @@ public class InputReader
     public void waitOnInput() {
         String input = getInputLine();
         queryExecutor.makeQuery(input);
+    }
+
+    public void setExecutor(QueryExecutor qe) {
+        if (queryExecutor == null) {
+            this.queryExecutor = qe;
+        }
     }
 }
