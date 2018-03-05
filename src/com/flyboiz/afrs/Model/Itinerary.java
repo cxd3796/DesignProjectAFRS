@@ -57,7 +57,7 @@ public class Itinerary
 		String output = String.format("%d,%d", fare, flights.size());
 		int index = 0;
 		for(Flight f:flights){
-			output += String.format("%d,%s", index, f.toString());
+			output += String.format(",%s", f.toString());
 			index += 1;
 		}
 		return output;
