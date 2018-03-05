@@ -77,32 +77,27 @@ public class ReadFile {
 		for (String[] airportInfo : airportList) {
 			airportDatabase.generateAirport(airportInfo[0]);
 			airportDatabase.storeAirportName(airportInfo[0], airportInfo[1]);
-//			System.out.println(airportInfo[0] + " " + airportInfo[1]);
 		}
 
 		List<String[]> connectionList = readCSV(CONNECTION_FILE);
 		for (String[] connectionInfo : connectionList) {
 			airportDatabase.storeAirportConnectionTime(connectionInfo[0], Integer.parseInt(connectionInfo[1]));
-//			System.out.println(connectionInfo[0] + " " + connectionInfo [1]);
 		}
 
 		List<String[]> delayList = readCSV(DELAY_FILE);
 		for (String[] delayInfo : delayList) {
 			airportDatabase.storeAirportDelay(delayInfo[0], Integer.parseInt(delayInfo[1]));
-//			System.out.println(delayInfo[0] + " " + delayInfo[1]);
 		}
 
 		List<String[]> flightList = readCSV(FLIGHT_FILE);
 		for (String[] flightInfo : flightList) {
 			flightDatabase.generateFlight(flightInfo[0], flightInfo[1], new Time(flightInfo[2]), new Time(flightInfo[3]), Integer.parseInt(flightInfo[4]), Integer.parseInt(flightInfo[5]));
-//			System.out.println(flightInfo[0] + " " + flightInfo[1] + " " + flightInfo[2] + " " + flightInfo[3] + " " + flightInfo[4] + " " + flightInfo[5]);
 		}
 
 		List<String[]> weatherList = readCSV(WEATHER_FILE);
 		for (String[] weatherInfo : weatherList) {
 			for (int x = 1; x < weatherInfo.length; x = x + 2) {
 				airportDatabase.storeAirportWeather(weatherInfo[0], weatherInfo[x], Integer.parseInt(weatherInfo[x + 1]));
-//				System.out.println(weatherInfo[0] + " " + weatherInfo[x] + " " + weatherInfo[x+1] );
 			}
 		}
 
