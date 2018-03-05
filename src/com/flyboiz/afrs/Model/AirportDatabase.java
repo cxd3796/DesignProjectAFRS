@@ -53,6 +53,30 @@ public class AirportDatabase
         airport.storeAirportWeather(condition, temperature);
     }
 
+    /**
+     * Stores airport name
+     * @param airportCode- 3 letter string specifying the airport
+     * @param name- Name of the airport city
+     */
+    public void storeAirportName(String airportCode, String name){
+        Airport airport = airports.get(airportCode);
+        airport.storeAirportName(name);
+    }
+
+    public String getAirportInfo(String airportCode){
+        Airport airport = airports.get(airportCode);
+        return airport.toString();
+    }
+
+    /**
+     * Checks to see if the airportCode exists
+     * @param airportCode- 3 letter string specifying the airport
+     * @return true if the airport exists, false otherwise
+     */
+    public Boolean isAirportReal(String airportCode){
+        return airports.containsKey(airportCode);
+    }
+
     // GETTERS //
 
     /**

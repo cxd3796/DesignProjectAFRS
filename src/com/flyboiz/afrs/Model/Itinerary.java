@@ -35,25 +35,40 @@ public class Itinerary
 		return destination;
 	}
 
+	// Standard getter
+	public int getFare(){
+		return fare;
+	}
+
+	// Returns departure time of the first flight
+	public Time getDepartureTime(){
+		Flight departureFlight = flights.get(0);
+		return departureFlight.getDepartureTime();
+	}
+
+	// Returns arrival time of the last flight.
+	public Time getArrivalTime(){
+		Flight arrivalFlight = flights.get(flights.size()-1);
+		return arrivalFlight.getArrivalTime();
+	}
+
+	// ToString for Itineraries
+	public String toString(){
+		String output = String.format("%d,%d", fare, flights.size());
+		int index = 0;
+		for(Flight f:flights){
+			output += String.format("%d,%s", index, f.toString());
+			index += 1;
+		}
+		return output;
+	}
+
 	// Standard getter for airfare
 	public int getAirfare() {
 		if (fare == -1) {
 			calculateAirfare();
 		}
 		return fare;
-	}
-
-	// get the flights as strings
-	@Override
-	public String toString() {
-		String toString = getAirfare() + "," + flights.size();
-		Flight f;
-		for (int i = 0; i < flights.size(); i++) {
-			toString += ",";
-			f = flights.get(i);
-			toString += f.toString();
-		}
-		return toString;
 	}
 
 }

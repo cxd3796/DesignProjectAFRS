@@ -50,16 +50,16 @@ public class Flight
         return this.destinationAirport;
     }
 
-    Time getDepartureTime() {
+    Time getDepartureTime(){
         return departureTime;
     }
 
-    @Override
-    public String toString() {
-        return flightNumber       + "," +
-               originAirport      + "," +
-               departureTime      + "," +
-               destinationAirport + "," +
-               arrivalTime        ;
+    Time getArrivalTime(){
+        return arrivalTime;
+    }
+
+    // Return format FlightNumber,OriginAirport,DepartureTime,DestinationAirport,ArrivalTime
+    public String toString(){
+        return String.format("%d,%s,%s,%s,%s", flightNumber, originAirport, departureTime.toString(), destinationAirport, arrivalTime.toString());
     }
 }
