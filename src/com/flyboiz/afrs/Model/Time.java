@@ -30,19 +30,19 @@ public class Time {
     // BEHAVIOUR //
     @Override
     public String toString() {
-        int convertedHours = getHours();
-        String timeSuffix;
-        if (convertedHours > 12) {
-            convertedHours -= 12;
-            timeSuffix = "p";
-        } else {
-            timeSuffix = "a";
+        String tmp = "a";
+        int localHours = this.hours;
+        if(localHours > 12){
+            localHours -= 12;
+            tmp = "p";
         }
-        int minutes = getMinutes();
-        return Integer.toString(convertedHours) +
-                ":"                             +
-                Integer.toString(minutes)       +
-                timeSuffix                      ;
+
+        String minString = Integer.toString(minutes);
+        if(minutes < 10){
+            minString = "0" + minString;
+        }
+
+        return localHours + ":" + minString + tmp;
     }
 
     // method returns true if this time occurs before parameter time
