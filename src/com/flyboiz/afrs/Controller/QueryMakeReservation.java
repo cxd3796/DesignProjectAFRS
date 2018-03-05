@@ -26,7 +26,7 @@ public class QueryMakeReservation implements Query {
 	public String generateResponse() {
 		if(lastQuery instanceof QueryItineraryInfo){
 			QueryItineraryInfo itineraryQuery = (QueryItineraryInfo)lastQuery;
-			if(id < 0 || id>= itineraryQuery.getItineraries().size()){
+			if(id < 0 || id> itineraryQuery.getItineraries().size()){
 				return "error,invalid id";
 			}
 			Itinerary reserving = itineraryQuery.getItinerary(id);

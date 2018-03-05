@@ -33,7 +33,7 @@ public class Main
         QueryMaker queryMaker = new QueryMaker(flightDatabase, airportDatabase, reservationDatabase);
         QueryExecutor queryExecutor;
         InputReader reader = new InputReader();
-        OutputSender output = new OutputSender(reader);
+        OutputSender output = new OutputSender();
         queryExecutor = new QueryExecutor(output, queryMaker);
         reader.setExecutor(queryExecutor);
         reader.setSender(output);

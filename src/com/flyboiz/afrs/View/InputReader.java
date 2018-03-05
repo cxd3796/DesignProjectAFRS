@@ -35,12 +35,17 @@ public class InputReader
      * Wait for a string to be entered, then send it to the QueryExecutor to be parsed.
      */
     public void waitOnInput() {
-        getInputLine();
-        char lastChar = currentString.charAt(currentString.length() - 1);
-        if (lastChar == ';') {
-            queryExecutor.makeQuery(currentString);
-        } else {
-            sender.update("partial-request");
+        while(true) {
+            getInputLine();
+            System.out.println("CURRENT STRING: " + currentString);
+            char lastChar = currentString.charAt(currentString.length() - 1);
+            if (lastChar == ';') {
+                String requestString = currentString.substring(0, currentString.length() - 1);
+                queryExecutor.makeQuery(requestString);
+                currentString = "";
+            } else {
+                sender.update("partial-request");
+            }
         }
     }
 
