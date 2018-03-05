@@ -36,13 +36,13 @@ public class QueryMaker {
 		String passenger = "";
 		String destination = "";
 		Query query = null;
-		if (fields.length < 2) {
+		if (fields.length <2) {
 			return null;
 		}
 		switch (fields[0]) {
 			case "info":
 				if (fields.length < 3 || fields.length > 5) { //missing or extra required params
-					query = null;
+					return null;
 				}
 				origin = fields[1];
 				destination = fields[2];
