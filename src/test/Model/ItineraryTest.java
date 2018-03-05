@@ -12,8 +12,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
-public class ItineraryTest
-{
+public class ItineraryTest {
 	private List<Flight> testFlights;
 	private final String airport1 = "LAX";
 	private final String airport2 = "JFK";
@@ -44,12 +43,11 @@ public class ItineraryTest
 	private Itinerary CuT;
 
 	@Before
-	public void setup()
-	{
+	public void setup() {
 		testFlights = new ArrayList<>();
-		flight1 = new Flight(airport1,airport2,time1,time2,fnum1,airfare1);
-		flight2 = new Flight(airport2,airport3,time3,time4,fnum2,airfare2);
-		flight3 = new Flight(airport3,airport4,time5,time6,fnum3,airfare3);
+		flight1 = new Flight(airport1, airport2, time1, time2, fnum1, airfare1);
+		flight2 = new Flight(airport2, airport3, time3, time4, fnum2, airfare2);
+		flight3 = new Flight(airport3, airport4, time5, time6, fnum3, airfare3);
 		testFlights.add(flight1);
 		testFlights.add(flight2);
 		testFlights.add(flight3);
@@ -58,34 +56,29 @@ public class ItineraryTest
 	}
 
 	@Test
-	public void itineraryCreationValid()
-	{
+	public void itineraryCreationValid() {
 		assertNotNull(CuT);
 	}
 
 	@Test
-	public void itineraryOriginAndDestination()
-	{
+	public void itineraryOriginAndDestination() {
 		assertEquals(airport1, CuT.getOrigin());
 		assertEquals(airport4, CuT.getDestination());
 	}
 
 	@Test
-	public void itineraryAirfare()
-	{
-		assertEquals((airfare1+airfare2+airfare3), CuT.getFare());
+	public void itineraryAirfare() {
+		assertEquals((airfare1 + airfare2 + airfare3), CuT.getFare());
 	}
 
 	@Test
-	public void itineraryDepartureAndArrivalTime()
-	{
+	public void itineraryDepartureAndArrivalTime() {
 		assertEquals(time1, CuT.getDepartureTime());
 		assertEquals(time6, CuT.getArrivalTime());
 	}
 
 	@Test
-	public void itineraryOutput()
-	{
+	public void itineraryOutput() {
 		assertEquals(itineraryString, CuT.toString());
 	}
 

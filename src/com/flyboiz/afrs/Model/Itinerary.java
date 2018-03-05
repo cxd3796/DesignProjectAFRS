@@ -2,8 +2,7 @@ package com.flyboiz.afrs.Model;
 
 import java.util.List;
 
-public class Itinerary
-{
+public class Itinerary {
 	private List<Flight> flights;
 	private String origin;
 	private String destination;
@@ -11,10 +10,10 @@ public class Itinerary
 	private int fare = -1;
 
 
-	public Itinerary (List<Flight> flights) {
+	public Itinerary(List<Flight> flights) {
 		this.flights = flights;
 		calculateAirfare();
-		origin = flights.get(0).getOrigin(); 							// the origin of the itinerary is the origin of the first flight
+		origin = flights.get(0).getOrigin();                            // the origin of the itinerary is the origin of the first flight
 		destination = flights.get(flights.size() - 1).getDestination(); // the destination is the destination of the last flight
 	}
 
@@ -36,38 +35,36 @@ public class Itinerary
 	}
 
 	// Standard getter
-	public int getFare(){
+	public int getFare() {
 		return fare;
 	}
 
 	// Returns departure time of the first flight
-	public Time getDepartureTime(){
+	public Time getDepartureTime() {
 		Flight departureFlight = flights.get(0);
 		return departureFlight.getDepartureTime();
 	}
 
 	// Returns arrival time of the last flight.
-	public Time getArrivalTime(){
-		Flight arrivalFlight = flights.get(flights.size()-1);
+	public Time getArrivalTime() {
+		Flight arrivalFlight = flights.get(flights.size() - 1);
 		return arrivalFlight.getArrivalTime();
 	}
 
 	// ToString for Itineraries
-	public String toString(){
+	public String toString() {
 		String output = String.format("%d,%d", fare, flights.size());
-		for(Flight f:flights){
+		for (Flight f : flights) {
 			output += String.format(",%s", f.toString());
 		}
 		return output;
 	}
 
 
-	public String toFileString()
-	{
+	public String toFileString() {
 		String output = "";
-		for (Flight f : flights)
-		{
-			output+= "," + f.getFlightNumber();
+		for (Flight f : flights) {
+			output += "," + f.getFlightNumber();
 		}
 		return output;
 	}

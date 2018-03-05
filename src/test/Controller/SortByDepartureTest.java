@@ -1,5 +1,4 @@
 package test.Controller;
 
-public class SortByDepartureTest
-{
+public class SortByDepartureTest {
 }

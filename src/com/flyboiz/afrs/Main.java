@@ -18,28 +18,27 @@ import com.flyboiz.afrs.Model.ReadFile;
 import com.flyboiz.afrs.Model.ReservationDatabase;
 
 // Implementation //
-public class Main
-{
-    public static void main(String[] args) {
-    	//Instantiate Databases and store data
-        AirportDatabase airportDatabase = new AirportDatabase();
-        FlightDatabase flightDatabase = new FlightDatabase(airportDatabase);
-        ReservationDatabase reservationDatabase = new ReservationDatabase(flightDatabase);
-        ReadFile readFile = new ReadFile(flightDatabase,airportDatabase,reservationDatabase);
+public class Main {
+	public static void main(String[] args) {
+		//Instantiate Databases and store data
+		AirportDatabase airportDatabase = new AirportDatabase();
+		FlightDatabase flightDatabase = new FlightDatabase(airportDatabase);
+		ReservationDatabase reservationDatabase = new ReservationDatabase(flightDatabase);
+		ReadFile readFile = new ReadFile(flightDatabase, airportDatabase, reservationDatabase);
 
-        readFile.storeData();
+		readFile.storeData();
 
-        // Instantiate controller objects. //
-        QueryMaker queryMaker = new QueryMaker(flightDatabase, airportDatabase, reservationDatabase);
-        QueryExecutor queryExecutor;
-        InputReader reader = new InputReader();
-        OutputSender output = new OutputSender();
-        queryExecutor = new QueryExecutor(output, queryMaker);
-        reader.setExecutor(queryExecutor);
-        reader.setSender(output);
+		// Instantiate controller objects. //
+		QueryMaker queryMaker = new QueryMaker(flightDatabase, airportDatabase, reservationDatabase);
+		QueryExecutor queryExecutor;
+		InputReader reader = new InputReader();
+		OutputSender output = new OutputSender();
+		queryExecutor = new QueryExecutor(output, queryMaker);
+		reader.setExecutor(queryExecutor);
+		reader.setSender(output);
 
-        // start going
-        reader.waitOnInput();
-    }
+		// start going
+		reader.waitOnInput();
+	}
 
 }

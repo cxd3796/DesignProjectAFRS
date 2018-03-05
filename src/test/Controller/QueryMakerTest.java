@@ -1,5 +1,4 @@
 package test.Controller;
 
-public class QueryMakerTest
-{
+public class QueryMakerTest {
 }

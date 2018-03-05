@@ -1,5 +1,4 @@
 package test.Controller;
 
-public class QueryMakeReservationTest
-{
+public class QueryMakeReservationTest {
 }

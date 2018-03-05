@@ -6,8 +6,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class AirportTest
-{
+public class AirportTest {
 	private Airport CuT;
 	private String atlantaCode = "ATL";
 	private String atlantaName = "Atlanta";
@@ -17,14 +16,12 @@ public class AirportTest
 
 
 	@Before
-	public void setup()
-	{
+	public void setup() {
 		CuT = new Airport(atlantaCode);
 	}
 
 	@Test
-	public void storingAirportWeather()
-	{
+	public void storingAirportWeather() {
 		CuT.storeAirportWeather(sunnyCondition, sunnyTemperature);
 		CuT.setDelayTime(delayTime);
 		CuT.storeAirportName(atlantaName);

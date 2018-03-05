@@ -1,5 +1,4 @@
 package test.Controller;
 
-public class QueryItineraryInfoTest
-{
+public class QueryItineraryInfoTest {
 }
