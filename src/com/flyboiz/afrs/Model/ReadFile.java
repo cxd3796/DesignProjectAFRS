@@ -15,12 +15,12 @@ public class ReadFile
 
 
 	 //Using relative paths here, requires setting the working directory
-	 private final String CONNECTION_FILE =  "..\\src\\com\\flyboiz\\afrs\\Data\\connections.txt";
-	 private final String AIRPORT_FILE =     "..\\src\\com\\flyboiz\\afrs\\Data\\airports.txt";
-	 private final String DELAY_FILE =       "..\\src\\com\\flyboiz\\afrs\\Data\\delays.txt";
-	 private final String FLIGHT_FILE =      "..\\src\\com\\flyboiz\\afrs\\Data\\flights.txt";
-	 private final String WEATHER_FILE =     "..\\src\\com\\flyboiz\\afrs\\Data\\weather.txt";
-	 private final String RESERVATION_FILE = "..\\src\\com\\flyboiz\\afrs\\Data\\reservations.txt";
+	 private final String CONNECTION_FILE =  "..\\Data\\connections.txt";
+	 private final String AIRPORT_FILE =     "..\\Data\\airports.txt";
+	 private final String DELAY_FILE =       "..\\Data\\delays.txt";
+	 private final String FLIGHT_FILE =      "..\\Data\\flights.txt";
+	 private final String WEATHER_FILE =     "..\\Data\\weather.txt";
+	 private final String RESERVATION_FILE = "..\\Data\\reservations.txt";
 
 	 private final String FILE_DELIMETER = ",";
 

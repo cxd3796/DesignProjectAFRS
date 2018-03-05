@@ -1,19 +1,20 @@
 package com.flyboiz.afrs.Controller;
 
+import com.flyboiz.afrs.View.Output;
 import com.flyboiz.afrs.View.OutputSender;
 
 public class QueryExecutor
 {
     private Query currentQuery;
-    private OutputSender outputSender;
+    private Output output;
     private QueryMaker queryMaker;
 
     /**
      * Constructor for the QueryExecutor object. When created, this object doesn't have any Query objects attached to it.
      */
-    public QueryExecutor(OutputSender outputSender, QueryMaker queryMaker){
+    public QueryExecutor(Output output, QueryMaker queryMaker){
         currentQuery = null;
-        this.outputSender = outputSender;
+        this.output = output;
         this.queryMaker = queryMaker;
     }
 
@@ -24,12 +25,12 @@ public class QueryExecutor
      */
     public void setCurrentQuery(Query query){
         if (query == null){
-            outputSender.update("error,unkown request");
+            output.update("error,unknown request");
         }
         else {
             currentQuery = query;
             String response = currentQuery.generateResponse();
-            outputSender.update(response);
+            output.update(response);
         }
     }
 

@@ -53,7 +53,7 @@ public class QueryMaker {
                     }
                 }
 
-                query = new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB, airportDB);
+                return new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB, airportDB);
             case "reserve":
                 if(fields.length != 3){
                     return null;
@@ -61,7 +61,6 @@ public class QueryMaker {
                 int id = Integer.parseInt(fields[1]);
                 String name = fields[2];
                 return new QueryMakeReservation(id, name, reservationDB, lastQuery);
-
             case "retrieve":
                 if(fields.length<2 || fields.length> 4){
                     return null;
@@ -74,7 +73,6 @@ public class QueryMaker {
                     destination = fields[3];
                 }
                 return new QueryRetrieveReservation(passenger, origin, destination, reservationDB, airportDB);
-
             case "delete":
                 if(fields.length != 4){
                     return null;
@@ -89,7 +87,7 @@ public class QueryMaker {
                     return null;
                 }
                 String airport = fields[1];
-                query = new QueryAirportInfo(airport, airportDB);
+                return new QueryAirportInfo(airport, airportDB);
         }
         return query;
     }

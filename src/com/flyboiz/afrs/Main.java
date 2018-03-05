@@ -36,6 +36,10 @@ public class Main
         OutputSender output = new OutputSender(reader);
         queryExecutor = new QueryExecutor(output, queryMaker);
         reader.setExecutor(queryExecutor);
+        reader.setSender(output);
+
+        // start going
+        reader.waitOnInput();
     }
 
 }
