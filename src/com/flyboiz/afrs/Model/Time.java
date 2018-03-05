@@ -5,6 +5,8 @@ package com.flyboiz.afrs.Model;
 
 /* imports */
 
+import javax.rmi.CORBA.Tie;
+
 /* implementation */
 public class Time implements Comparable {
 
@@ -28,6 +30,11 @@ public class Time implements Comparable {
         this.minutes = Integer.parseInt(tmp);
     }
 
+    public Time (int hrs, int mins) {
+        this.hours = hrs;
+        this.minutes = mins;
+    }
+
     // GETTERS & SETTERS //
     public int getHours() {
         return hours;
@@ -38,22 +45,6 @@ public class Time implements Comparable {
     }
 
     // BEHAVIOUR //
-    @Override
-    public String toString() {
-        String tmp = "a";
-        int localHours = this.hours;
-        if(localHours > 12){
-            localHours -= 12;
-            tmp = "p";
-        }
-
-        String minString = Integer.toString(minutes);
-        if(minutes < 10){
-            minString = "0" + minString;
-        }
-
-        return localHours + ":" + minString + tmp;
-    }
 
     // method returns true if this time occurs before parameter time
     public boolean occursBefore(Time t) {
