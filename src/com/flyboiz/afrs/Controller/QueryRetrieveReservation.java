@@ -15,6 +15,14 @@ public class QueryRetrieveReservation implements Query {
 	private ReservationDatabase reservationDB;
 	private AirportDatabase airportDB;
 
+	/**
+	 * Construct a command that will be used to retrieve a reservation from the databases.
+	 * @param name The name of the passenger
+	 * @param origin The origin city
+	 * @param destination The destination city
+	 * @param reservationDB The reservation database
+	 * @param airportDB The airport database
+	 */
 	public QueryRetrieveReservation(String name, String origin, String destination, ReservationDatabase reservationDB, AirportDatabase airportDB) {
 		this.name = name;
 		this.origin = origin;
@@ -23,6 +31,10 @@ public class QueryRetrieveReservation implements Query {
 		this.airportDB = airportDB;
 	}
 
+	/**
+	 * Creates a user-friendly output version of the request response
+	 * @return A request response to tell the user the result of the request
+	 */
 	public String generateResponse() {
 		// Check origin airport for validity
 		if (!airportDB.isAirportReal(origin) && !(origin.equals(""))) {

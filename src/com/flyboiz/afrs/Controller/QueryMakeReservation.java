@@ -12,6 +12,13 @@ public class QueryMakeReservation implements Query {
 	private ReservationDatabase reservationDB;
 	private Query lastQuery;
 
+	/**
+	 * Constructor for Query command for creating reservations
+	 * @param id The number that corresponds to the itinerary that was previously queried
+	 * @param name The name of the passenger
+	 * @param reservationDB The reservation database
+	 * @param lastQuery The last query object that was created by the factory (QueryMaker)
+	 */
 	public QueryMakeReservation(int id, String name, ReservationDatabase reservationDB, Query lastQuery) {
 		this.id = id;
 		this.name = name;

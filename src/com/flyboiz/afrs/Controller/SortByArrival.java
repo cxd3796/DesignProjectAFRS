@@ -9,7 +9,7 @@ public class SortByArrival implements SortStrategy {
 	/**
 	 * sorts given list of itineraries by earliest arrival time to latest
 	 *
-	 * @param list
+	 * @param list The list of itineraries to be sorted
 	 */
 	public void sort(List<Itinerary> list) {
 		int n = list.size();
