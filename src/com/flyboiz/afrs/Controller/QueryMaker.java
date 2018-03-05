@@ -11,6 +11,12 @@ public class QueryMaker {
 	private AirportDatabase airportDB;
 	private ReservationDatabase reservationDB;
 
+	/**
+	 * Constructs the Factory for Query production
+	 * @param flightDB The flight database
+	 * @param airportDB The airport database
+	 * @param reservationDB The reservation database
+	 */
 	public QueryMaker(FlightDatabase flightDB, AirportDatabase airportDB,
 					  ReservationDatabase reservationDB) {
 		this.flightDB = flightDB;
@@ -19,6 +25,11 @@ public class QueryMaker {
 		this.lastQuery = null;
 	}
 
+	/**
+	 * This function is the factory "create" method, it produces Query objects for the Executor
+	 * @param input The user input that is sanitized by the InputReader
+	 * @return Returns the Query object which will be executed by the QueryExecutor
+	 */
 	public Query makeQuery(String input) {
 		String[] fields = input.split(",");
 		String origin = "";
