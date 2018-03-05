@@ -9,7 +9,6 @@ package com.flyboiz.afrs.Model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 // Implementation //
 public class FlightDatabase {
@@ -146,18 +145,16 @@ public class FlightDatabase {
                 layoverTime = adb.getLayoverTime(f.getOrigin());
             }
 
+            // determine if the thing needs to recurse
             if (currentFlights.size() == 0 || layoverTime == -1) {
                 recurse = true;
             } else if (arrivalTime.stillBefore(depTime, layoverTime)) {
-                //System.out.println(arrivalTime + " + (" + layoverTime + ") -> " + depTime);
                 recurse = true;
             } else {
-                //System.out.println("immediate boolean");
                 recurse = false;
             }
 
             // print debug, and add f to all the guacamole
-            //System.out.println("depth " + depth + ", vc: " + visitedAirports + ", flights: " + checkFlights + ", cf: " + currentFlights);
             nextOrigin = f.getDestination();
             currentFlights.add(f);
 
@@ -167,7 +164,6 @@ public class FlightDatabase {
                 if (((arrivalTime != null) && arrivalTime.stillBefore(depTime, layoverTime)) || layoverTime == -1) {
                     existingItineraries.add(createItinerary(copyFlights(currentFlights)));
                 }
-                //System.out.println("et: " + existingItineraries);
             } else if (depth > 0 && !(visitedAirports.contains(nextOrigin)) && recurse) {
                 recursiveTryItinerary(destinationCode, depth - 1, f.getDepartureTime(), getFlightsFromOrigin(nextOrigin), existingItineraries, visitedAirports, currentFlights);
             }
