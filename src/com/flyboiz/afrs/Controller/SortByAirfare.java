@@ -7,6 +7,10 @@ import java.util.*;
 
 public class SortByAirfare implements SortStrategy {
 
+	/**
+	 * Sorting the itineraries based on airfare (Low to High)
+	 * @param itineraries The list of itineraries to be sorted
+	 */
 	public void sort(List<Itinerary> itineraries) {
 		int n = itineraries.size();
 		for (int i = 1; i < n; i++) {

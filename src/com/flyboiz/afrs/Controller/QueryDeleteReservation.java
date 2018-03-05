@@ -12,6 +12,13 @@ public class QueryDeleteReservation implements Query {
 	private String destination;
 	private ReservationDatabase reservationDB;
 
+	/**
+	 * Constructs a concrete Query which will be used to delete a reservation from the database.
+	 * @param name The name of the passenger
+	 * @param origin The origin city
+	 * @param destination The destination city
+	 * @param reservationDB The Reservation Database
+	 */
 	public QueryDeleteReservation(String name, String origin, String destination, ReservationDatabase reservationDB) {
 		this.name = name;
 		this.origin = origin;

@@ -6,6 +6,11 @@ public class QueryAirportInfo implements Query {
 	private String airport;
 	private AirportDatabase airportDB;
 
+	/**
+	 * Constructs a concrete Query object using the inputted Airport Code and Airport Database
+	 * @param airport Airport Code
+	 * @param airportDB Airport Database
+	 */
 	public QueryAirportInfo(String airport, AirportDatabase airportDB) {
 		this.airport = airport;
 		this.airportDB = airportDB;

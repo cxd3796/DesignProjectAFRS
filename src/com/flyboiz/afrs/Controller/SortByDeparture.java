@@ -8,6 +8,10 @@ import java.util.List;
 
 public class SortByDeparture implements SortStrategy {
 
+	/**
+	 * The sorting strategy that sorts the itineraries by departure time (earliest to later)
+	 * @param list The list of itineraries to be sorted
+	 */
 	public void sort(List<Itinerary> list) {
 		int n = list.size();
 		for (int i = 1; i < n; i++) {
