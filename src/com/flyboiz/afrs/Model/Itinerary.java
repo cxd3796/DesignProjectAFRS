@@ -63,12 +63,4 @@ public class Itinerary
 		return output;
 	}
 
-	// Standard getter for airfare
-	public int getAirfare() {
-		if (fare == -1) {
-			calculateAirfare();
-		}
-		return fare;
-	}
-
 }

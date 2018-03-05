@@ -58,21 +58,6 @@ public class FlightDatabase {
     }
 
     /**
-     * This method returns a list of flights
-     * @param destinationCode only add flights to the list if they have this as their destination
-     * @return a list of flights.
-     */
-    private List<Flight> getFlightsToDestination(String destinationCode) {
-        List<Flight> possibleFlights = new LinkedList<>();
-        for (Flight f : flights) {
-            if (f.getOrigin().equals(destinationCode)) {
-                possibleFlights.add(f); // add it to the returned list if it has that as the origin
-            }
-        }
-        return possibleFlights;
-    }
-
-    /**
      * Gets a potential list of itineraries which satisfy the parameters
      * @param originCode the origin airport of the itinerary
      * @param destinationCode the destination airport for the itinerary
