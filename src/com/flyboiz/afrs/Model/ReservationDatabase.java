@@ -20,7 +20,9 @@ public class ReservationDatabase
 	private List<Reservation> reservations;
 	private FlightDatabase flightDatabase;
 
-	private final String RESERVATION_FILE = "..\\src\\com\\flyboiz\\afrs\\Data\\reservations.txt";
+	private final String RESERVATION_FILE = "..\\Data\\reservations.txt";
+
+	private BufferedWriter bufferedWriter;
 
 	// Constructor
 	public ReservationDatabase(FlightDatabase flightDatabase)
@@ -112,11 +114,12 @@ public class ReservationDatabase
 	{
 		try
 		{
-			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(RESERVATION_FILE));
+			bufferedWriter = new BufferedWriter(new FileWriter(RESERVATION_FILE));
 			for (Reservation reservation : reservations)
 			{
-				bufferedWriter.write(reservation.toString()+"\n" );
+				bufferedWriter.append(reservation.toString()+"\n" );
 			}
+			bufferedWriter.close();
 		}
 		catch (IOException e)
 		{

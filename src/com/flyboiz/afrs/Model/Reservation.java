@@ -37,6 +37,6 @@ public class Reservation {
 	@Override
 	public String toString()
 	{
-		return passengerName + "," + itinerary.toFileString();
+		return passengerName + itinerary.toFileString();
 	}
 }

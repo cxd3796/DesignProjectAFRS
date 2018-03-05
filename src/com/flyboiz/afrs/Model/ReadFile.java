@@ -60,6 +60,7 @@ public class ReadFile
 				 list.add(splitLine);
 				 curLine = br.readLine();
 			 }
+			 br.close();
 			 return list;
 
 		 }
