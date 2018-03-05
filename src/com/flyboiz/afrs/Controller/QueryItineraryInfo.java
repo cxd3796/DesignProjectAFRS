@@ -39,7 +39,7 @@ public class QueryItineraryInfo implements Query {
         if(!airportDB.isAirportReal(destination)){
             return "error,unknown destination";
         }
-        if (maxConnection <0 || maxConnection <2){
+        if (maxConnection < 0 || maxConnection > 2){
             return "error,invalid connection limit";
         }
         if (sortType ==null){
