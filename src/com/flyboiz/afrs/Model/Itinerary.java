@@ -51,4 +51,15 @@ public class Itinerary
 		Flight arrivalFlight = flights.get(flights.size()-1);
 		return arrivalFlight.getArrivalTime();
 	}
+
+	// ToString for Itineraries
+	public String toString(){
+		String output = String.format("%d,%d", fare, flights.size());
+		int index = 0;
+		for(Flight f:flights){
+			output += String.format("%d,%s", index, f.toString());
+			index += 1;
+		}
+		return output;
+	}
 }

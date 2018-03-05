@@ -19,4 +19,15 @@ public class Reservation {
     public String getPassengerName() {
         return passengerName;
     }
+
+    // Standard getter
+    public String getOrigin(){
+	    return itinerary.getOrigin();
+    }
+
+    // Standard getter
+    public String getDestination(){
+        return itinerary.getDestination();
+    }
+
 }
