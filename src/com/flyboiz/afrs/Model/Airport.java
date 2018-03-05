@@ -14,6 +14,7 @@ import java.util.List;
 public class Airport
 {
     private String airportCode;
+    private String airportName;
     private int connectionTime;
     private int delayTime;
     private List<Weather> weatherList;
@@ -58,6 +59,14 @@ public class Airport
      */
     public void storeAirportWeather(String condition, int temperature){
         weatherList.add(new Weather(condition, temperature));
+    }
+
+    /**
+     * Adds airport name into the airport
+     * @param airportName - String, name of the airport. Ex jfk-New York City
+     */
+    public void storeAirportName(String airportName){
+        this.airportName = airportName;
     }
 
     /**
@@ -106,7 +115,7 @@ public class Airport
      */
     @Override
     public String toString(){
-        return String.format("%s,%s,%d", airportCode, getWeather(), delayTime);
+        return String.format("%s,%s,%d", airportName, getWeather(), delayTime);
     }
 
 }

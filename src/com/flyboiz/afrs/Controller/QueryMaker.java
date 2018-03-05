@@ -36,18 +36,25 @@ public class QueryMaker {
                     connection = Integer.parseInt(fields[3]);
                 }
                 if(fields.length == 5){
-                    if (fields[4].equals("arrival")){
+                    String sort = fields[4];
+                    if (sort.equals("arrival")){
                         sortOrder = new SortByArrival();
                     }
-                    else if (fields[4].equals("airfare")){
+                    else if(sort.equals("departure")){
+                        sortOrder = new SortByDeparture();
+                    }
+                    else if (sort.equals("airfare")){
                         sortOrder = new SortByAirfare();
                     }
+                    else if (!sort.equals("")){   //if invalid sort is inputted, null is passed in
+                        sortOrder = null;
+                    }
                 }
-                return new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB);
+                return new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB, airportDB);
             case "reserve":
                 int id = Integer.parseInt(fields[1]);
                 String name = fields[2];
-                return new QueryMakeReservation(id, name, reservationDB);
+                return new QueryMakeReservation(id, name, reservationDB, queryExecutor);
 
             case "retrieve":
                 passenger = fields[1];
@@ -57,7 +64,7 @@ public class QueryMaker {
                 if(fields.length>3){
                     destination = fields[3];
                 }
-                return new QueryRetrieveReservation(passenger, origin, destination, reservationDB);
+                return new QueryRetrieveReservation(passenger, origin, destination, reservationDB, airportDB);
 
             case "delete":
                 passenger = fields[1];
