@@ -7,6 +7,10 @@ Kent Brown
 package com.flyboiz.afrs.Model;
 
 /* Import */
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +19,8 @@ public class ReservationDatabase
 {
 	private List<Reservation> reservations;
 	private FlightDatabase flightDatabase;
+
+	private final String RESERVATION_FILE = "..\\src\\com\\flyboiz\\afrs\\Data\\reservations.txt";
 
 	// Constructor
 	public ReservationDatabase(FlightDatabase flightDatabase)
@@ -27,6 +33,7 @@ public class ReservationDatabase
 	public void bookReservation(Itinerary itinerary, String passengerName) {
 		Reservation reservation = new Reservation(itinerary, passengerName);
 		reservations.add(reservation);
+		updateReservationFile();
 	}
 
 	// Create a reservation from data and book it
@@ -45,6 +52,7 @@ public class ReservationDatabase
 				Itinerary i = r.getItinerary();
 				if(i.getOrigin().equals(origin) && i.getDestination().equals(destination)){
 					reservations.remove(r);
+					updateReservationFile();
 					return true;
 				}
 			}
@@ -98,6 +106,22 @@ public class ReservationDatabase
 			}
 		}
 		return matchedReservations;
+	}
+
+	private void updateReservationFile()
+	{
+		try
+		{
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(RESERVATION_FILE));
+			for (Reservation reservation : reservations)
+			{
+				bufferedWriter.write(reservation.toString()+"\n" );
+			}
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 

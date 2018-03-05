@@ -55,10 +55,8 @@ public class Itinerary
 	// ToString for Itineraries
 	public String toString(){
 		String output = String.format("%d,%d", fare, flights.size());
-		int index = 0;
 		for(Flight f:flights){
 			output += String.format(",%s", f.toString());
-			index += 1;
 		}
 		return output;
 	}
@@ -69,6 +67,16 @@ public class Itinerary
 			calculateAirfare();
 		}
 		return fare;
+	}
+
+	public String toFileString()
+	{
+		String output = "";
+		for (Flight f : flights)
+		{
+			output+= "," + f.getFlightNumber();
+		}
+		return output;
 	}
 
 }

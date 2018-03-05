@@ -30,7 +30,6 @@ public class AirportTest
 		CuT.storeAirportName(atlantaName);
 
 		assertEquals("Atlanta,Sunny,9001,6969", CuT.toString());
-
 	}
 
 }
