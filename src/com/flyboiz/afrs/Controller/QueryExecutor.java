@@ -1,26 +1,20 @@
 package com.flyboiz.afrs.Controller;
 
+import com.flyboiz.afrs.View.OutputSender;
+
 public class QueryExecutor
 {
-
-    private Query lastQuery;
     private Query currentQuery;
+    private OutputSender outputSender;
+    private QueryMaker queryMaker;
 
     /**
      * Constructor for the QueryExecutor object. When created, this object doesn't have any Query objects attached to it.
      */
-    public QueryExecutor(){
-        lastQuery = null;
+    public QueryExecutor(OutputSender outputSender, QueryMaker queryMaker){
         currentQuery = null;
-    }
-
-    /**
-     * After a Query is completed, move it to the lastQuery
-     * This function might be redundant
-     * @param query- The previous Query command
-     */
-    public void setLastQuery(Query query){
-        lastQuery = query;
+        this.outputSender = outputSender;
+        this.queryMaker = queryMaker;
     }
 
     /**
@@ -29,11 +23,23 @@ public class QueryExecutor
      * @param query
      */
     public void setCurrentQuery(Query query){
-        currentQuery = query;
-        currentQuery.generateResponse();
+        if (query == null){
+            outputSender.update("error,unkown request");
+        }
+        else {
+            currentQuery = query;
+            String response = currentQuery.generateResponse();
+            outputSender.update(response);
+        }
     }
 
-    public Query getLastQuery() {
-        return lastQuery;
+    /**
+     * Creates a query from the user input and sends it to the execution function
+     * @param userInput-
+     */
+    public void makeQuery(String userInput){
+        Query query = queryMaker.makeQuery(userInput);
+        setCurrentQuery(query);
     }
+
 }

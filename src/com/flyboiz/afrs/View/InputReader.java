@@ -2,6 +2,7 @@
 package com.flyboiz.afrs.View;
 
 /* Imports */
+import com.flyboiz.afrs.Controller.QueryExecutor;
 import com.flyboiz.afrs.Controller.QueryMaker;
 import java.util.Scanner;
 
@@ -12,12 +13,11 @@ public class InputReader
 {
     // State //
     private final Scanner scanner;
-    private final QueryMaker queryMaker;
+    private QueryExecutor queryExecutor;
 
     // Constructor //
-    public InputReader(QueryMaker qm) {
+    public InputReader() {
         this.scanner = new Scanner(System.in);
-        this.queryMaker = qm;
     }
 
     /**
@@ -29,10 +29,16 @@ public class InputReader
     }
 
     /**
-     * Wait for a string to be entered, then send it to the QueryMaker to be parsed.
+     * Wait for a string to be entered, then send it to the QueryExecutor to be parsed.
      */
     public void waitOnInput() {
         String input = getInputLine();
-        queryMaker.makeQuery(input);
+        queryExecutor.makeQuery(input);
+    }
+
+    public void setExecutor(QueryExecutor qe) {
+        if (queryExecutor == null) {
+            this.queryExecutor = qe;
+        }
     }
 }

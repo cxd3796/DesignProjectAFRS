@@ -1,8 +1,10 @@
 package com.flyboiz.afrs.Controller;
 
-import com.flyboiz.afrs.Model.Reservation;
 import com.flyboiz.afrs.Model.ReservationDatabase;
 
+/**
+ * Handles the DeleteResevation Query
+ */
 public class QueryDeleteReservation implements Query {
 
     private String name;
