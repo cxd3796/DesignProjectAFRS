@@ -28,6 +28,16 @@ public class FlightDatabase {
 	}
 
 	// Behavior //
+
+	/**
+	 * Create a new flight and add it to the flight database.
+	 * @param originAirport 		The origin airport.
+	 * @param destinationAirport	The destination airport.
+	 * @param departureTime			The departure time.
+	 * @param arrivalTime			The arrival time.
+	 * @param flightNumber			The flight number.
+	 * @param airfare				The cost of the flight.
+	 */
 	public void generateFlight(String originAirport,
 							   String destinationAirport,
 							   Time departureTime,
@@ -38,6 +48,11 @@ public class FlightDatabase {
 		flights.add(newFlight);
 	}
 
+	/**
+	 * Casually create an itinerary (basically just a constructor @kent)
+	 * @param flights set of flights to put in the itinerary
+	 * @return a newly created itinerary
+	 */
 	public Itinerary createItinerary(List<Flight> flights) {
 		return new Itinerary(flights);
 	}
@@ -85,7 +100,11 @@ public class FlightDatabase {
 		return potentialItineraries;
 	}
 
-	// A private method to get a flight whose flightNumber matches the provided parameter
+	/**
+	 * Get the flight whose number matches the parameter
+	 * @param flightNumber the number to search for
+	 * @return the flight with the parameter number
+	 */
 	Flight getFlightFromNumber(int flightNumber) {
 		Flight f = null;
 		for (int i = 0; i < flights.size(); i++) {
@@ -97,8 +116,11 @@ public class FlightDatabase {
 		return f;
 	}
 
-	// A private method to copy all the flights from one list into a new, separate list
-	// This is required in order to ensure that the flights in the itinerary are not modified by reference
+	/**
+	 * Copy a list of flights into a different list to prevent modification
+	 * @param flights set of flights to copy into a new list of flights
+	 * @return the copied list of flights
+	 */
 	private List<Flight> copyFlights(List<Flight> flights) {
 		List<Flight> newList = new LinkedList<>();
 		newList.addAll(flights);

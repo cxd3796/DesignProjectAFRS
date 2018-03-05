@@ -13,6 +13,7 @@ import java.util.List;
 
 /* Implementation */
 public class Airport {
+
 	private String airportCode;
 	private String airportName;
 	private int connectionTime;
@@ -42,8 +43,7 @@ public class Airport {
 	/**
 	 * Airport Constructor.
 	 * Only adds the airportCode. Everything else has to be added later.
-	 *
-	 * @param airportCode
+	 * @param airportCode this is the code for the airport
 	 */
 	public Airport(String airportCode) {
 		this.airportCode = airportCode;
@@ -54,10 +54,9 @@ public class Airport {
 	}
 
 	/**
-	 * Add new weather state into the airport.
-	 *
-	 * @param condition
-	 * @param temperature
+	 * Add new weather state into the airport (the two parameters are paired).
+	 * @param condition the type of condition to store in this airport.
+	 * @param temperature the temperature to store in this airport.
 	 */
 	public void storeAirportWeather(String condition, int temperature) {
 		weatherList.add(new Weather(condition, temperature));
@@ -90,10 +89,18 @@ public class Airport {
 		this.delayTime = delayTime;
 	}
 
+	/**
+	 * Basic getter to get the airport's connection time.
+	 * @return the airport's connection time
+	 */
 	public int getConnectionTime() {
 		return connectionTime;
 	}
 
+	/**
+	 * Basic getter for the delay time
+	 * @return the delay time
+	 */
 	public int getDelayTime() {
 		return delayTime;
 	}

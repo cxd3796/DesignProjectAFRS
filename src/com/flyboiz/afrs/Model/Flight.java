@@ -33,31 +33,61 @@ public class Flight {
 	}
 
 	// Getters & Setters //
+
+	/**
+	 * Basic getter to retrieve flight number. //
+	 * @return the flight's flight number
+	 */
 	int getFlightNumber() {
 		return this.flightNumber;
 	}
 
+	/**
+	 * Get the flight's airfare (basic getter)
+	 * @return the flights
+	 */
 	int getAirfare() {
 		return this.airfare;
 	}
 
+	/**
+	 * Get the flight's origin airport (code form)
+	 * @return the flight's origin
+	 */
 	String getOrigin() {
 		return this.originAirport;
 	}
 
+	/**
+	 * Get the destination airport for this flight
+	 * @return the destination airport for this flight
+	 */
 	String getDestination() {
 		return this.destinationAirport;
 	}
 
+	/**
+	 * Basic getter for departure time
+	 * @return departure time
+	 */
 	Time getDepartureTime() {
 		return departureTime;
 	}
 
+	/**
+	 * Get arrival time
+	 * @return arrival time
+	 */
 	Time getArrivalTime() {
 		return arrivalTime;
 	}
 
-	// Return format FlightNumber,OriginAirport,DepartureTime,DestinationAirport,ArrivalTime
+	//
+
+	/**
+	 * Return format FlightNumber,OriginAirport,DepartureTime,DestinationAirport,ArrivalTime
+	 * @return toString
+	 */
 	public String toString() {
 		return String.format("%d,%s,%s,%s,%s", flightNumber, originAirport, departureTime.toString(), destinationAirport, arrivalTime.toString());
 	}
