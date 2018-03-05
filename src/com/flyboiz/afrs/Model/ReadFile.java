@@ -1,9 +1,6 @@
 package com.flyboiz.afrs.Model;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +12,12 @@ public class ReadFile
 
 
 	 //Using relative paths here, requires setting the working directory
-	 private final String CONNECTION_FILE =  "..\\Data\\connections.txt";
-	 private final String AIRPORT_FILE =     "..\\Data\\airports.txt";
-	 private final String DELAY_FILE =       "..\\Data\\delays.txt";
-	 private final String FLIGHT_FILE =      "..\\Data\\flights.txt";
-	 private final String WEATHER_FILE =     "..\\Data\\weather.txt";
-	 private final String RESERVATION_FILE = "..\\Data\\reservations.txt";
+	 private final String CONNECTION_FILE =  "Data/connections.txt";
+	 private final String AIRPORT_FILE =     "Data/airports.txt";
+	 private final String DELAY_FILE =       "Data/delays.txt";
+	 private final String FLIGHT_FILE =      "Data/flights.txt";
+	 private final String WEATHER_FILE =     "Data/weather.txt";
+	 private final String RESERVATION_FILE = "Data/reservations.txt";
 
 	 private final String FILE_DELIMETER = ",";
 
@@ -81,7 +78,7 @@ public class ReadFile
 	 */
 	public void storeData()
 	 {
-	 	List<String[]> airportList = readCSV(AIRPORT_FILE);
+	 	List<String[]> airportList = readCSV(constructConcurrentAddress(AIRPORT_FILE));
 	 	for (String[] airportInfo :airportList)
 		{
 			airportDatabase.generateAirport(airportInfo[0]);
@@ -89,28 +86,28 @@ public class ReadFile
 //			System.out.println(airportInfo[0] + " " + airportInfo[1]);
 		}
 
-		List<String[]> connectionList = readCSV(CONNECTION_FILE);
+		List<String[]> connectionList = readCSV(constructConcurrentAddress(CONNECTION_FILE));
 	 	for (String[] connectionInfo : connectionList)
 		{
 			airportDatabase.storeAirportConnectionTime(connectionInfo[0],Integer.parseInt(connectionInfo[1]));
 //			System.out.println(connectionInfo[0] + " " + connectionInfo [1]);
 		}
 
-		List<String[]> delayList = readCSV(DELAY_FILE);
+		List<String[]> delayList = readCSV(constructConcurrentAddress(DELAY_FILE));
 	 	for(String[] delayInfo : delayList)
 		{
 			airportDatabase.storeAirportDelay(delayInfo[0], Integer.parseInt(delayInfo[1]));
 //			System.out.println(delayInfo[0] + " " + delayInfo[1]);
 		}
 
-		List<String[]> flightList = readCSV(FLIGHT_FILE);
+		List<String[]> flightList = readCSV(constructConcurrentAddress(FLIGHT_FILE));
 	 	for (String[] flightInfo : flightList)
 		{
 			flightDatabase.generateFlight(flightInfo[0],flightInfo[1], new Time(flightInfo[2]), new Time(flightInfo[3]), Integer.parseInt(flightInfo[4]), Integer.parseInt(flightInfo[5]));
 //			System.out.println(flightInfo[0] + " " + flightInfo[1] + " " + flightInfo[2] + " " + flightInfo[3] + " " + flightInfo[4] + " " + flightInfo[5]);
 		}
 
-		List<String[]> weatherList = readCSV(WEATHER_FILE);
+		List<String[]> weatherList = readCSV(constructConcurrentAddress(WEATHER_FILE));
 	 	for(String[] weatherInfo : weatherList)
 		{
 			for (int x = 1; x < weatherInfo.length ; x = x + 2)
@@ -120,7 +117,7 @@ public class ReadFile
 			}
 		}
 
-		List<String[]> reservationList = readCSV(RESERVATION_FILE);
+		List<String[]> reservationList = readCSV(constructConcurrentAddress(RESERVATION_FILE));
 	 	for(String[] reservationInfo : reservationList)
 		{
 			List<String> flightNumbers = new ArrayList<>();
@@ -130,7 +127,10 @@ public class ReadFile
 			}
 			reservationDatabase.storeReservation(reservationInfo[0],flightNumbers);
 		}
+	 }
 
+	 public static String constructConcurrentAddress(String relativeAddress) {
+		 return System.getProperty("user.dir") + File.separator + relativeAddress;
 	 }
 
 }

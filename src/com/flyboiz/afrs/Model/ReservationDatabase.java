@@ -20,7 +20,7 @@ public class ReservationDatabase
 	private List<Reservation> reservations;
 	private FlightDatabase flightDatabase;
 
-	private final String RESERVATION_FILE = "..\\Data\\reservations.txt";
+	private final String RESERVATION_FILE = "Data\\reservations.txt";
 
 	private BufferedWriter bufferedWriter;
 
@@ -114,7 +114,7 @@ public class ReservationDatabase
 	{
 		try
 		{
-			bufferedWriter = new BufferedWriter(new FileWriter(RESERVATION_FILE));
+			bufferedWriter = new BufferedWriter(new FileWriter(ReadFile.constructConcurrentAddress(RESERVATION_FILE)));
 			for (Reservation reservation : reservations)
 			{
 				bufferedWriter.append(reservation.toString()+"\n" );
