@@ -50,7 +50,7 @@ public class QueryItineraryInfo implements Query {
         String response = "info," + n;
         sortType.sort(itineraries);
         for(int i=0; i<n; i++){
-            response = response + "\n" + itineraries.get(i).toString();
+            response = response + "\n" + (i + 1) + "," + itineraries.get(i).toString();
         }
         return response;
     }

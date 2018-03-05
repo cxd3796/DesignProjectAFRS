@@ -12,33 +12,60 @@ import java.util.Scanner;
 public class InputReader
 {
     // State //
-    private final Scanner scanner;
-    private QueryExecutor queryExecutor;
+    private final Scanner       scanner;
+    private       Output        sender;
+    private       QueryExecutor queryExecutor;
+    private       String        currentString;
 
     // Constructor //
     public InputReader() {
         this.scanner = new Scanner(System.in);
+        currentString = "";
     }
 
     /**
      * Gets a line of input from the console.
      * @return a String of input from the console.
      */
-    private String getInputLine(){
-        return scanner.nextLine();
+    private void getInputLine(){
+        currentString += scanner.nextLine();
     }
 
     /**
      * Wait for a string to be entered, then send it to the QueryExecutor to be parsed.
      */
     public void waitOnInput() {
-        String input = getInputLine();
-        queryExecutor.makeQuery(input);
+        while(true) {
+            getInputLine();
+            System.out.println("CURRENT STRING: " + currentString);
+            char lastChar = currentString.charAt(currentString.length() - 1);
+            if (lastChar == ';') {
+                String requestString = currentString.substring(0, currentString.length() - 1);
+                queryExecutor.makeQuery(requestString);
+                currentString = "";
+            } else {
+                sender.update("partial-request");
+            }
+        }
     }
 
+    /**
+     * Set the queryExecutor. only works once.
+     * @param qe the queryexecutor.
+     */
     public void setExecutor(QueryExecutor qe) {
         if (queryExecutor == null) {
             this.queryExecutor = qe;
+        }
+    }
+
+    /**
+     * Set the outputreader. only works once.
+     * @param op the outputreader.
+     */
+    public void setSender(Output op) {
+        if (sender == null) {
+            this.sender = op;
         }
     }
 }
