@@ -3,10 +3,6 @@
 /* package */
 package com.flyboiz.afrs.Model;
 
-/* imports */
-
-import javax.rmi.CORBA.Tie;
-
 /* implementation */
 public class Time implements Comparable {
 

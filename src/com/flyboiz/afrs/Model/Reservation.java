@@ -30,4 +30,13 @@ public class Reservation {
         return itinerary.getDestination();
     }
 
+	/**
+	 * This toString is used specifically for outputting to a file...
+	 * @return a reservation string
+	 */
+	@Override
+	public String toString()
+	{
+		return passengerName + itinerary.toFileString();
+	}
 }
