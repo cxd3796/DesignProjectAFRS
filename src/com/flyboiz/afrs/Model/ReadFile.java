@@ -86,8 +86,8 @@ public class ReadFile
 	 	for (String[] airportInfo :airportList)
 		{
 			airportDatabase.generateAirport(airportInfo[0]);
-//			airportDatabase.storeAirportName(airportInfo[1]); //TODO uncomment this after john commits
-//			System.out.println(airportInfo[0]);
+			airportDatabase.storeAirportName(airportInfo[0], airportInfo[1]);
+//			System.out.println(airportInfo[0] + " " + airportInfo[1]);
 		}
 
 		List<String[]> connectionList = readCSV(CONNECTION_FILE);
