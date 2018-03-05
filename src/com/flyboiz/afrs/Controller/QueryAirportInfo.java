@@ -1,6 +1,5 @@
 package com.flyboiz.afrs.Controller;
 
-import com.flyboiz.afrs.Controller.Query;
 import com.flyboiz.afrs.Model.AirportDatabase;
 
 public class QueryAirportInfo implements Query {

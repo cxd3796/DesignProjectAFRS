@@ -4,7 +4,6 @@ import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.FlightDatabase;
 import com.flyboiz.afrs.Model.ReservationDatabase;
 
-import java.util.ArrayList;
 
 public class QueryMaker {
     private String query;

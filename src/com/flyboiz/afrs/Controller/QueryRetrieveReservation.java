@@ -1,6 +1,5 @@
 package com.flyboiz.afrs.Controller;
 
-import com.flyboiz.afrs.Controller.Query;
 import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.Itinerary;
 import com.flyboiz.afrs.Model.Reservation;
@@ -38,10 +37,12 @@ public class QueryRetrieveReservation implements Query {
         List<Reservation> reservations;
         if (origin.equals("")){
             reservations = reservationDB.retrieveReservations(name);
-        } else {
+        }
+        else {
             if (destination.equals("")){
                 reservations = reservationDB.retrieveReservations(name, origin);
-            } else {
+            }
+            else {
                 reservations = reservationDB.retrieveReservations(name, origin, destination);
             }
         }
