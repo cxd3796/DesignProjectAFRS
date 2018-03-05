@@ -7,6 +7,7 @@ Kent Brown
 package com.flyboiz.afrs.Model;
 
 /* Import */
+
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /* Implementation */
-public class ReservationDatabase
-{
+public class ReservationDatabase {
 	private List<Reservation> reservations;
 	private FlightDatabase flightDatabase;
 
@@ -25,8 +25,7 @@ public class ReservationDatabase
 	private BufferedWriter bufferedWriter;
 
 	// Constructor
-	public ReservationDatabase(FlightDatabase flightDatabase)
-	{
+	public ReservationDatabase(FlightDatabase flightDatabase) {
 		this.reservations = new ArrayList<>();
 		this.flightDatabase = flightDatabase;
 	}
@@ -39,9 +38,9 @@ public class ReservationDatabase
 	}
 
 	// Create a reservation from data and book it
-	public void storeReservation(String passengerName, List<String> flightNumbers ) {
+	public void storeReservation(String passengerName, List<String> flightNumbers) {
 		List<Flight> flightList = new ArrayList<>();
-		for(String number : flightNumbers) {
+		for (String number : flightNumbers) {
 			flightList.add(flightDatabase.getFlightFromNumber(Integer.parseInt(number)));
 		}
 		Itinerary itinerary = flightDatabase.createItinerary(flightList);
@@ -50,9 +49,9 @@ public class ReservationDatabase
 
 	public boolean deleteReservation(String passengerName, String origin, String destination) {
 		for (Reservation r : reservations) {
-			if(r.getPassengerName().equals(passengerName)){
+			if (r.getPassengerName().equals(passengerName)) {
 				Itinerary i = r.getItinerary();
-				if(i.getOrigin().equals(origin) && i.getDestination().equals(destination)){
+				if (i.getOrigin().equals(origin) && i.getDestination().equals(destination)) {
 					reservations.remove(r);
 					updateReservationFile();
 					return true;
@@ -64,13 +63,14 @@ public class ReservationDatabase
 
 	/**
 	 * Returns all of the reservations that matches the passenger's name
+	 *
 	 * @param pName- name of the passenger
 	 * @return list of all reservations that match
 	 */
-	public List<Reservation> retrieveReservations(String pName){
+	public List<Reservation> retrieveReservations(String pName) {
 		ArrayList<Reservation> matchedReservations = new ArrayList<>();
-		for (Reservation r:reservations){
-			if (pName.equals(r.getPassengerName())){
+		for (Reservation r : reservations) {
+			if (pName.equals(r.getPassengerName())) {
 				matchedReservations.add(r);
 			}
 		}
@@ -79,14 +79,15 @@ public class ReservationDatabase
 
 	/**
 	 * Returns all of the reservations that matches the passenger's name and the origin
-	 * @param pName- name of the passenger
+	 *
+	 * @param pName-  name of the passenger
 	 * @param origin- code of the origin airport
 	 * @return list of all reservations that match
 	 */
-	public List<Reservation> retrieveReservations(String pName, String origin){
+	public List<Reservation> retrieveReservations(String pName, String origin) {
 		ArrayList<Reservation> matchedReservations = new ArrayList<>();
-		for (Reservation r:reservations){
-			if (pName.equals(r.getPassengerName()) && origin.equals(r.getOrigin())){
+		for (Reservation r : reservations) {
+			if (pName.equals(r.getPassengerName()) && origin.equals(r.getOrigin())) {
 				matchedReservations.add(r);
 			}
 		}
@@ -95,38 +96,33 @@ public class ReservationDatabase
 
 	/**
 	 * Returns all of the reservations that matches the passenger's name, the origin, and destination
-	 * @param pName- name of the passenger
+	 *
+	 * @param pName-  name of the passenger
 	 * @param origin- code of the origin airport
-	 * @param des- code of the destination airport
+	 * @param des-    code of the destination airport
 	 * @return list of all reservations that match
 	 */
-	public List<Reservation> retrieveReservations(String pName, String origin, String des){
+	public List<Reservation> retrieveReservations(String pName, String origin, String des) {
 		ArrayList<Reservation> matchedReservations = new ArrayList<>();
-		for (Reservation r:reservations){
-			if (pName.equals(r.getPassengerName()) && origin.equals(r.getOrigin()) && des.equals(r.getDestination())){
+		for (Reservation r : reservations) {
+			if (pName.equals(r.getPassengerName()) && origin.equals(r.getOrigin()) && des.equals(r.getDestination())) {
 				matchedReservations.add(r);
 			}
 		}
 		return matchedReservations;
 	}
 
-	private void updateReservationFile()
-	{
-		try
-		{
-			bufferedWriter = new BufferedWriter(new FileWriter(ReadFile.constructConcurrentAddress(RESERVATION_FILE)));
-			for (Reservation reservation : reservations)
-			{
-				bufferedWriter.append(reservation.toString()+"\n" );
+	private void updateReservationFile() {
+		try {
+			bufferedWriter = new BufferedWriter(new FileWriter(RESERVATION_FILE));
+			for (Reservation reservation : reservations) {
+				bufferedWriter.append(reservation.toString() + "\n");
 			}
 			bufferedWriter.close();
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
 
 
 }

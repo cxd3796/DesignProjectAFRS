@@ -1,5 +1,4 @@
 package test.Model;
 
-public class AirportDatabaseTest
-{
+public class AirportDatabaseTest {
 }

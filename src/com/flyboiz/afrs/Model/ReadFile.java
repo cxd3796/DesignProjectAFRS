@@ -4,11 +4,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadFile
-{
-	 private FlightDatabase flightDatabase;
-	 private AirportDatabase airportDatabase;
-	 private ReservationDatabase reservationDatabase;
+public class ReadFile {
+	private FlightDatabase flightDatabase;
+	private AirportDatabase airportDatabase;
+	private ReservationDatabase reservationDatabase;
 
 
 	 //Using relative paths here, requires setting the working directory

@@ -1,5 +1,4 @@
 package test.View;
 
-public class OutputSenderTest
-{
+public class OutputSenderTest {
 }

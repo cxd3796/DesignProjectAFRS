@@ -11,32 +11,32 @@ public class Reservation {
 	}
 
 	// Standard getter
-    public Itinerary getItinerary() {
-        return itinerary;
-    }
+	public Itinerary getItinerary() {
+		return itinerary;
+	}
 
-    // Standard getter
-    public String getPassengerName() {
-        return passengerName;
-    }
+	// Standard getter
+	public String getPassengerName() {
+		return passengerName;
+	}
 
-    // Standard getter
-    public String getOrigin(){
-	    return itinerary.getOrigin();
-    }
+	// Standard getter
+	public String getOrigin() {
+		return itinerary.getOrigin();
+	}
 
-    // Standard getter
-    public String getDestination(){
-        return itinerary.getDestination();
-    }
+	// Standard getter
+	public String getDestination() {
+		return itinerary.getDestination();
+	}
 
 	/**
 	 * This toString is used specifically for outputting to a file...
+	 *
 	 * @return a reservation string
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return passengerName + itinerary.toFileString();
 	}
 }

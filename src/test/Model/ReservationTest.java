@@ -1,5 +1,4 @@
 package test.Model;
 
-public class ReservationTest
-{
+public class ReservationTest {
 }
