@@ -3,15 +3,16 @@
 /* package */
 package com.flyboiz.afrs.Model;
 
-/* implementation */
 public class Time implements Comparable {
 
-    // STATE //
     private int hours;
     private int minutes;
 
-    // CONSTRUCTOR //
-    // Pre-condition : s is of the form "H:MM(char)" or "HH:MM(char)"
+
+    /**
+     *
+     * @param s: String formatted in the form "H:MM(char)" or "HH:MM(char)"
+     */
     public Time(String s) {
         String[] initialSplit = s.split(":");
 
@@ -26,23 +27,39 @@ public class Time implements Comparable {
         this.minutes = Integer.parseInt(tmp);
     }
 
+    /**
+     *
+     * @param hrs: int type, hours
+     * @param mins: int type, minutes
+     */
     public Time (int hrs, int mins) {
         this.hours = hrs;
         this.minutes = mins;
     }
 
-    // GETTERS & SETTERS //
+
+    /**
+     *
+     * @return int hours (standard getter)
+     */
     public int getHours() {
         return hours;
     }
 
+    /**
+     *
+     * @return int minutes (standard getter)
+     */
     public int getMinutes () {
         return minutes;
     }
 
-    // BEHAVIOUR //
 
-    // method returns true if this time occurs before parameter time
+    /**
+     *
+     * @param t: Time object
+     * @return boolean: True if this Time occurs before the parameter time
+     */
     public boolean occursBefore(Time t) {
         if (getHours() < t.getHours()) {
             return true;
@@ -53,7 +70,13 @@ public class Time implements Comparable {
         }
     }
 
-    // method returns true if this time still occurs before time T, even when additional minutes are added
+
+    /**
+     *
+     * @param t: Time object
+     * @param additionalMinutes: int minutes
+     * @return boolean : True if this Time is object is before the parameter time object with the added minutes
+     */
     public boolean stillBefore(Time t, int additionalMinutes) {
         int addHours = additionalMinutes / 60;
         int addMinutes = additionalMinutes % 60;
@@ -61,18 +84,21 @@ public class Time implements Comparable {
         return newTime.occursBefore(t);
     }
 
-    // method to determine the number of minutes that must pass until this time reaches parameter time
+    /**
+     *
+     * @param t: Time object T
+     * @return int total number of minutes between this time and the parameter
+     */
     public int totalMinutesUntil(Time t) {
         int hrs = t.getHours() - getHours();
         int mins = t.getMinutes() - getMinutes();
         return (hrs * 60) + mins;
     }
 
-    public Time calculateDifference(Time t){
-        return null;
-    }
-
     @Override
+    /**
+     * Returns the object in the "H:MM(char)" or "HH:MM(char)" format
+     */
     public String toString(){
         String tmp = "a";
         String min = Integer.toString(getMinutes());
@@ -88,6 +114,10 @@ public class Time implements Comparable {
 
 
     @Override
+    /**
+     * @param o: Object, usually a Time object
+     * @return -1 if this is less than o, 0 if they are the same, 1 if this is more than o
+     */
     public int compareTo(Object o) {
         // Make sure it is a Time object
         if(o instanceof Time){
