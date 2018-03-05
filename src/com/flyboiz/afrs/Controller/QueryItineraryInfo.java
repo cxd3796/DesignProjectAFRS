@@ -23,7 +23,9 @@ public class QueryItineraryInfo implements Query {
     public QueryItineraryInfo(String origin, String destination, int maxConnection, SortStrategy sortType,
                               FlightDatabase flightDB, AirportDatabase airportDB){
         this.origin = origin;
-        this.destination = destination;
+
+
+       this.destination = destination;
         this.maxConnection = maxConnection;
         this.sortType = sortType;
         this.flightDB = flightDB;
@@ -43,9 +45,14 @@ public class QueryItineraryInfo implements Query {
         if (sortType ==null){
             return "error,invalid sort order";
         }
-        //TODO add call to flightDB to generate list, then
-        //TODO iterate over to generate proper output string
-        return "";
+        itineraries = flightDB.getPotentialItineraries(origin, destination, maxConnection);
+        int n = itineraries.size();
+        String response = "info," + n;
+        sortType.sort(itineraries);
+        for(int i=0; i<n; i++){
+            response = response + "\n" + itineraries.get(i).toString();
+        }
+        return response;
     }
 
     public Itinerary getItinerary(int index){
