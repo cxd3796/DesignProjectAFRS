@@ -8,7 +8,7 @@ public class Itinerary
 	private String origin;
 	private String destination;
 	private int time;
-	private int fare;
+	private int fare = -1;
 
 
 	public Itinerary (List<Flight> flights) {
@@ -62,4 +62,13 @@ public class Itinerary
 		}
 		return output;
 	}
+
+	// Standard getter for airfare
+	public int getAirfare() {
+		if (fare == -1) {
+			calculateAirfare();
+		}
+		return fare;
+	}
+
 }

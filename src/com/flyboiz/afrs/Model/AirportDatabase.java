@@ -77,6 +77,18 @@ public class AirportDatabase
         return airports.containsKey(airportCode);
     }
 
+    // GETTERS //
+
+    /**
+     * Gets the current layover time
+     * @param airportCode the airport code of the airport whose layover you need
+     * @return the layover time
+     */
+    public int getLayoverTime(String airportCode) {
+        Airport ap = airports.get(airportCode);
+        return ap.getConnectionTime() + ap.getDelayTime();
+    }
+
 
 
 
