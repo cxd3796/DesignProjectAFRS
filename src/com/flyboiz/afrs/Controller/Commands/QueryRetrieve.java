@@ -7,7 +7,7 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 
 import java.util.List;
 
-public class QueryRetrieve implements Query {
+public class QueryRetrieve extends Query {
 
 	private String name;
 	private String origin;
@@ -17,13 +17,15 @@ public class QueryRetrieve implements Query {
 
 	/**
 	 * Construct a command that will be used to retrieve a reservation from the databases.
+	 * @param cid client id
 	 * @param name The name of the passenger
 	 * @param origin The origin city
 	 * @param destination The destination city
 	 * @param reservationDB The reservation database
 	 * @param airportDB The airport database
 	 */
-	public QueryRetrieve(String name, String origin, String destination, ReservationDatabase reservationDB, AirportDatabase airportDB) {
+	public QueryRetrieve(int cid, String name, String origin, String destination, ReservationDatabase reservationDB, AirportDatabase airportDB) {
+		super(cid);
 		this.name = name;
 		this.origin = origin;
 		this.destination = destination;

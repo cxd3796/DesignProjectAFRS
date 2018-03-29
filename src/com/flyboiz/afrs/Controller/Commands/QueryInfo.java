@@ -7,7 +7,7 @@ import com.flyboiz.afrs.Controller.SortStrategy;
 
 import java.util.List;
 
-public class QueryInfo implements Query {
+public class QueryInfo extends Query {
 	private String origin;
 	private String destination;
 	private int maxConnection;
@@ -25,11 +25,10 @@ public class QueryInfo implements Query {
 	 * @param flightDB The flight database that holds all of the flights
 	 * @param airportDB The airport database that holds all of the airports
 	 */
-	public QueryInfo(String origin, String destination, int maxConnection, SortStrategy sortType,
+	public QueryInfo(int cid, String origin, String destination, int maxConnection, SortStrategy sortType,
 					 FlightDatabase flightDB, AirportDatabase airportDB) {
+		super(cid);
 		this.origin = origin;
-
-
 		this.destination = destination;
 		this.maxConnection = maxConnection;
 		this.sortType = sortType;

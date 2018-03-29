@@ -5,7 +5,7 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 /**
  * Handles the DeleteResevation Query
  */
-public class QueryDelete implements Query {
+public class QueryDelete extends Query {
 
 	private String name;
 	private String origin;
@@ -14,12 +14,14 @@ public class QueryDelete implements Query {
 
 	/**
 	 * Constructs a concrete Query which will be used to delete a reservation from the database.
+	 * @param cid client id
 	 * @param name The name of the passenger
 	 * @param origin The origin city
 	 * @param destination The destination city
 	 * @param reservationDB The Reservation Database
 	 */
-	public QueryDelete(String name, String origin, String destination, ReservationDatabase reservationDB) {
+	public QueryDelete(int cid, String name, String origin, String destination, ReservationDatabase reservationDB) {
+		super(cid);
 		this.name = name;
 		this.origin = origin;
 		this.destination = destination;

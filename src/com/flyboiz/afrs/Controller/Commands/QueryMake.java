@@ -6,21 +6,23 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 
 import java.util.List;
 
-public class QueryMake implements Query {
-	private int id;
+public class QueryMake extends Query {
+	private int itineraryId;
 	private String name;
 	private ReservationDatabase reservationDB;
 	private Query lastQuery;
 
 	/**
 	 * Constructor for Query command for creating reservations
-	 * @param id The number that corresponds to the itinerary that was previously queried
+	 * @param cid client id
+	 * @param itineraryId The number that corresponds to the itinerary that was previously queried
 	 * @param name The name of the passenger
 	 * @param reservationDB The reservation database
 	 * @param lastQuery The last query object that was created by the factory (QueryMaker)
 	 */
-	public QueryMake(int id, String name, ReservationDatabase reservationDB, Query lastQuery) {
-		this.id = id;
+	public QueryMake(int cid, int itineraryId, String name, ReservationDatabase reservationDB, Query lastQuery) {
+		super(cid);
+		this.itineraryId = itineraryId;
 		this.name = name;
 		this.reservationDB = reservationDB;
 		this.lastQuery = lastQuery;
@@ -34,10 +36,10 @@ public class QueryMake implements Query {
 	public String generateResponse() {
 		if (lastQuery instanceof QueryInfo) {
 			QueryInfo itineraryQuery = (QueryInfo) lastQuery;
-			if (id < 0 || id > itineraryQuery.getItineraries().size()) {
+			if (itineraryId < 0 || itineraryId > itineraryQuery.getItineraries().size()) {
 				return "error,invalid id";
 			}
-			Itinerary reserving = itineraryQuery.getItinerary(id);
+			Itinerary reserving = itineraryQuery.getItinerary(itineraryId);
 			List<Reservation> check = reservationDB.retrieveReservations(name, reserving.getOrigin(), reserving.getDestination());
 			if (check.size() > 0) {
 				return "error,duplicate reservation";

@@ -2,16 +2,18 @@ package com.flyboiz.afrs.Controller.Commands;
 
 import com.flyboiz.afrs.Model.AirportDatabase;
 
-public class QueryAirportInfo implements Query {
+public class QueryAirportInfo extends Query {
 	private String airport;
 	private AirportDatabase airportDB;
 
 	/**
 	 * Constructs a concrete Query object using the inputted Airport Code and Airport Database
+	 * @param cid client id
 	 * @param airport Airport Code
 	 * @param airportDB Airport Database
 	 */
-	public QueryAirportInfo(String airport, AirportDatabase airportDB) {
+	public QueryAirportInfo(int cid, String airport, AirportDatabase airportDB) {
+		super(cid);
 		this.airport = airport;
 		this.airportDB = airportDB;
 	}
