@@ -1,4 +1,4 @@
-package com.flyboiz.afrs.Controller;
+package com.flyboiz.afrs.Controller.Commands;
 
 import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.Itinerary;
@@ -7,7 +7,7 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 
 import java.util.List;
 
-public class QueryRetrieveReservation implements Query {
+public class QueryRetrieve implements Query {
 
 	private String name;
 	private String origin;
@@ -23,7 +23,7 @@ public class QueryRetrieveReservation implements Query {
 	 * @param reservationDB The reservation database
 	 * @param airportDB The airport database
 	 */
-	public QueryRetrieveReservation(String name, String origin, String destination, ReservationDatabase reservationDB, AirportDatabase airportDB) {
+	public QueryRetrieve(String name, String origin, String destination, ReservationDatabase reservationDB, AirportDatabase airportDB) {
 		this.name = name;
 		this.origin = origin;
 		this.destination = destination;

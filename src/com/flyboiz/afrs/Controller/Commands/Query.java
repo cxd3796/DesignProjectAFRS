@@ -1,4 +1,4 @@
-package com.flyboiz.afrs.Controller;
+package com.flyboiz.afrs.Controller.Commands;
 
 /**
  * Encapsulates the query from the client.

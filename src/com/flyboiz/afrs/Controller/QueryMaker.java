@@ -1,5 +1,6 @@
 package com.flyboiz.afrs.Controller;
 
+import com.flyboiz.afrs.Controller.Commands.*;
 import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.FlightDatabase;
 import com.flyboiz.afrs.Model.ReservationDatabase;
@@ -64,7 +65,7 @@ public class QueryMaker {
 					}
 				}
 
-				query = new QueryItineraryInfo(origin, destination, connection, sortOrder, flightDB, airportDB);
+				query = new QueryInfo(origin, destination, connection, sortOrder, flightDB, airportDB);
 				break;
 			case "reserve":
 				if (fields.length != 3) {
@@ -72,7 +73,7 @@ public class QueryMaker {
 				}
 				int id = Integer.parseInt(fields[1]);
 				String name = fields[2];
-				query = new QueryMakeReservation(id, name, reservationDB, lastQuery);
+				query = new QueryMake(id, name, reservationDB, lastQuery);
 				break;
 			case "retrieve":
 				if (fields.length < 2 || fields.length > 4) {
@@ -85,7 +86,7 @@ public class QueryMaker {
 				if (fields.length > 3) {
 					destination = fields[3];
 				}
-				query = new QueryRetrieveReservation(passenger, origin, destination, reservationDB, airportDB);
+				query = new QueryRetrieve(passenger, origin, destination, reservationDB, airportDB);
 				break;
 			case "delete":
 				if (fields.length != 4) {
@@ -94,7 +95,7 @@ public class QueryMaker {
 				passenger = fields[1];
 				origin = fields[2];
 				destination = fields[3];
-				query = new QueryDeleteReservation(passenger, origin, destination, reservationDB);
+				query = new QueryDelete(passenger, origin, destination, reservationDB);
 				break;
 			case "airport":
 				if (fields.length != 2) {

@@ -1,4 +1,4 @@
-package com.flyboiz.afrs.Controller;
+package com.flyboiz.afrs.Controller.Commands;
 
 import com.flyboiz.afrs.Model.Itinerary;
 import com.flyboiz.afrs.Model.Reservation;
@@ -6,7 +6,7 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 
 import java.util.List;
 
-public class QueryMakeReservation implements Query {
+public class QueryMake implements Query {
 	private int id;
 	private String name;
 	private ReservationDatabase reservationDB;
@@ -19,7 +19,7 @@ public class QueryMakeReservation implements Query {
 	 * @param reservationDB The reservation database
 	 * @param lastQuery The last query object that was created by the factory (QueryMaker)
 	 */
-	public QueryMakeReservation(int id, String name, ReservationDatabase reservationDB, Query lastQuery) {
+	public QueryMake(int id, String name, ReservationDatabase reservationDB, Query lastQuery) {
 		this.id = id;
 		this.name = name;
 		this.reservationDB = reservationDB;
@@ -32,8 +32,8 @@ public class QueryMakeReservation implements Query {
 	 * @return String- error or success
 	 */
 	public String generateResponse() {
-		if (lastQuery instanceof QueryItineraryInfo) {
-			QueryItineraryInfo itineraryQuery = (QueryItineraryInfo) lastQuery;
+		if (lastQuery instanceof QueryInfo) {
+			QueryInfo itineraryQuery = (QueryInfo) lastQuery;
 			if (id < 0 || id > itineraryQuery.getItineraries().size()) {
 				return "error,invalid id";
 			}

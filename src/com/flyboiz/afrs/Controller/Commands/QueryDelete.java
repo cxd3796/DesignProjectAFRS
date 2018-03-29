@@ -1,11 +1,11 @@
-package com.flyboiz.afrs.Controller;
+package com.flyboiz.afrs.Controller.Commands;
 
 import com.flyboiz.afrs.Model.ReservationDatabase;
 
 /**
  * Handles the DeleteResevation Query
  */
-public class QueryDeleteReservation implements Query {
+public class QueryDelete implements Query {
 
 	private String name;
 	private String origin;
@@ -19,7 +19,7 @@ public class QueryDeleteReservation implements Query {
 	 * @param destination The destination city
 	 * @param reservationDB The Reservation Database
 	 */
-	public QueryDeleteReservation(String name, String origin, String destination, ReservationDatabase reservationDB) {
+	public QueryDelete(String name, String origin, String destination, ReservationDatabase reservationDB) {
 		this.name = name;
 		this.origin = origin;
 		this.destination = destination;

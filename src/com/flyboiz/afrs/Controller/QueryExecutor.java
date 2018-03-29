@@ -1,7 +1,7 @@
 package com.flyboiz.afrs.Controller;
 
+import com.flyboiz.afrs.Controller.Commands.Query;
 import com.flyboiz.afrs.View.Output;
-import com.flyboiz.afrs.View.OutputSender;
 
 public class QueryExecutor {
 	private Query currentQuery;

@@ -1,4 +1,4 @@
-package com.flyboiz.afrs.Controller;
+package com.flyboiz.afrs.Controller.Commands;
 
 import com.flyboiz.afrs.Model.AirportDatabase;
 
