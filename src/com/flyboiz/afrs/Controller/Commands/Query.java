@@ -6,7 +6,6 @@ package com.flyboiz.afrs.Controller.Commands;
  * Product within the Factory pattern
  */
 public abstract class Query {
-
     int cid;                        // Client id
 
 	public Query(int cid) {

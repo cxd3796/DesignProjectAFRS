@@ -19,7 +19,6 @@ public class QueryExecutor {
 
 	/**
 	 * When a query is created by the factory, it is given to this object to execute and store the output.
-	 * Todo- design needs to be finalized here
 	 *
 	 * @param query
 	 */

@@ -1,6 +1,7 @@
 package com.flyboiz.afrs.Controller;
 
 import com.flyboiz.afrs.Controller.Commands.*;
+import com.flyboiz.afrs.Controller.SortStrategy.*;
 import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.FlightDatabase;
 import com.flyboiz.afrs.Model.ReservationDatabase;
@@ -52,6 +53,8 @@ public class QueryMaker {
 				if (fields.length >= 4) {
 					connection = Integer.parseInt(fields[3]);
 				}
+				// This can be redone to not rely on multiple if statements
+				// Maybe create all sorts and then store them in a hash map, then just use the string as the key.
 				if (fields.length == 5) {
 					String sort = fields[4];
 					if (sort.equals("arrival")) {
