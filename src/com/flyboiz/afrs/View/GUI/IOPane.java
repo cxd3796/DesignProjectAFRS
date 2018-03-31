@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 
 /* implementation */
 public class IOPane extends BorderPane implements Output, Input {
-    
+
     // STATE //
     private ViewManager viewManager;
 
@@ -28,6 +28,7 @@ public class IOPane extends BorderPane implements Output, Input {
         super();
         getChildren().clear();
         this.tabID = tabID;
+        this.clientID = -1;
 
         // Set the size of the IOPane.
         setAbsHeight(height);
