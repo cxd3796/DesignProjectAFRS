@@ -46,7 +46,7 @@ public class ViewManager extends BorderPane implements Output, Input {
         this.activeWindow = null;
 
         // Add a NewWindowButton.
-
+        setTop(tabManager);
     }
 
     // GETTERS & SETTERS //
