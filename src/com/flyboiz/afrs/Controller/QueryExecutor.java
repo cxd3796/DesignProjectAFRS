@@ -6,15 +6,15 @@ import com.flyboiz.afrs.View.Output;
 public class QueryExecutor {
 	private Query currentQuery;
 	private Output output;
-	private QueryMaker queryMaker;
+	private QueryDecider queryDecider;
 
 	/**
 	 * Constructor for the QueryExecutor object. When created, this object doesn't have any Query objects attached to it.
 	 */
-	public QueryExecutor(Output output, QueryMaker queryMaker) {
+	public QueryExecutor(Output output, QueryDecider queryDecider) {
 		currentQuery = null;
 		this.output = output;
-		this.queryMaker = queryMaker;
+		this.queryDecider = queryDecider;
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class QueryExecutor {
 	 * @param userInput-
 	 */
 	public void makeQuery(String userInput) {
-		Query query = queryMaker.makeQuery(userInput);
+		Query query = queryDecider.queryDecide(userInput);
 		setCurrentQuery(query);
 	}
 

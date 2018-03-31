@@ -46,16 +46,14 @@ public class Main {
 
 		}
 
-
 		QueryDecider queryDecider = new QueryDecider(factoryMap);
 
 
 		// Instantiate controller objects. //
-		QueryMaker queryMaker = new QueryMaker(flightDatabase, airportDatabase, reservationDatabase);
 		QueryExecutor queryExecutor;
 		InputReader reader = new InputReader();
 		OutputSender output = new OutputSender();
-		queryExecutor = new QueryExecutor(output, queryMaker);
+		queryExecutor = new QueryExecutor(output, queryDecider);
 		reader.setExecutor(queryExecutor);
 		reader.setSender(output);
 

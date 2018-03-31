@@ -1,6 +1,7 @@
 package com.flyboiz.afrs.Controller;
 
 import com.flyboiz.afrs.Controller.Commands.Query;
+import com.flyboiz.afrs.Model.ClientDatabase;
 
 public abstract class QueryCreator {
 
