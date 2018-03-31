@@ -22,25 +22,6 @@ public class Airport {
 	private int weatherIndex;
 
 	/**
-	 * Weather class to track Weather for airports easier
-	 */
-	private class Weather {
-
-		private String condition;
-		private int temperature;
-
-		public Weather(String condition, int temperature) {
-			this.condition = condition;
-			this.temperature = temperature;
-		}
-
-		@Override
-		public String toString() {
-			return String.format("%s,%d", condition, temperature);
-		}
-	}
-
-	/**
 	 * Airport Constructor.
 	 * Only adds the airportCode. Everything else has to be added later.
 	 * @param airportCode this is the code for the airport
@@ -59,7 +40,7 @@ public class Airport {
 	 * @param temperature the temperature to store in this airport.
 	 */
 	public void storeAirportWeather(String condition, int temperature) {
-		weatherList.add(new Weather(condition, temperature));
+		weatherList.add(new Weather(condition, temperature, delayTime));
 	}
 
 	/**
