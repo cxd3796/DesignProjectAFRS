@@ -5,20 +5,20 @@ package com.flyboiz.afrs.View.GUI;
 
 /* imports */
 
+import com.flyboiz.afrs.Controller.QueryExecutor;
+import com.flyboiz.afrs.View.Input;
 import com.flyboiz.afrs.View.Output;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 /* implementation */
-public class ViewManager extends BorderPane implements Output {
+public class ViewManager extends BorderPane implements Output, Input {
 
     // STATE //
+    private QueryExecutor queryExecutor;
+
     private TabManager tabManager;
     private List<TabPanePair> pairs;
     private Tab currentTab;
@@ -27,11 +27,14 @@ public class ViewManager extends BorderPane implements Output {
     private Font font;
 
     // CONSTRUCTOR //
-    public ViewManager(Font font) {
+    public ViewManager(QueryExecutor qe, Font font) {
 
         // Perform basic node initialization. //
         super();
         getChildren().clear();
+
+        // Set the queryExecutor.
+        this.queryExecutor = qe;
 
         // Set the font.
         this.font = font;
@@ -51,7 +54,10 @@ public class ViewManager extends BorderPane implements Output {
     // BEHAVIOUR //
     void newWindow() {
         Tab newTab = tabManager.newTab();
-        IOPane newPane = new IOPane();
+        IOPane newPane = new IOPane(this);
+        TabPanePair tpp = new TabPanePair(newTab, newPane);
+        pairs.add(tpp);
+        changeTab(newTab);
     }
 
     void changeTab(Tab newTab) {
@@ -79,6 +85,11 @@ public class ViewManager extends BorderPane implements Output {
     @Override
     public void update(String updateText) {
 
+    }
+
+    @Override
+    public void submit(String queryText) {
+        queryExecutor.makeQuery(queryText);
     }
 
 }

@@ -4,10 +4,7 @@
 package com.flyboiz.afrs.View.GUI;
 
 /* imports */
-
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 
 /* implementation */
 public class Tab extends Button {

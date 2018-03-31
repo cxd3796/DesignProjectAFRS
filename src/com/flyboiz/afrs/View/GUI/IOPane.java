@@ -13,11 +13,16 @@ import javafx.scene.layout.Pane;
 public class IOPane extends Pane implements Output, Input {
 
     // STATE //
+    private ViewManager viewManager;
+
     private int clientID;
     private InputBox inputBox;
     private OutputBox outputBox;
 
     // CONSTRUCTOR //
+    IOPane(ViewManager vm) {
+        this.viewManager = vm;
+    }
 
     // GETTERS & SETTERS //
 
@@ -29,6 +34,7 @@ public class IOPane extends Pane implements Output, Input {
 
     @Override
     public void submit(String queryText) {
-
+        String updatedText = clientID + "," + queryText;
+        viewManager.submit(updatedText);
     }
 }
