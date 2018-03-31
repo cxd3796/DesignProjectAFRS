@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 
-public class FAAProxy {
+public class FAAProxy implements WeatherStratum{
     String condition;
     String airportCode;
     String airportName;
@@ -35,9 +35,11 @@ public class FAAProxy {
      * Grabs the weather in string format
      * Format: "AirportName,condition,temperature,delay"
      *
+     * @param cid client id of the one asking for information
      * @return String
      */
-    public String getWeather() {
+    @Override
+    public String getWeather(int cid) {
         getRemoteWeather();
         return String.format("%s,%s,%s,%s", airportName, condition, temperature, delay);
     }
@@ -47,6 +49,7 @@ public class FAAProxy {
      *
      * @return int 0-MaxDelay
      */
+    @Override
     public int getDelay() {
         getRemoteWeather();
         return delayNum;
