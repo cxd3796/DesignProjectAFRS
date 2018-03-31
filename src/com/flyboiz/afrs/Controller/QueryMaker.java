@@ -36,10 +36,9 @@ public class QueryMaker {
 		String passenger = "";
 		String destination = "";
 		Query query = null;
-		if (fields.length <2) {
-			return null;
-		}
 		switch (fields[0]) {
+			case "pr":
+				return new QueryPartialRequest();
 			case "info":
 				if (fields.length < 3 || fields.length > 5) { //missing or extra required params
 					return null;

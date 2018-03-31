@@ -4,10 +4,11 @@
 package com.flyboiz.afrs.View.GUI;
 
 /* imports */
+import com.flyboiz.afrs.View.Output;
 import javafx.scene.layout.Pane;
 
 /* implementation */
-public class TabPanePair {
+public class TabPanePair implements Output{
 
     // STATE //
     private int id;
@@ -24,6 +25,19 @@ public class TabPanePair {
     // GETTERS & SETTERS //
     int getID() {
         return id;
+    }
+
+    Tab getTab() {
+        return tab;
+    }
+
+    IOPane getPane() {
+        return pane;
+    }
+
+    @Override
+    public void update(String updateText) {
+        pane.update(updateText);
     }
 
     // BEHAVIOUR //

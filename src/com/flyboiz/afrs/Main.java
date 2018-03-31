@@ -22,14 +22,20 @@ import javafx.stage.Stage;
 // Implementation //
 public class Main extends Application {
 
+	// Scene Constants
+	private static final String TITLE = "Airline Flight Reservation Service: GUI Version";
+
+	// Argument Constants
 	private static final String ARG_GUI = "gui";
 	private static final String ARG_TEXT = "text";
 	private static final String ERROR_ARG1 = "The launch argument '%s' is not a valid argument.";
 	private static final String ERROR_ARG2 = "Accepted arguments: '%s', '%s'";
 
+	// Font Constants
 	private static final String FONT_FAMILY = "Verdana";
 	private static final double FONT_SIZE = 12.0;
 
+	// Implementation
 	public static void main(String[] args) {
 
 		// Parse input arguments.
@@ -64,20 +70,26 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+
+		// Initialize databases and FileReader.
 		AirportDatabase airportDatabase = new AirportDatabase();
 		FlightDatabase flightDatabase = new FlightDatabase(airportDatabase);
 		ReservationDatabase reservationDatabase = new ReservationDatabase(flightDatabase);
 		ReadFile readFile = new ReadFile(flightDatabase, airportDatabase, reservationDatabase);
 
+		// Generate data in the databases.
 		readFile.storeData();
 
+		// Generate the QueryMaker, QueryExecutor, and Input/Output GUI.
 		QueryMaker queryMaker = new QueryMaker(flightDatabase, airportDatabase, reservationDatabase);
 		QueryExecutor queryExecutor = new QueryExecutor(null, queryMaker);
 		ViewManager viewManager = new ViewManager(queryExecutor, getFont());
 		queryExecutor.setOutput(viewManager);
 
+		// Set up the scene and stage, then show.
 		Scene scene = new Scene(viewManager);
 		primaryStage.setScene(scene);
+		primaryStage.setTitle(TITLE);
 		primaryStage.show();
 	}
 

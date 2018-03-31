@@ -39,7 +39,6 @@ public class InputReader implements Input {
 	public void waitOnInput() {
 		while (true) {
 			getInputLine();
-			System.out.println("CURRENT STRING: " + currentString);
 			char lastChar = currentString.charAt(currentString.length() - 1);
 			if (lastChar == ';') {
 				String requestString = currentString.substring(0, currentString.length() - 1);
