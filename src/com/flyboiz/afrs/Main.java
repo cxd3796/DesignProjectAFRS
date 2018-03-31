@@ -8,9 +8,7 @@ package com.flyboiz.afrs;
 // Imports //
 
 import com.flyboiz.afrs.Controller.QueryExecutor;
-import com.flyboiz.afrs.Controller.QueryMaker;
 import com.flyboiz.afrs.View.InputReader;
-import com.flyboiz.afrs.View.Output;
 import com.flyboiz.afrs.View.OutputSender;
 import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.FlightDatabase;

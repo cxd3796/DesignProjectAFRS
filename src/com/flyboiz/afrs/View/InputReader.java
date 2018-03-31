@@ -4,7 +4,6 @@ package com.flyboiz.afrs.View;
 /* Imports */
 
 import com.flyboiz.afrs.Controller.QueryExecutor;
-import com.flyboiz.afrs.Controller.QueryMaker;
 
 import java.util.Scanner;
 
