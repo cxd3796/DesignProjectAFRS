@@ -2,6 +2,8 @@ package com.flyboiz.afrs.Controller;
 
 import com.flyboiz.afrs.Controller.Commands.Query;
 
+import java.util.Map;
+
 public class QueryDecider
 {
 	private Map<String, QueryCreator> factories;
@@ -17,12 +19,12 @@ public class QueryDecider
 		String[] split = userInput.split(",");
 		if(split.length > 1)
 		{
-			QueryCreator factory = factories.get(split[1]);
+			return (factories.get(split[1])).makeQuery(userInput);
 		}
 		else
 		{
-			QueryCreator factory = factories.get(userInput);
+			return (factories.get(userInput)).makeQuery(userInput);
 		}
-		return factory.makeQuery(userInput);
+
 	}
 }

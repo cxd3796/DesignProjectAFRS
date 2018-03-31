@@ -8,6 +8,7 @@ package com.flyboiz.afrs;
 // Imports //
 
 import com.flyboiz.afrs.Controller.Commands.Query;
+import com.flyboiz.afrs.Controller.QueryCreator;
 import com.flyboiz.afrs.Controller.QueryDecider;
 import com.flyboiz.afrs.Controller.QueryExecutor;
 import com.flyboiz.afrs.View.InputReader;
