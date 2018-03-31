@@ -1,5 +1,7 @@
 package com.flyboiz.afrs.Controller.Commands;
 
+import com.flyboiz.afrs.Model.Itinerary;
+import com.flyboiz.afrs.Model.Reservation;
 import com.flyboiz.afrs.Model.ReservationDatabase;
 
 /**
@@ -11,6 +13,7 @@ public class QueryDelete extends Query {
 	private String origin;
 	private String destination;
 	private ReservationDatabase reservationDB;
+	private Itinerary itinerary; //used for purpose of undoing
 
 	/**
 	 * Constructs a concrete Query which will be used to delete a reservation from the database.
@@ -34,11 +37,17 @@ public class QueryDelete extends Query {
 	 * @return String that represents the result of the operation
 	 */
 	public String generateResponse() {
+		Reservation reservation = reservationDB.retrieveReservations(name, origin, destination).get(0);
+		itinerary = reservation.getItinerary();
 		if (reservationDB.deleteReservation(name, origin, destination)) {
 			return "delete,successful";
 		} else {
 			reservationDB.deleteReservation(name, origin, destination);
 			return "error,reservation not found";
 		}
+	}
+
+	public void undo(){
+		reservationDB.bookReservation(itinerary, name);
 	}
 }
