@@ -16,18 +16,12 @@ public class FAAProxy {
     String airportCode;
     int temperature;
     int delay;
-    int avgDelay;
-    int maxDelay;
-    int minDelay;
 
     public FAAProxy(String airportCode) {
         this.airportCode = airportCode;
         condition = null;
         temperature = Integer.MAX_VALUE;
         delay = 0;
-        avgDelay = 0;
-        maxDelay = 0;
-        minDelay = 0;
     }
 
     public void getWeather() {
@@ -48,21 +42,29 @@ public class FAAProxy {
             String temperatureAsString = temperature.getAsString();
 
             // Get Delay
-            boolean delayExists = false;
-            while (delayExists) {
-                for(int i = 0; i<status.size(); i++) {
-                    JsonElement statusElement = status.get(i);
-                    JsonObject statusObject = (JsonObject) statusElement;
-                    if (statusObject.has("avgDelay")) {
-                        delay = statusObject.get("avgDelay").getAsInt();
-                    }
-                    else if (statusObject.has("minDelay")) {
-                        delay = statusObject.get("minDelay").getAsInt();
-                    }
-                    else if (statusObject.has("maxDelay")) {
-                        delay = statusObject.get("minDelay").getAsInt();
-                    }
+            int avgDelay = Integer.MIN_VALUE;
+            int minDelay = Integer.MIN_VALUE;
+            int maxDelay = Integer.MIN_VALUE;
+            for (JsonElement statusElement : status) {
+                JsonObject statusObject = (JsonObject) statusElement;
+                if (statusObject.has("avgDelay")) {
+                    avgDelay = statusObject.get("avgDelay").getAsInt();
                 }
+                else if (statusObject.has("minDelay")) {
+                    minDelay = statusObject.get("minDelay").getAsInt();
+                }
+                else if (statusObject.has("maxDelay")) {
+                    maxDelay = statusObject.get("maxDelay").getAsInt();
+                }
+            }
+            if (avgDelay != Integer.MIN_VALUE) {
+                delay = avgDelay;
+            }
+            else if (maxDelay != Integer.MIN_VALUE) {
+                delay = maxDelay;
+            }
+            else if (minDelay != Integer.MIN_VALUE) {
+                delay = minDelay;
             }
 
 
