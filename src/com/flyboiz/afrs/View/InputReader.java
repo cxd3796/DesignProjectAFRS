@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * This class is in charge of getting the input from the user
  */
-public class InputReader {
+public class InputReader implements Input {
 	// State //
 	private final Scanner scanner;
 	private Output sender;
@@ -43,7 +43,7 @@ public class InputReader {
 			char lastChar = currentString.charAt(currentString.length() - 1);
 			if (lastChar == ';') {
 				String requestString = currentString.substring(0, currentString.length() - 1);
-				queryExecutor.makeQuery(requestString);
+				submit(requestString);
 				currentString = "";
 			} else {
 				sender.update("partial-request");
@@ -71,5 +71,10 @@ public class InputReader {
 		if (sender == null) {
 			this.sender = op;
 		}
+	}
+
+	@Override
+	public void submit(String queryText) {
+		queryExecutor.makeQuery(queryText);
 	}
 }

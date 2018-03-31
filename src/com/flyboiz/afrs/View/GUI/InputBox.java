@@ -17,5 +17,9 @@ public class InputBox implements Input {
     // GETTERS & SETTERS //
 
     // BEHAVIOUR //
+    @Override
+    public void submit(String queryText) {
+
+    }
 
 }
