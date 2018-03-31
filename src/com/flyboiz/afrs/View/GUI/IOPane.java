@@ -16,6 +16,7 @@ public class IOPane extends Pane implements Output, Input {
     private ViewManager viewManager;
 
     private int clientID;
+    private int tabID;
     private InputBox inputBox;
     private OutputBox outputBox;
 
