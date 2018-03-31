@@ -49,12 +49,12 @@ public class IOPane extends BorderPane implements Output, Input {
     private void setAbsHeight(double height) {
         setMinHeight(height);
         setPrefHeight(height);
-        setMaxHeight(height);
+        //setMaxHeight(height);
     }
     private void setAbsWidth(double width) {
         setMinWidth(width);
         setPrefWidth(width);
-        setMaxWidth(width);
+        //setMaxWidth(width);
     }
 
     // BEHAVIOUR (INTERFACE) //
