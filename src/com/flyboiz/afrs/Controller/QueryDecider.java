@@ -15,7 +15,14 @@ public class QueryDecider
 	public Query queryDecide(String userInput)
 	{
 		String[] split = userInput.split(",");
-		QueryCreator factory = factories.get(split[1]);
+		if(split.length > 1)
+		{
+			QueryCreator factory = factories.get(split[1]);
+		}
+		else
+		{
+			QueryCreator factory = factories.get(userInput);
+		}
 		return factory.makeQuery(userInput);
 	}
 }
