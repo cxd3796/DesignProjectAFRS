@@ -11,6 +11,7 @@ public class QueryMake extends Query {
 	private String name;
 	private ReservationDatabase reservationDB;
 	private Query lastQuery;
+	private Itinerary reserving; //itinerary that's being reserved
 
 	/**
 	 * Constructor for Query command for creating reservations
@@ -39,7 +40,7 @@ public class QueryMake extends Query {
 			if (itineraryId < 0 || itineraryId > itineraryQuery.getItineraries().size()) {
 				return "error,invalid id";
 			}
-			Itinerary reserving = itineraryQuery.getItinerary(itineraryId);
+			reserving = itineraryQuery.getItinerary(itineraryId);
 			List<Reservation> check = reservationDB.retrieveReservations(name, reserving.getOrigin(), reserving.getDestination());
 			if (check.size() > 0) {
 				return "error,duplicate reservation";
@@ -49,5 +50,9 @@ public class QueryMake extends Query {
 			}
 		}
 		return null;
+	}
+
+	public void undo(){
+		reservationDB.deleteReservation(name, reserving.getOrigin(), reserving.getDestination() );
 	}
 }

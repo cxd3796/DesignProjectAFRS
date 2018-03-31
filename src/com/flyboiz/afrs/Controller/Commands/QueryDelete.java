@@ -41,4 +41,5 @@ public class QueryDelete extends Query {
 			return "error,reservation not found";
 		}
 	}
+
 }
