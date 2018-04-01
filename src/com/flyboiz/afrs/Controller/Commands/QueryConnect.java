@@ -13,6 +13,8 @@ public class QueryConnect extends Query {
 
     @Override
     public String generateResponse() {
-        return null;
+        int cid = clientDB.connectClient();
+        String string = "connect, " + cid;
+        return string;
     }
 }
