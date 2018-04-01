@@ -22,6 +22,10 @@ public class QConnectCreator extends QueryCreator{
      * @return QueryConnect
      */
     public QueryConnect makeQuery(String input){
+        String[] split = input.split(",");
+        if(split.length!=1){
+            return null;
+        }
         return new QueryConnect(clientDB);
     }
 }
