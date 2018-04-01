@@ -16,6 +16,20 @@ public class Client
 		this.cid = cid;
 	}
 
+	public void addLastQuery(Query query)
+	{
+		queryStack.push(query);
+	}
+
+	public void addUndoQuery(Query query)
+	{
+		undoStack.push(query);
+	}
+
+	public void addRedoQuery(Query query)
+	{
+		redoStack.push(query);
+	}
 
 	public Query getLastQuery()
 	{
@@ -42,5 +56,10 @@ public class Client
 	{
 		Query query = redoStack.pop();
 		undoStack.push(query);
+	}
+
+	public int getClientID()
+	{
+		return cid;
 	}
 }

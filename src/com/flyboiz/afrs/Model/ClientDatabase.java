@@ -16,6 +16,21 @@ public class ClientDatabase
 		curClientNum = 0;
 	}
 
+	public void addLastQuery(Query query, int cid)
+	{
+		clients.get(cid).addLastQuery(query);
+	}
+
+	public void addUndoQuery(Query query, int cid)
+	{
+		clients.get(cid).addUndoQuery(query);
+	}
+
+	public void addRedoQuery(Query query, int cid)
+	{
+		clients.get(cid).addRedoQuery(query);
+	}
+
 	public Query getLastQuery(int cid)
 	{
 		return clients.get(cid).getLastQuery();
