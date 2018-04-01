@@ -35,6 +35,11 @@ public class Main extends Application {
 	private static final String FONT_FAMILY = "Verdana";
 	private static final double FONT_SIZE = 12.0;
 
+	// Query Type Constants
+	public static final String PARTIAL_REQUEST_STRING = "pr";
+	public static final String CONNECT_REQUEST_STRING = "connect";
+	public static final String CONNECTED_STRING = "Connected! Client ID: ";
+
 	// Implementation
 	public static void main(String[] args) {
 
