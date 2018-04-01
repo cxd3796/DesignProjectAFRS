@@ -1,5 +1,6 @@
 package com.flyboiz.afrs.Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,9 +68,16 @@ public class AirportDatabase {
 		airport.storeAirportName(name);
 	}
 
-	public String getAirportInfo(String airportCode) {
+	/**
+	 * Gets the airport info string that describes the weather.
+	 *
+	 * @param cid
+	 * @param airportCode
+	 * @return String format: name, condition, temperature, delay
+	 */
+	public String getAirportInfo(int cid, String airportCode) {
 		Airport airport = airports.get(airportCode);
-		return airport.toString();
+		return airport.getWeather(cid);
 	}
 
 	/**
@@ -82,6 +90,17 @@ public class AirportDatabase {
 		return airports.containsKey(airportCode);
 	}
 
+	/**
+	 *
+	 * @param cid
+	 * @param server
+	 */
+	public void setServer(int cid, String server) {
+		for (Airport airport:airports.values()) {
+			airport.setServer(cid, server);
+		}
+	}
+
 	// GETTERS //
 
 	/**
@@ -90,9 +109,9 @@ public class AirportDatabase {
 	 * @param airportCode the airport code of the airport whose layover you need
 	 * @return the layover time
 	 */
-	public int getLayoverTime(String airportCode) {
+	public int getLayoverTime(String airportCode, int cid) {
 		Airport ap = airports.get(airportCode);
-		return ap.getConnectionTime() + ap.getDelayTime();
+		return ap.getConnectionTime() + ap.getDelayTime(cid);
 	}
 
 

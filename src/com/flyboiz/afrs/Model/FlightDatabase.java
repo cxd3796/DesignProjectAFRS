@@ -81,7 +81,7 @@ public class FlightDatabase {
 	 * @param maxConnections  the maximum number of connections
 	 * @return the list of itineraries
 	 */
-	public List<Itinerary> getPotentialItineraries(String originCode, String destinationCode, int maxConnections) {
+	public List<Itinerary> getPotentialItineraries(String originCode, String destinationCode, int maxConnections, int cid) {
 		// code
 		List<Flight> flightsToCheck = getFlightsFromOrigin(originCode);
 		List<Itinerary> potentialItineraries = new LinkedList<>();
@@ -94,7 +94,7 @@ public class FlightDatabase {
 		}
 
 		// dfs
-		recursiveTryItinerary(destinationCode, maxConnections, null, flightsToCheck, potentialItineraries, visitedAirports, currentFlights);
+		recursiveTryItinerary(destinationCode, maxConnections, null, flightsToCheck, potentialItineraries, visitedAirports, currentFlights, cid);
 
 		// stub code
 		return potentialItineraries;
@@ -136,7 +136,7 @@ public class FlightDatabase {
 	 * @param currentFlights      the current set of flights for this level of recursion
 	 * @param depth               the current depth
 	 */
-	private void recursiveTryItinerary(String destinationCode, int depth, Time arrivalTime, List<Flight> checkFlights, List<Itinerary> existingItineraries, List<String> visitedAirports, List<Flight> currentFlights) {
+	private void recursiveTryItinerary(String destinationCode, int depth, Time arrivalTime, List<Flight> checkFlights, List<Itinerary> existingItineraries, List<String> visitedAirports, List<Flight> currentFlights, int cid) {
 
 		// this method does nothing if there are no flights so
 		if (checkFlights.size() == 0) {
@@ -154,7 +154,7 @@ public class FlightDatabase {
 			Time depTime = f.getDepartureTime();
 
 			if (arrivalTime != null) {
-				layoverTime = adb.getLayoverTime(f.getOrigin());
+				layoverTime = adb.getLayoverTime(f.getOrigin(), cid);
 			}
 
 			// determine if the thing needs to recurse
@@ -177,7 +177,7 @@ public class FlightDatabase {
 					existingItineraries.add(createItinerary(copyFlights(currentFlights)));
 				}
 			} else if (depth > 0 && !(visitedAirports.contains(nextOrigin)) && recurse) {
-				recursiveTryItinerary(destinationCode, depth - 1, f.getDepartureTime(), getFlightsFromOrigin(nextOrigin), existingItineraries, visitedAirports, currentFlights);
+				recursiveTryItinerary(destinationCode, depth - 1, f.getDepartureTime(), getFlightsFromOrigin(nextOrigin), existingItineraries, visitedAirports, currentFlights, cid);
 			}
 
 			// remove f from all the guacamole
