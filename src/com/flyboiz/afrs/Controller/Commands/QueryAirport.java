@@ -2,7 +2,7 @@ package com.flyboiz.afrs.Controller.Commands;
 
 import com.flyboiz.afrs.Model.AirportDatabase;
 
-public class QueryAirportInfo extends Query {
+public class QueryAirport extends Query {
 	private String airport;
 	private AirportDatabase airportDB;
 
@@ -12,7 +12,7 @@ public class QueryAirportInfo extends Query {
 	 * @param airport Airport Code
 	 * @param airportDB Airport Database
 	 */
-	public QueryAirportInfo(int cid, String airport, AirportDatabase airportDB) {
+	public QueryAirport(int cid, String airport, AirportDatabase airportDB) {
 		super(cid);
 		this.airport = airport;
 		this.airportDB = airportDB;
