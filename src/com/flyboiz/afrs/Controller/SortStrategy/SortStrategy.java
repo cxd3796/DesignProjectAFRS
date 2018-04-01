@@ -3,7 +3,7 @@ Kent Brown
 */
 
 // Package //
-package com.flyboiz.afrs.Controller;
+package com.flyboiz.afrs.Controller.SortStrategy;
 
 // Imports //
 

@@ -7,17 +7,22 @@ package com.flyboiz.afrs;
 
 // Imports //
 
+import com.flyboiz.afrs.Controller.QueryCreators.*;
+import com.flyboiz.afrs.Controller.QueryDecider;
 import com.flyboiz.afrs.Controller.QueryExecutor;
 import com.flyboiz.afrs.Controller.QueryMaker;
 import com.flyboiz.afrs.Model.*;
 import com.flyboiz.afrs.View.GUI.ViewManager;
+import com.flyboiz.afrs.Model.*;
 import com.flyboiz.afrs.View.InputReader;
-import com.flyboiz.afrs.View.Output;
 import com.flyboiz.afrs.View.OutputSender;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.util.HashMap;
+import java.util.Map;
 
 // Implementation //
 public class Main extends Application {
@@ -60,19 +65,31 @@ public class Main extends Application {
 
 			readFile.storeData();
 
-			// Instantiate controller objects. //
-			QueryMaker queryMaker = new QueryMaker(flightDatabase, airportDatabase, reservationDatabase);
-			QueryExecutor queryExecutor;
-			InputReader reader = new InputReader();
-			OutputSender output = new OutputSender();
-			queryExecutor = new QueryExecutor(output, queryMaker);
-			reader.setExecutor(queryExecutor);
-			reader.setSender(output);
-			reader.waitOnInput();
-		} else {
-			System.out.println(String.format(ERROR_ARG1, arg));
-			System.out.println(String.format(ERROR_ARG2, ARG_GUI, ARG_TEXT));
+		//Instantiate factories//
+
+		Map<String, QueryCreator> factoryMap = new HashMap<>();
+		String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server" };
+		QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QReserveCreator(clientDatabase,reservationDatabase),
+										new QRetrieveCreator(clientDatabase,reservationDatabase,airportDatabase), new QDeleteCreator(clientDatabase,reservationDatabase), new QAirportCreator(clientDatabase,airportDatabase),
+										new QUndoCreator(clientDatabase), new QRedoCreator(clientDatabase), new QServerCreator(clientDatabase,airportDatabase), new QInfoCreator(clientDatabase,airportDatabase,flightDatabase) };
+		for (int i = 0; i < queryTypes.length; i++)
+		{
+			factoryMap.put(queryTypes[i], queryCreators[i]);
 		}
+
+		QueryDecider queryDecider = new QueryDecider(factoryMap);
+
+
+		// Instantiate controller objects. //
+		QueryExecutor queryExecutor;
+		InputReader reader = new InputReader();
+		OutputSender output = new OutputSender();
+		queryExecutor = new QueryExecutor(output, queryDecider);
+		reader.setExecutor(queryExecutor);
+		reader.setSender(output);
+
+		// start going
+		reader.waitOnInput();
 	}
 
 	@Override
