@@ -37,9 +37,8 @@ public class QueryDelete extends Query {
 	 * @return String that represents the result of the operation
 	 */
 	public String generateResponse() {
-		Reservation reservation = reservationDB.retrieveReservations(name, origin, destination).get(0);
-		itinerary = reservation.getItinerary();
 		if (reservationDB.deleteReservation(name, origin, destination)) {
+			itinerary = reservationDB.getItinerary(name, origin, destination);
 			return "delete,successful";
 		} else {
 			reservationDB.deleteReservation(name, origin, destination);
@@ -47,6 +46,9 @@ public class QueryDelete extends Query {
 		}
 	}
 
+    /**
+     * remakes the deleted reservation
+     */
 	public void undo(){
 		reservationDB.bookReservation(itinerary, name);
 	}

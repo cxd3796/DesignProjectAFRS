@@ -52,6 +52,9 @@ public class QueryMake extends Query {
 		return null;
 	}
 
+	/**
+	 * deletes the reservation made
+	 */
 	public void undo(){
 		reservationDB.deleteReservation(name, reserving.getOrigin(), reserving.getDestination() );
 	}

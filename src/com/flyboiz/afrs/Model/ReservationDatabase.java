@@ -145,5 +145,21 @@ public class ReservationDatabase {
 		}
 	}
 
-
+	/**
+	 * This function obtains an itinerary given a name, destination and origin. used by QueryMakeReservation's
+	 * undo method.
+	 * @param name name of passenger
+	 * @param origin airport code of origin
+	 * @param destination airport code of destination
+	 * @return
+	 */
+	public Itinerary getItinerary(String name,String origin,String destination){
+		for(Reservation r: reservations){
+			if(r.getPassengerName().equals(name)&& r.getOrigin().equals(origin)&&
+					r.getDestination().equals(destination)){
+				return r.getItinerary();
+			}
+		}
+		return null;
+	}
 }
