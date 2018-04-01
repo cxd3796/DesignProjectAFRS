@@ -8,25 +8,41 @@ import java.util.Map;
 public class QueryDecider
 {
 	private Map<String, QueryCreator> factories;
+	private ClientDatabase clientDatabase;
 	private final String DELIMETER = ",";
 
-	public QueryDecider(Map<String, QueryCreator> factories)
+	public QueryDecider(Map<String, QueryCreator> factories, ClientDatabase clientDatabase)
 	{
 		this.factories = factories;
+		this.clientDatabase = clientDatabase;
 	}
 
 	public Query queryDecide(String userInput)
 	{
-		String key;
 		String[] split = userInput.split(DELIMETER);
-		if (split.length > 1) {
-			key = split[1];
-		} else {
-			key = userInput;
-		} if (factories.containsKey(key)) {
-			return (factories.get(key)).makeQuery(userInput);
-		} else {
-			return null;
+		Query query;
+
+		if(split.length > 1)
+		{
+			int cid = Integer.parseInt(split[0]);
+			if(!factories.containsKey(split[1]))
+			{
+				return null;
+			}
+			query = (factories.get(split[1])).makeQuery(userInput);
+			clientDatabase.addLastQuery(query, cid);
+
+			return query;
 		}
+		else //This case will only occur for a connect
+		{
+			if(!factories.containsKey(userInput))
+			{
+				return null;
+			}
+			query = (factories.get(userInput)).makeQuery(userInput);
+			return query ;
+		}
+
 	}
 }

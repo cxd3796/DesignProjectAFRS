@@ -10,8 +10,23 @@ public class QueryUndo extends Query {
         super(cid);
     }
 
+
+    /**
+     * generates response after performing action.
+     * response format: cid,undo, operation[reserve/delete],passenger, itinerary
+     * @return response
+     */
     @Override
     public String generateResponse() {
-        return null;
+        Query undo= clientDB.getLastUndoQuery(cid);
+        if (!(undo instanceof QueryReserve) && !(undo instanceof QueryDelete)){
+            return "error";
+        }
+        if(undo instanceof QueryReserve){
+            return ((QueryReserve) undo).undo();
+        }
+        else {
+            return ((QueryDelete)undo).undo();
+        }
     }
 }

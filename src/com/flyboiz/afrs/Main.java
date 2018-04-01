@@ -137,7 +137,7 @@ public class Main extends Application {
 			factoryMap.put(queryTypes[i], queryCreators[i]);
 		}
 
-		QueryDecider queryDecider = new QueryDecider(factoryMap);
+		QueryDecider queryDecider = new QueryDecider(factoryMap, clientDatabase);
 
 		// Generate the QueryExecutor, and Input/Output GUI.
 		QueryExecutor queryExecutor = new QueryExecutor(null, queryDecider);
