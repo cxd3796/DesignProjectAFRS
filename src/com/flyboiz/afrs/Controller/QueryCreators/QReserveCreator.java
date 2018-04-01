@@ -1,4 +1,5 @@
 package com.flyboiz.afrs.Controller.QueryCreators;
 
-public class QMakeCreator {
+public class QReserveCreator extends QueryCreator{
+
 }

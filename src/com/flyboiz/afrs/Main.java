@@ -34,7 +34,7 @@ public class Main {
 
 		Map<String, QueryCreator> factoryMap = new HashMap<String, QueryCreator>();
 		String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server" };
-		QueryCreator[] queryCreators = {new QConnectCreator(), new QDisconnectCreator(), new QMakeCreator(),
+		QueryCreator[] queryCreators = {new QConnectCreator(), new QDisconnectCreator(), new QReserveCreator(),
 										new QRetrieveCreator(), new QDeleteCreator(), new QAirportCreator(),
 										new QUndoCreator(), new QRedoCreator(), new QServerCreator(), new QInfoCreator() };
 		for (int i = 0; i < queryTypes.length; i++)

@@ -6,7 +6,7 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 
 import java.util.List;
 
-public class QueryMake extends Query {
+public class QueryReserve extends Query {
 	private int itineraryId;
 	private String name;
 	private ReservationDatabase reservationDB;
@@ -21,7 +21,7 @@ public class QueryMake extends Query {
 	 * @param reservationDB The reservation database
 	 * @param lastQuery The last query object that was created by the factory (QueryMaker)
 	 */
-	public QueryMake(int cid, int itineraryId, String name, ReservationDatabase reservationDB, Query lastQuery) {
+	public QueryReserve(int cid, int itineraryId, String name, ReservationDatabase reservationDB, Query lastQuery) {
 		super(cid);
 		this.itineraryId = itineraryId;
 		this.name = name;
