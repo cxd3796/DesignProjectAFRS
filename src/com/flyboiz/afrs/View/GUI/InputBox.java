@@ -53,7 +53,9 @@ public class InputBox extends TextArea implements Input {
                 clearCurrentLine();
             }
         } else if (character.equals("\b")) {
-            currentLine = currentLine.substring(0, currentLine.length() - 1);
+            if (currentLine.length() > 0) {
+                currentLine = currentLine.substring(0, currentLine.length() - 1);
+            }
         } else {
             currentLine = currentLine + character;
         }
@@ -64,7 +66,7 @@ public class InputBox extends TextArea implements Input {
     private void setAbsHeight(double height) {
         setMinHeight(height);
         setPrefHeight(height);
-        //setMaxHeight(height);
+        setMaxHeight(height);
     }
     private void setAbsWidth(double width) {
         setMinWidth(width);

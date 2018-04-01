@@ -23,6 +23,7 @@ public class OutputBox extends TextArea implements Output {
         // Set up the size of the box.
         setAbsWidth(width);
         setAbsHeight(height);
+        setEditable(false);
     }
 
     // BEHAVIOUR //
@@ -41,7 +42,7 @@ public class OutputBox extends TextArea implements Output {
     private void setAbsWidth(double width) {
         setMinWidth(width);
         setPrefWidth(width);
-        setMaxWidth(width);
+        //setMaxWidth(width);
     }
 
 }

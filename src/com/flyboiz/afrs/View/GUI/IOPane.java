@@ -8,6 +8,7 @@ package com.flyboiz.afrs.View.GUI;
 import com.flyboiz.afrs.Controller.QueryPartialRequest;
 import com.flyboiz.afrs.View.Input;
 import com.flyboiz.afrs.View.Output;
+import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 
 /* implementation */
