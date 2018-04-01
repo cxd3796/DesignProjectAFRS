@@ -24,6 +24,12 @@ public class QueryAirport extends Query {
 	 * @return String airportCode,weather,temperature,delay in string format
 	 */
 	public String generateResponse() {
-		return airportDB.getAirportInfo(airport);
+		System.out.println("Generating airport response.");
+		String airportInfo = airportDB.getAirportInfo(airport);
+		if (airportInfo == null) {
+			return "error, invalid origin";
+		} else {
+			return airportInfo;
+		}
 	}
 }

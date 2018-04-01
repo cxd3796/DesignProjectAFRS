@@ -22,7 +22,6 @@ public class QueryDisconnect extends Query {
      */
     public String generateResponse() {
         clientDB.disconnectClient(cid);
-        String response = cid+ ",disconnect";
-        return response;
+        return "disconnect";
     }
 }

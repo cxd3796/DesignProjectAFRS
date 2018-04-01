@@ -24,13 +24,13 @@ public class ViewManager extends Pane implements Output, Input, Resizeable {
     private static final double MANAGER_FRACTION = 8.0;
 
     // STATE //
+    private final double startWidth;
+    private final double startHeight;
+
     private QueryExecutor queryExecutor;
     private TabManager tabManager;
     private List<TabPanePair> pairs;
     private TabPanePair current;
-
-    private final double startWidth;
-    private final double startHeight;
 
     private Font font;
 
@@ -76,8 +76,6 @@ public class ViewManager extends Pane implements Output, Input, Resizeable {
             }
         });
     }
-
-    // GETTERS & SETTERS //
 
     // BEHAVIOUR (PACKAGE-PRIVATE) //
     void newWindow() {
@@ -152,6 +150,7 @@ public class ViewManager extends Pane implements Output, Input, Resizeable {
     // INTERFACE IMPLEMENTS //
     @Override
     public void update(String updateText) {
+        System.out.println("ViewManager received updateText: " + updateText);
         for (TabPanePair tpp : pairs) {
             tpp.update(updateText);
         }

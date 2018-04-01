@@ -75,7 +75,7 @@ public class Main extends Application {
 				factoryMap.put(queryTypes[i], queryCreators[i]);
 			}
 
-			QueryDecider queryDecider = new QueryDecider(factoryMap);
+			QueryDecider queryDecider = new QueryDecider(factoryMap, clientDatabase);
 
 
 			// Instantiate controller objects. //
