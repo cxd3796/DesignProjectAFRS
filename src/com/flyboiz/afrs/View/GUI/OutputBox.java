@@ -6,19 +6,23 @@ package com.flyboiz.afrs.View.GUI;
 /* imports */
 import com.flyboiz.afrs.View.Output;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
 
 /* implementation */
-public class OutputBox extends TextArea implements Output {
+public class OutputBox extends TextArea implements Output, Resizeable {
 
     // CONSTANTS //
     private static final String NEWLINE = "\r\n";
 
     // STATE //
+    private Font font;
 
     // CONSTRUCTOR //
-    OutputBox(double width, double height) {
+    OutputBox(Font font, double width, double height) {
 
         // Change the properties of the box.
+        this.font = font;
+        setFont(font);
 
         // Set up the size of the box.
         setAbsWidth(width);
@@ -42,7 +46,15 @@ public class OutputBox extends TextArea implements Output {
     private void setAbsWidth(double width) {
         setMinWidth(width);
         setPrefWidth(width);
-        //setMaxWidth(width);
+        setMaxWidth(width);
     }
 
+    @Override
+    public void resizeHeight(double newValue) {
+        setAbsHeight(newValue);
+    }
+    @Override
+    public void resizeWidth(double newValue) {
+        setAbsWidth(newValue);
+    }
 }

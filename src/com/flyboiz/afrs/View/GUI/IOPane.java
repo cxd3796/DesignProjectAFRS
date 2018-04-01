@@ -12,9 +12,11 @@ import com.flyboiz.afrs.View.Output;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
+import javafx.scene.text.Font;
 
 /* implementation */
-public class IOPane extends BorderPane implements Output, Input {
+public class IOPane extends TilePane implements Output, Input, Resizeable {
 
     // CONSTANTS //
     private static final String MSG_CONNECTION_FAILED = "Connection failed. Please try again.";
@@ -28,17 +30,22 @@ public class IOPane extends BorderPane implements Output, Input {
     private int clientID;
     private int tabID;
 
+    private Font font;
+
     private IOPaneState currentState;
     private IOPaneState nextState;
 
     // CONSTRUCTOR //
-    IOPane(int tabID, ViewManager vm, double width, double height) {
+    IOPane(int tabID, ViewManager vm, Font font, double width, double height) {
 
         // Initialize.
         super();
         getChildren().clear();
         this.tabID = tabID;
         this.clientID = -1;
+
+        // Set the font.
+        this.font = font;
 
         // Set the current pane state.
         this.currentState = new IOPaneDisconnectedState(this);
@@ -50,12 +57,18 @@ public class IOPane extends BorderPane implements Output, Input {
 
         // Set up ViewManager state.
         this.viewManager = vm;
-        this.inputBox = new InputBox(this, getPrefWidth(), getPrefHeight() / 2);
-        this.outputBox = new OutputBox(getPrefWidth(), getPrefHeight() / 2);
+        this.inputBox = new InputBox(this, font, getPrefWidth(), getPrefHeight() / 2);
+        this.outputBox = new OutputBox(font, getPrefWidth(), getPrefHeight() / 2);
 
         // Insert boxes.
-        setTop(inputBox);
-        setBottom(outputBox);
+        setHgap(0.0);
+        setVgap(0.0);
+        setTileAlignment(Pos.TOP_CENTER);
+        setPrefColumns(1);
+        setPrefRows(2);
+        getChildren().add(inputBox);
+        getChildren().add(outputBox);
+
 
     }
 
@@ -107,6 +120,17 @@ public class IOPane extends BorderPane implements Output, Input {
     public void submit(String queryText) {
         currentState.submit(queryText);
     }
+    @Override
+    public void resizeHeight(double newValue) {
+        System.out.println("New value: " + newValue / 2.0);
+        inputBox.resizeHeight(newValue / 2.0);
+        outputBox.resizeHeight(newValue / 2.0);
+    }
+    @Override
+    public void resizeWidth(double newValue) {
+        inputBox.resizeWidth(newValue);
+        outputBox.resizeWidth(newValue);
+    }
 
     // INNER STATE CLASSES //
     private static abstract class IOPaneState {
@@ -135,7 +159,7 @@ public class IOPane extends BorderPane implements Output, Input {
         @Override
         public void submit(String queryText) {
             // do something
-            if (queryText.contains(Main.CONNECT_REQUEST_STRING) || queryText.contains(Main.PARTIAL_REQUEST_STRING)) {
+            if (queryText.equals(Main.CONNECT_REQUEST_STRING) || queryText.equals(Main.PARTIAL_REQUEST_STRING)) {
                 pane.setNextState(new IOPaneAwaitingConnectionState(pane));
                 pane.submitText(queryText);
             } else {
@@ -159,7 +183,7 @@ public class IOPane extends BorderPane implements Output, Input {
                 pane.updateText(updateText);
             } else {
                 pane.setNextState(new IOPaneDisconnectedState(pane));
-                pane.updateText(MSG_CONNECTION_FAILED);
+                pane.updateText(updateText + " -> " + MSG_CONNECTION_FAILED);
             }
         }
 
@@ -182,6 +206,8 @@ public class IOPane extends BorderPane implements Output, Input {
         @Override
         public void submit(String queryText) {
             // do something
+            pane.setNextState(new IOPaneAwaitingResponseState(pane));
+            pane.submitText(queryText);
         }
     }
     private static class IOPaneAwaitingResponseState extends IOPaneState {
@@ -193,6 +219,8 @@ public class IOPane extends BorderPane implements Output, Input {
         @Override
         public void update(String updateText) {
             // do something
+            pane.setNextState(new IOPaneConnectedState(pane));
+            pane.updateText(updateText);
         }
 
         @Override

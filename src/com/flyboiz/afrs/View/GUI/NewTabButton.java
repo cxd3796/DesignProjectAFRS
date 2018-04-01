@@ -7,7 +7,7 @@ package com.flyboiz.afrs.View.GUI;
 import javafx.scene.control.Button;
 
 /* implementation */
-public class NewTabButton extends Button {
+public class NewTabButton extends Button implements Resizeable {
 
     // CONSTANTS //
     private static final String BUTTON_TEXT = "+";
@@ -22,7 +22,7 @@ public class NewTabButton extends Button {
         setAbsWidth(width);
         setAbsHeight(height);
         setOnMouseClicked(e -> {
-            vm.newWindow();
+            makeNewTab();
         });
     }
 
@@ -39,5 +39,16 @@ public class NewTabButton extends Button {
     }
 
     // BEHAVIOUR //
+    private void makeNewTab() {
+        viewManager.newWindow();
+    }
+    @Override
+    public void resizeHeight(double newValue) {
+        setAbsHeight(newValue);
+    }
+    @Override
+    public void resizeWidth(double newValue) {
+        setAbsWidth(newValue);
+    }
 
 }

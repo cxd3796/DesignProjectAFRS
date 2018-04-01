@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /* implementation */
-public class TabManager extends HBox {
+public class TabManager extends HBox implements Resizeable {
 
     // STATE //
     private ViewManager viewManager;
@@ -55,6 +55,7 @@ public class TabManager extends HBox {
 
         // Create a new tab and set its properties.
         Tab newTab = new Tab(viewManager, allTabs.size(), getPrefWidth() / 25, getPrefHeight());
+        newTab.setFont(normalFont);
 
         // Add a new tab to the tab list.
         allTabs.add(newTab);
@@ -86,5 +87,22 @@ public class TabManager extends HBox {
         setMinWidth(width);
         setPrefWidth(width);
         setMaxWidth(width);
+    }
+
+    @Override
+    public void resizeHeight(double newValue) {
+        setAbsHeight(newValue);
+        newButton.resizeHeight(newValue);
+        for (Tab t : allTabs) {
+            t.resizeHeight(newValue);
+        }
+    }
+    @Override
+    public void resizeWidth(double newValue) {
+        setAbsWidth(newValue);
+        newButton.resizeWidth(newValue / 20.0);
+        for (Tab t : allTabs) {
+            t.resizeWidth(newValue / 25.0);
+        }
     }
 }

@@ -6,9 +6,10 @@ package com.flyboiz.afrs.View.GUI;
 /* imports */
 import com.flyboiz.afrs.View.Input;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
 
 /* implementation */
-public class InputBox extends TextArea implements Input {
+public class InputBox extends TextArea implements Input, Resizeable{
 
     // CONSTANTS //
     private static final String SUBMIT_CHARACTER = "\r"; // Escape character is a carriage return.
@@ -16,11 +17,14 @@ public class InputBox extends TextArea implements Input {
 
     // STATE //
     private IOPane ioPane;
+    private Font font;
     private String currentLine;
 
     // CONSTRUCTOR //
-    public InputBox(IOPane pane, double width, double height) {
+    public InputBox(IOPane pane, Font font, double width, double height) {
         this.ioPane = pane;
+        this.font = font;
+        setFont(font);
         currentLine = "";
         setAbsWidth(width);
         setAbsHeight(height);
@@ -30,7 +34,14 @@ public class InputBox extends TextArea implements Input {
     }
 
     // GETTERS & SETTERS //
-
+    @Override
+    public void resizeHeight(double newValue) {
+        setAbsHeight(newValue);
+    }
+    @Override
+    public void resizeWidth(double newValue) {
+        setAbsWidth(newValue);
+    }
 
     // PUBLIC BEHAVIOUR //
     public void retreatCharacter() {
@@ -71,6 +82,6 @@ public class InputBox extends TextArea implements Input {
     private void setAbsWidth(double width) {
         setMinWidth(width);
         setPrefWidth(width);
-        //setMaxWidth(width);
+        setMaxWidth(width);
     }
 }
