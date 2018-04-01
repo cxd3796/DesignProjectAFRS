@@ -40,7 +40,7 @@ public class Airport {
 	 * @param temperature the temperature to store in this airport.
 	 */
 	public void storeAirportWeather(String condition, int temperature) {
-		weatherList.add(new Weather(condition, temperature, delayTime));
+		weatherList.add(new Weather(condition, temperature));
 	}
 
 	/**
