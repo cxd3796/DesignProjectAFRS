@@ -25,7 +25,7 @@ public class QInfoCreator extends QueryCreator {
      */
     public QInfoCreator(ClientDatabase clientDB, AirportDatabase airportDB,
                         FlightDatabase flightDB){
-        this.airportDB= airportDB;
+		this.airportDB= airportDB;
         this.clientDB= clientDB;
         this.flightDB = flightDB;
         sorts= new HashMap<>();

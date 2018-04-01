@@ -8,7 +8,7 @@ import java.util.Map;
 public class QueryDecider
 {
 	private Map<String, QueryCreator> factories;
-
+	private final String DELIMETER = ",";
 
 	public QueryDecider(Map<String, QueryCreator> factories)
 	{
@@ -17,7 +17,7 @@ public class QueryDecider
 
 	public Query queryDecide(String userInput)
 	{
-		String[] split = userInput.split(",");
+		String[] split = userInput.split(DELIMETER);
 		if(split.length > 1)
 		{
 			return (factories.get(split[1])).makeQuery(userInput);
