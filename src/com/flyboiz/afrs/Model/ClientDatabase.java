@@ -41,11 +41,12 @@ public class ClientDatabase
 		clients.get(cid).moveLastRedoToUndo();
 	}
 
-	public void connectClient()
+	public int connectClient()
 	{
 		clients.put(totalClientNum, new Client(totalClientNum));
 		totalClientNum++;
 		curClientNum++;
+		return totalClientNum-1;
 	}
 
 	public void disconnectClient(int cid)

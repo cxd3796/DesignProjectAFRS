@@ -30,14 +30,12 @@ public class Main {
 		readFile.storeData();
 
 		//Instantiate factories//
-		//TODO Add factory instantiations here
 
 		Map<String, QueryCreator> factoryMap = new HashMap<>();
 		String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server" };
-		//TODO fill the rest of these in
-		QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QReserveCreator(),
-										new QRetrieveCreator(), new QDeleteCreator(clientDatabase,reservationDatabase), new QAirportCreator(clientDatabase,airportDatabase),
-										new QUndoCreator(), new QRedoCreator(), new QServerCreator(), new QInfoCreator(clientDatabase,airportDatabase,flightDatabase) };
+		QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QReserveCreator(clientDatabase,reservationDatabase),
+										new QRetrieveCreator(clientDatabase,reservationDatabase,airportDatabase), new QDeleteCreator(clientDatabase,reservationDatabase), new QAirportCreator(clientDatabase,airportDatabase),
+										new QUndoCreator(clientDatabase), new QRedoCreator(clientDatabase), new QServerCreator(clientDatabase,airportDatabase), new QInfoCreator(clientDatabase,airportDatabase,flightDatabase) };
 		for (int i = 0; i < queryTypes.length; i++)
 		{
 			factoryMap.put(queryTypes[i], queryCreators[i]);
