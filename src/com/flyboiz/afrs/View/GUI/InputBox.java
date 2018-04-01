@@ -57,11 +57,15 @@ public class InputBox extends TextArea implements Input, Resizeable{
     // PRIVATE BEHAVIOUR //
     private void keyTyped(String character) {
         if (character.equals(SUBMIT_CHARACTER)) {
-            if (currentLine.charAt(currentLine.length() - 1) != DELIMITING_CHARACTER) {
-                ioPane.submit("pr");
+            if (currentLine.length() > 0) {
+                if (currentLine.charAt(currentLine.length() - 1) != DELIMITING_CHARACTER) {
+                    ioPane.submit("pr");
+                } else {
+                    ioPane.submit(currentLine.substring(0, currentLine.length() - 1));
+                    clearCurrentLine();
+                }
             } else {
-                ioPane.submit(currentLine.substring(0, currentLine.length() - 1));
-                clearCurrentLine();
+                retreatCharacter();
             }
         } else if (character.equals("\b")) {
             if (currentLine.length() > 0) {
