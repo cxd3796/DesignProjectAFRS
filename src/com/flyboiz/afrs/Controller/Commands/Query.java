@@ -1,5 +1,7 @@
 package com.flyboiz.afrs.Controller.Commands;
 
+import com.flyboiz.afrs.Model.ClientDatabase;
+
 /**
  * Encapsulates the query from the client.
  * Command within the Command pattern
@@ -7,11 +9,18 @@ package com.flyboiz.afrs.Controller.Commands;
  */
 public abstract class Query {
     int cid;                        // Client id
-
+	ClientDatabase clientDB;
 	public Query(int cid) {
 		this.cid = cid;
 	}
 
+	/**
+	 * this constructor is for queries that do not require cid's. (QueryConnect)
+	 * @param clientDB
+	 */
+	public Query(ClientDatabase clientDB){
+		this.clientDB = clientDB;
+	}
 	/**
 	 * @return A string that  represents the desired result.
 	 */

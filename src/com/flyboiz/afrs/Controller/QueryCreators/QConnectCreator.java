@@ -1,4 +1,27 @@
 package com.flyboiz.afrs.Controller.QueryCreators;
 
-public class QConnectCreator {
+import com.flyboiz.afrs.Controller.Commands.QueryConnect;
+import com.flyboiz.afrs.Model.ClientDatabase;
+
+public class QConnectCreator extends QueryCreator{
+
+    private ClientDatabase clientDB;
+
+    /**
+     * constructor
+     * @param clientDB client database
+     */
+    public QConnectCreator(ClientDatabase clientDB){
+        this.clientDB= clientDB;
+    }
+
+
+    /**
+     *creates a QueryConnect
+     * @param input the user input. should be just "connect"
+     * @return QueryConnect
+     */
+    public QueryConnect makeQuery(String input){
+        return new QueryConnect(clientDB);
+    }
 }

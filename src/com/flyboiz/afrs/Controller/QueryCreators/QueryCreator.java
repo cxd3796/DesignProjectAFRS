@@ -7,9 +7,6 @@ public abstract class QueryCreator {
 
     ClientDatabase clientDB;
 
-    protected QueryCreator (ClientDatabase clientDB){
-        this.clientDB = clientDB;
-    }
     /**
      * takes input and returns a Query
      * @param userInput

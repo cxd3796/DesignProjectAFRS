@@ -1,14 +1,14 @@
 package com.flyboiz.afrs.Controller.Commands;
 
 
+import com.flyboiz.afrs.Model.ClientDatabase;
+
 public class QueryConnect extends Query {
 
-    /**
-     * Constructor for QueryConnect command object
-     * @param cid client id
-     */
-    public QueryConnect(int cid) {
-        super(cid);
+    private ClientDatabase clientDB;
+
+    public QueryConnect(ClientDatabase clientDB){
+        super(clientDB);
     }
 
     @Override
