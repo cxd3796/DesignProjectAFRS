@@ -7,12 +7,12 @@ public class LocalWeather implements WeatherStratum{
 
     private HashMap<Integer, WeatherIterator> weatherIterators;
     private List<Weather> weatherList;
-    private int delay;
+    int delayTime;
 
-    public LocalWeather(List<Weather> weatherList, int delayTime){
+    public LocalWeather(List<Weather> weatherList){
         weatherIterators = new HashMap<>();
         this.weatherList = weatherList;
-        delay = delayTime;
+        delayTime = 0;
     }
 
     private WeatherIterator getIterator(int cid){
@@ -36,6 +36,10 @@ public class LocalWeather implements WeatherStratum{
 
     @Override
     public int getDelay() {
-        return delay;
+        return delayTime;
+    }
+
+    public void setDelay(int delay) {
+        delayTime = delay;
     }
 }
