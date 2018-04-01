@@ -11,8 +11,16 @@ public class QueryConnect extends Query {
         super(clientDB);
     }
 
+
+    /**
+     * generates response after performing action.
+     * response in format: "connect", cid;
+     * @return
+     */
     @Override
     public String generateResponse() {
-        return null;
+        int cid = clientDB.connectClient();
+        String string = "connect, " + cid;
+        return string;
     }
 }

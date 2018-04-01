@@ -12,6 +12,15 @@ public class QueryRedo extends Query {
 
     @Override
     public String generateResponse() {
-        return null;
+        Query redo = clientDB.getLastRedoQuery(cid);
+        if (!(redo instanceof QueryReserve) && !(redo instanceof QueryDelete)){
+            return "error";
+        }
+        if(redo instanceof QueryReserve){
+            return ((QueryReserve) redo).redo();
+        }
+        else {
+            return ((QueryDelete)redo).redo();
+        }
     }
 }
