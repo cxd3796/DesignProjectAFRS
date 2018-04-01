@@ -92,8 +92,15 @@ public class TabManager extends HBox implements Resizeable {
     }
 
     private double calculateTabWidth() {
-        double tabWidth = getPrefWidth() - (getPrefWidth() / 20);
-        return tabWidth / allTabs.size();
+        double tabWidth = getWidth() - (getWidth() / 25);
+        tabWidth /= allTabs.size();
+        if (tabWidth > maxTabWidth()) {
+            tabWidth = maxTabWidth();
+        }
+        return tabWidth;
+    }
+    private double maxTabWidth() {
+        return (getPrefWidth() - (getPrefWidth() / 25)) / 5;
     }
 
     @Override
