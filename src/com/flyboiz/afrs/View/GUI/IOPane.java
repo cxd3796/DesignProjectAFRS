@@ -11,6 +11,7 @@ import com.flyboiz.afrs.View.Input;
 import com.flyboiz.afrs.View.Output;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 /* implementation */
 public class IOPane extends BorderPane implements Output, Input {
@@ -27,7 +28,8 @@ public class IOPane extends BorderPane implements Output, Input {
     private int clientID;
     private int tabID;
 
-    private IOPaneState ioPaneState;
+    private IOPaneState currentState;
+    private IOPaneState nextState;
 
     // CONSTRUCTOR //
     IOPane(int tabID, ViewManager vm, double width, double height) {
@@ -39,7 +41,8 @@ public class IOPane extends BorderPane implements Output, Input {
         this.clientID = -1;
 
         // Set the current pane state.
-        this.ioPaneState = new IOPaneDisconnectedState(this);
+        this.currentState = new IOPaneDisconnectedState(this);
+        this.nextState = null;
 
         // Set the size of the IOPane.
         setAbsHeight(height);
@@ -67,9 +70,15 @@ public class IOPane extends BorderPane implements Output, Input {
         setPrefWidth(width);
         //setMaxWidth(width);
     }
-    private void changeState(IOPaneState state) {
-        System.out.println(state.getClass().toString());
-        this.ioPaneState = state;
+    private void setNextState(IOPaneState nextState) {
+        this.nextState = nextState;
+    }
+    public void changeState() {
+        if (nextState != null) {
+            currentState = nextState;
+            printState();
+        }
+        nextState = null;
     }
     private int getClientID() {
         return clientID;
@@ -77,15 +86,26 @@ public class IOPane extends BorderPane implements Output, Input {
     private void setClientID(int id) {
         clientID = id;
     }
+    private void submitText(String text) {
+        changeState();
+        viewManager.submit(text);
+    }
+    private void updateText(String text) {
+        changeState();
+        outputBox.update(text);
+    }
+    public void printState() {
+        System.out.println(currentState.getClass().toString());
+    }
 
     // BEHAVIOUR (INTERFACE) //
     @Override
     public void update(String updateText) {
-        ioPaneState.update(updateText);
+        currentState.update(updateText);
     }
     @Override
     public void submit(String queryText) {
-        ioPaneState.submit(queryText);
+        currentState.submit(queryText);
     }
 
     // INNER STATE CLASSES //
@@ -103,22 +123,24 @@ public class IOPane extends BorderPane implements Output, Input {
 
         public IOPaneDisconnectedState(IOPane pane) {
             super(pane);
+            System.out.println("New Disconnected created.");
         }
 
         @Override
         public void update(String updateText) {
             // do nothing
+            //System.out.println("This should not happen!");
         }
 
         @Override
         public void submit(String queryText) {
-            System.out.println("Attempting to submit: " + queryText);
-            if (queryText.contains(Main.PARTIAL_REQUEST_STRING) || queryText.contains(Main.CONNECT_REQUEST_STRING)) {
-                String noSemicolon = queryText.replace(";","");
-                pane.viewManager.submit(noSemicolon);
-                pane.ioPaneState = new IOPaneAwaitingConnectionState(pane);
+            // do something
+            if (queryText.contains(Main.CONNECT_REQUEST_STRING) || queryText.contains(Main.PARTIAL_REQUEST_STRING)) {
+                pane.setNextState(new IOPaneAwaitingConnectionState(pane));
+                pane.submitText(queryText);
             } else {
-                pane.outputBox.update(MSG_DISCONNECTED);
+                // please deprecate
+                pane.updateText(MSG_CONNECTION_FAILED);
             }
         }
     }
@@ -126,18 +148,18 @@ public class IOPane extends BorderPane implements Output, Input {
 
         IOPaneAwaitingConnectionState(IOPane pane) {
             super(pane);
+            System.out.println("New AwaitingConnection created.");
         }
 
         @Override
         public void update(String updateText) {
+            // do something
             if (updateText.contains(Main.CONNECTED_STRING)) {
-                String clientIDOnly = updateText.replace(Main.CONNECTED_STRING, "");
-                pane.setClientID(Integer.parseInt(clientIDOnly));
-                pane.outputBox.update(updateText);
-                pane.changeState(new IOPaneConnectedState(pane));
+                pane.setNextState(new IOPaneConnectedState(pane));
+                pane.updateText(updateText);
             } else {
-                pane.outputBox.update(MSG_CONNECTION_FAILED);
-                pane.changeState(new IOPaneDisconnectedState(pane));
+                pane.setNextState(new IOPaneDisconnectedState(pane));
+                pane.updateText(MSG_CONNECTION_FAILED);
             }
         }
 
@@ -159,10 +181,7 @@ public class IOPane extends BorderPane implements Output, Input {
 
         @Override
         public void submit(String queryText) {
-            String noSemicolon = queryText.replace(";","");
-            String updatedText = pane.getClientID() + "," + noSemicolon;
-            pane.viewManager.submit(updatedText);
-            pane.changeState(new IOPaneAwaitingResponseState(pane));
+            // do something
         }
     }
     private static class IOPaneAwaitingResponseState extends IOPaneState {
@@ -173,11 +192,7 @@ public class IOPane extends BorderPane implements Output, Input {
 
         @Override
         public void update(String updateText) {
-            if (updateText.equals(QueryPartialRequest.PARTIAL_REQUEST_STRING)) {
-                pane.inputBox.retreatCharacter();
-            }
-            pane.outputBox.update(updateText);
-            pane.changeState(new IOPaneConnectedState(pane));
+            // do something
         }
 
         @Override

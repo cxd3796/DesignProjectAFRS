@@ -121,5 +121,4 @@ public class ViewManager extends BorderPane implements Output, Input {
     public void submit(String queryText) {
         queryExecutor.makeQuery(queryText);
     }
-
 }

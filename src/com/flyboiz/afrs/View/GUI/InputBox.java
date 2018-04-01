@@ -47,9 +47,9 @@ public class InputBox extends TextArea implements Input {
     private void keyTyped(String character) {
         if (character.equals(SUBMIT_CHARACTER)) {
             if (currentLine.charAt(currentLine.length() - 1) != DELIMITING_CHARACTER) {
-                ioPane.submit("pr" + DELIMITING_CHARACTER);
+                ioPane.submit("pr");
             } else {
-                ioPane.submit(currentLine);
+                ioPane.submit(currentLine.substring(0, currentLine.length() - 1));
                 clearCurrentLine();
             }
         } else if (character.equals("\b")) {
