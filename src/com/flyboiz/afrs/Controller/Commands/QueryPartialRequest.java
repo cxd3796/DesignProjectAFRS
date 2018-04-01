@@ -17,8 +17,8 @@ public class QueryPartialRequest extends Query {
     // STATE //
 
     // CONSTRUCTOR //
-    public QueryPartialRequest(ClientDatabase db) {
-        super(db);
+    public QueryPartialRequest() {
+        super(null);
         // no initialization
     }
 

@@ -83,11 +83,18 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
         }
         nextState = null;
     }
-    private int getClientID() {
-        return clientID;
+    private void connect(String connectedResponse) {
+        String idString = connectedResponse.replace("connect, ", "");
+        int newID = Integer.parseInt(idString);
+        if (clientID == -1) {
+            clientID = newID;
+        }
     }
-    private void setClientID(int id) {
-        clientID = id;
+    private void disconnect() {
+        clientID = -1;
+    }
+    private String prependClientID(String text) {
+        return clientID + "," + text;
     }
     private void submitText(String text) {
         changeState();
@@ -98,7 +105,7 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
         outputBox.update(text);
     }
 
-    // BEHAVIOUR (INTERFACE) //
+    // BEHAVIOUR (OVERRIDE) //
     @Override
     public void update(String updateText) {
         currentState.update(updateText);
@@ -119,6 +126,10 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
         inputBox.resizeWidth(newValue);
         outputBox.resizeWidth(newValue);
     }
+    @Override
+    public String toString() {
+        return "{IOPane: cid=" + clientID + ", tabID=" + tabID + "}";
+    }
 
     // INNER STATE CLASSES //
     private static abstract class IOPaneState {
@@ -135,7 +146,7 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
 
         public IOPaneDisconnectedState(IOPane pane) {
             super(pane);
-            System.out.println("New Disconnected created.");
+            System.out.println("New Disconnected created for " + pane);
         }
 
         @Override
@@ -160,15 +171,16 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
 
         IOPaneAwaitingConnectionState(IOPane pane) {
             super(pane);
-            System.out.println("New AwaitingConnection created.");
+            System.out.println("New AwaitingConnection created for " + pane);
         }
 
         @Override
         public void update(String updateText) {
             // do something
-            if (updateText.contains(Main.CONNECTED_STRING)) {
+            if (updateText.contains(Main.CONNECT_REQUEST_STRING + ",")) {
                 pane.setNextState(new IOPaneConnectedState(pane));
                 pane.updateText(updateText);
+                pane.connect(updateText);
             } else {
                 pane.setNextState(new IOPaneDisconnectedState(pane));
                 pane.updateText(updateText + " -> " + MSG_CONNECTION_FAILED);
@@ -184,6 +196,7 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
 
         public IOPaneConnectedState(IOPane pane) {
             super(pane);
+            System.out.println("New Connected created for " + pane);
         }
 
         @Override
@@ -195,7 +208,7 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
         public void submit(String queryText) {
             // do something
             pane.setNextState(new IOPaneAwaitingResponseState(pane));
-            pane.submitText(queryText);
+            pane.submitText(pane.prependClientID(queryText));
         }
     }
     private static class IOPaneAwaitingResponseState extends IOPaneState {

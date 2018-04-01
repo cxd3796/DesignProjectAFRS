@@ -17,6 +17,7 @@ public class QueryDisconnect extends Query {
 
     @Override
     public String generateResponse() {
-        return null;
+        clientDB.disconnectClient(cid);
+        return cid + ", disconnect";
     }
 }

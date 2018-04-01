@@ -88,6 +88,9 @@ public class Main extends Application {
 
 			// start going
 			reader.waitOnInput();
+		} else {
+			System.out.println(String.format(ERROR_ARG1, arg));
+			System.out.println(String.format(ERROR_ARG2, ARG_GUI, ARG_TEXT));
 		}
 	}
 
@@ -106,10 +109,30 @@ public class Main extends Application {
 
 		// Create the QueryDecider
 		Map<String, QueryCreator> factoryMap = new HashMap<>();
-		String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server"};
-		QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QReserveCreator(clientDatabase, reservationDatabase),
-				new QRetrieveCreator(clientDatabase, reservationDatabase, airportDatabase), new QDeleteCreator(clientDatabase, reservationDatabase), new QAirportCreator(clientDatabase, airportDatabase),
-				new QUndoCreator(clientDatabase), new QRedoCreator(clientDatabase), new QServerCreator(clientDatabase, airportDatabase), new QInfoCreator(clientDatabase, airportDatabase, flightDatabase)};
+		String[] queryTypes = {
+				"connect",
+				"disconnect",
+				"info",
+				"reserve",
+				"retrieve",
+				"delete",
+				"undo",
+				"redo",
+				"airport",
+				"server",
+				"pr"};
+		QueryCreator[] queryCreators = {
+				new QConnectCreator(clientDatabase),
+				new QDisconnectCreator(clientDatabase),
+				new QReserveCreator(clientDatabase, reservationDatabase),
+				new QRetrieveCreator(clientDatabase, reservationDatabase, airportDatabase),
+				new QDeleteCreator(clientDatabase, reservationDatabase),
+				new QAirportCreator(clientDatabase, airportDatabase),
+				new QUndoCreator(clientDatabase),
+				new QRedoCreator(clientDatabase),
+				new QServerCreator(clientDatabase, airportDatabase),
+				new QInfoCreator(clientDatabase, airportDatabase, flightDatabase),
+				new QPartialRequestCreator()};
 		for (int i = 0; i < queryTypes.length; i++) {
 			factoryMap.put(queryTypes[i], queryCreators[i]);
 		}

@@ -9,7 +9,7 @@ import com.flyboiz.afrs.Model.ClientDatabase;
  */
 public abstract class Query {
     int cid;                        // Client id
-	ClientDatabase clientDB;
+	protected ClientDatabase clientDB;
 	public Query(int cid) {
 		this.cid = cid;
 	}

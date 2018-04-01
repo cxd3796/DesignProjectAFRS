@@ -17,15 +17,16 @@ public class QueryDecider
 
 	public Query queryDecide(String userInput)
 	{
+		String key;
 		String[] split = userInput.split(DELIMETER);
-		if(split.length > 1)
-		{
-			return (factories.get(split[1])).makeQuery(userInput);
+		if (split.length > 1) {
+			key = split[1];
+		} else {
+			key = userInput;
+		} if (factories.containsKey(key)) {
+			return (factories.get(key)).makeQuery(userInput);
+		} else {
+			return null;
 		}
-		else
-		{
-			return (factories.get(userInput)).makeQuery(userInput);
-		}
-
 	}
 }
