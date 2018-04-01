@@ -20,8 +20,17 @@ public class QueryServer extends Query {
         this.clientDB= clientDB;
     }
 
+    /**
+     * performs change of info-server and returns response in format
+     *cid,server,successful
+     * @return
+     */
     @Override
     public String generateResponse() {
-        return null;
+        if(!infoServer.equals("local")&& !infoServer.equals("faa")){
+            return cid+",error,unknown information server";
+        }
+        airportDB.setServer(cid, infoServer);
+        return cid+"," +infoServer+ ",successful";
     }
 }
