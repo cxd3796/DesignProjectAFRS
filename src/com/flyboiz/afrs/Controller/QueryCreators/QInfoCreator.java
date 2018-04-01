@@ -24,7 +24,7 @@ public class QInfoCreator extends QueryCreator {
      * @param airportDB
      */
     public QInfoCreator(ClientDatabase clientDB, AirportDatabase airportDB,
-                        FlightDatabase fligthDB){
+                        FlightDatabase flightDB){
         this.airportDB= airportDB;
         this.clientDB= clientDB;
         this.flightDB = flightDB;
