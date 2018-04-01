@@ -53,9 +53,29 @@ public class QueryReserve extends Query {
 	}
 
 	/**
-	 * deletes the reservation made
+	 * deletes the reservation made and generates a response in the format
+	 * cid,undo,operation,passenger,itinerary
 	 */
-	public void undo(){
+	public String undo() {
 		reservationDB.deleteReservation(name, reserving.getOrigin(), reserving.getDestination() );
+		String response = cid+",undo,reserve,"+name+","+reserving.toString();
+		return response;
+	}
+
+
+	/**
+	 * reserves the specified reservation again and outputs a response in the format
+	 * cid,redo,operation,passenger,itinerary
+	 * @return string in the format specified
+	 */
+	public String redo(){
+		List<Reservation> check = reservationDB.retrieveReservations(name, reserving.getOrigin(), reserving.getDestination());
+		if (check.size() > 0) {
+			return "error,duplicate reservation";
+		} else {
+			reservationDB.bookReservation(reserving, name);
+		}
+		String response = cid+",redo,reserve,"+name+","+reserving.toString();
+		return response;
 	}
 }

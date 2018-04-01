@@ -47,9 +47,24 @@ public class QueryDelete extends Query {
 	}
 
     /**
-     * remakes the deleted reservation
+     * remakes the deleted reservation and returns a response in the format
+	 * cid, undo, operation, passenger,itinerary
      */
-	public void undo(){
+	public String undo(){
 		reservationDB.bookReservation(itinerary, name);
+		String response = cid +",undo,delete,"+name+","+itinerary.toString();
+		return response;
+	}
+
+
+	/**
+	 * deletes specified reservation and returns a response in the format
+	 * cid, undo, operation, passenger,itinerary
+	 * @return specified response.
+	 */
+	public String redo(){
+		reservationDB.deleteReservation(name,origin,destination);
+		String response = cid+",redo,delete,"+name+","+itinerary.toString();
+		return response;
 	}
 }

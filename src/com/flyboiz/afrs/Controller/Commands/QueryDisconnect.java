@@ -16,7 +16,13 @@ public class QueryDisconnect extends Query {
     }
 
     @Override
+    /**
+     * generates response after performing action.
+     * response format: cid,"disconnect"
+     */
     public String generateResponse() {
-        return null;
+        clientDB.disconnectClient(cid);
+        String response = cid+ ",disconnect";
+        return response;
     }
 }
