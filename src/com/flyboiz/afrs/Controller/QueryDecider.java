@@ -22,9 +22,14 @@ public class QueryDecider
 	{
 		String[] split = userInput.split(DELIMETER);
 		Query query;
+
 		if(split.length > 1)
 		{
 			int cid = Integer.parseInt(split[0]);
+			if(!factories.containsKey(split[1]))
+			{
+				return null;
+			}
 			query = (factories.get(split[1])).makeQuery(userInput);
 			clientDatabase.addLastQuery(query, cid);
 
@@ -32,6 +37,10 @@ public class QueryDecider
 		}
 		else //This case will only occur for a connect
 		{
+			if(!factories.containsKey(userInput))
+			{
+				return null;
+			}
 			query = (factories.get(userInput)).makeQuery(userInput);
 			return query ;
 		}
