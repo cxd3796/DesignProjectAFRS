@@ -96,4 +96,8 @@ public class AirportDatabase {
 	}
 
 
+	public void setServer(int clientID, String infoServer) {
+		// do nothing?
+	}
+
 }

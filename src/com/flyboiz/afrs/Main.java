@@ -67,10 +67,30 @@ public class Main extends Application {
 			//Instantiate factories//
 
 			Map<String, QueryCreator> factoryMap = new HashMap<>();
-			String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server"};
-			QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QReserveCreator(clientDatabase, reservationDatabase),
-					new QRetrieveCreator(clientDatabase, reservationDatabase, airportDatabase), new QDeleteCreator(clientDatabase, reservationDatabase), new QAirportCreator(clientDatabase, airportDatabase),
-					new QUndoCreator(clientDatabase), new QRedoCreator(clientDatabase), new QServerCreator(clientDatabase, airportDatabase), new QInfoCreator(clientDatabase, airportDatabase, flightDatabase)};
+			String[] queryTypes = {
+					"connect",
+					"disconnect",
+					"reserve",
+					"retrieve",
+					"delete",
+					"airport",
+					"undo",
+					"redo",
+					"server",
+					"info",
+					"pr"};
+			QueryCreator[] queryCreators = {
+					new QConnectCreator(clientDatabase), 										// connect
+					new QDisconnectCreator(clientDatabase), 									// disconnect
+					new QReserveCreator(clientDatabase, reservationDatabase),					// reserve
+					new QRetrieveCreator(clientDatabase, reservationDatabase, airportDatabase),	// retrieve
+					new QDeleteCreator(clientDatabase, reservationDatabase),					// delete
+					new QAirportCreator(clientDatabase, airportDatabase),						// airport
+					new QUndoCreator(clientDatabase),											// undo
+					new QRedoCreator(clientDatabase),											// redo
+					new QServerCreator(clientDatabase, airportDatabase),						// server
+					new QInfoCreator(clientDatabase, airportDatabase, flightDatabase),			// info
+					new QPartialRequestCreator()};												// pr
 			for (int i = 0; i < queryTypes.length; i++) {
 				factoryMap.put(queryTypes[i], queryCreators[i]);
 			}
@@ -107,32 +127,31 @@ public class Main extends Application {
 		// Generate data in the databases.
 		readFile.storeData();
 
-		// Create the QueryDecider
 		Map<String, QueryCreator> factoryMap = new HashMap<>();
 		String[] queryTypes = {
 				"connect",
 				"disconnect",
-				"info",
 				"reserve",
 				"retrieve",
 				"delete",
+				"airport",
 				"undo",
 				"redo",
-				"airport",
 				"server",
+				"info",
 				"pr"};
 		QueryCreator[] queryCreators = {
-				new QConnectCreator(clientDatabase),
-				new QDisconnectCreator(clientDatabase),
-				new QReserveCreator(clientDatabase, reservationDatabase),
-				new QRetrieveCreator(clientDatabase, reservationDatabase, airportDatabase),
-				new QDeleteCreator(clientDatabase, reservationDatabase),
-				new QAirportCreator(clientDatabase, airportDatabase),
-				new QUndoCreator(clientDatabase),
-				new QRedoCreator(clientDatabase),
-				new QServerCreator(clientDatabase, airportDatabase),
-				new QInfoCreator(clientDatabase, airportDatabase, flightDatabase),
-				new QPartialRequestCreator()};
+				new QConnectCreator(clientDatabase), 										// connect
+				new QDisconnectCreator(clientDatabase), 									// disconnect
+				new QReserveCreator(clientDatabase, reservationDatabase),					// reserve
+				new QRetrieveCreator(clientDatabase, reservationDatabase, airportDatabase),	// retrieve
+				new QDeleteCreator(clientDatabase, reservationDatabase),					// delete
+				new QAirportCreator(clientDatabase, airportDatabase),						// airport
+				new QUndoCreator(clientDatabase),											// undo
+				new QRedoCreator(clientDatabase),											// redo
+				new QServerCreator(clientDatabase, airportDatabase),						// server
+				new QInfoCreator(clientDatabase, airportDatabase, flightDatabase),			// info
+				new QPartialRequestCreator()};												// pr
 		for (int i = 0; i < queryTypes.length; i++) {
 			factoryMap.put(queryTypes[i], queryCreators[i]);
 		}
