@@ -7,16 +7,12 @@ package com.flyboiz.afrs;
 
 // Imports //
 
-import com.flyboiz.afrs.Controller.Commands.Query;
-import com.flyboiz.afrs.Controller.QueryCreator;
+import com.flyboiz.afrs.Controller.QueryCreators.*;
 import com.flyboiz.afrs.Controller.QueryDecider;
 import com.flyboiz.afrs.Controller.QueryExecutor;
+import com.flyboiz.afrs.Model.*;
 import com.flyboiz.afrs.View.InputReader;
 import com.flyboiz.afrs.View.OutputSender;
-import com.flyboiz.afrs.Model.AirportDatabase;
-import com.flyboiz.afrs.Model.FlightDatabase;
-import com.flyboiz.afrs.Model.ReadFile;
-import com.flyboiz.afrs.Model.ReservationDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +24,7 @@ public class Main {
 		AirportDatabase airportDatabase = new AirportDatabase();
 		FlightDatabase flightDatabase = new FlightDatabase(airportDatabase);
 		ReservationDatabase reservationDatabase = new ReservationDatabase(flightDatabase);
+		ClientDatabase clientDatabase = new ClientDatabase();
 		ReadFile readFile = new ReadFile(flightDatabase, airportDatabase, reservationDatabase);
 
 		readFile.storeData();
@@ -37,9 +34,9 @@ public class Main {
 
 		Map<String, QueryCreator> factoryMap = new HashMap<String, QueryCreator>();
 		String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server" };
-		QueryCreator[] queryCreators = {new QConnectCreator(), new QDisconnectCreator(), new QMakeReservationCreator(),
-										new QRetrieveReservationCreator(), new QDeleteReservationCreator(), new QAirportInfoCreator(),
-										new QUndoCreator(), new QRedoCreator(), new QServerCreator(), new QItineraryInfoCreator() };
+		QueryCreator[] queryCreators = {new QConnectCreator(), new QDisconnectCreator(), new QMakeCreator(),
+										new QRetrieveCreator(), new QDeleteCreator(), new QAirportCreator(),
+										new QUndoCreator(), new QRedoCreator(), new QServerCreator(), new QInfoCreator() };
 		for (int i = 0; i < queryTypes.length; i++)
 		{
 			factoryMap.put(queryTypes[i], queryCreators[i]);
