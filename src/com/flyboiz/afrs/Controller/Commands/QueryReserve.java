@@ -38,15 +38,15 @@ public class QueryReserve extends Query {
 		if (lastQuery instanceof QueryInfo) {
 			QueryInfo itineraryQuery = (QueryInfo) lastQuery;
 			if (itineraryId < 0 || itineraryId > itineraryQuery.getItineraries().size()) {
-				return "error,invalid id";
+				return cid+",error,invalid id";
 			}
 			reserving = itineraryQuery.getItinerary(itineraryId);
 			List<Reservation> check = reservationDB.retrieveReservations(name, reserving.getOrigin(), reserving.getDestination());
 			if (check.size() > 0) {
-				return "error,duplicate reservation";
+				return cid+",error,duplicate reservation";
 			} else {
 				reservationDB.bookReservation(reserving, name);
-				return "reserve,successful";
+				return cid+",reserve,successful";
 			}
 		}
 		return null;

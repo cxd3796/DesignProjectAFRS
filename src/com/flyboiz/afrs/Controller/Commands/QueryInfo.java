@@ -42,16 +42,16 @@ public class QueryInfo extends Query {
 	 */
 	public String generateResponse() {
 		if (!airportDB.isAirportReal(origin)) {
-			return "error,unknown origin";
+			return cid+",error,unknown origin";
 		}
 		if (!airportDB.isAirportReal(destination)) {
-			return "error,unknown destination";
+			return cid+",error,unknown destination";
 		}
 		if (maxConnection < 0 || maxConnection > 2) {
-			return "error,invalid connection limit";
+			return cid+",error,invalid connection limit";
 		}
 		if (sortType == null) {
-			return "error,invalid sort order";
+			return cid+",error,invalid sort order";
 		}
 		itineraries = flightDB.getPotentialItineraries(origin, destination, maxConnection);
 		int n = itineraries.size();
@@ -60,7 +60,7 @@ public class QueryInfo extends Query {
 		for (int i = 0; i < n; i++) {
 			response = response + "\n" + (i + 1) + "," + itineraries.get(i).toString();
 		}
-		return response;
+		return cid+","+response;
 	}
 
 	/**

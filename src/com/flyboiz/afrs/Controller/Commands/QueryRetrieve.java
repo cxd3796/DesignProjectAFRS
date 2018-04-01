@@ -40,11 +40,11 @@ public class QueryRetrieve extends Query {
 	public String generateResponse() {
 		// Check origin airport for validity
 		if (!airportDB.isAirportReal(origin) && !(origin.equals(""))) {
-			return "error,unknown origin";
+			return cid+",error,unknown origin";
 		}
 		// Check destination airport for validity
 		if (!airportDB.isAirportReal(destination) && !(destination.equals(""))) {
-			return "error,unknown destination";
+			return cid+",error,unknown destination";
 		}
 
 		// Create output from reservations
@@ -65,6 +65,6 @@ public class QueryRetrieve extends Query {
 			Itinerary i = r.getItinerary();
 			output += "\n" + i.toString();
 		}
-		return output;
+		return cid+","+ output;
 	}
 }

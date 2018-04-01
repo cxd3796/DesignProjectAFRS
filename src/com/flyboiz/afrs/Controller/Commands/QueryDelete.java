@@ -39,10 +39,10 @@ public class QueryDelete extends Query {
 	public String generateResponse() {
 		if (reservationDB.deleteReservation(name, origin, destination)) {
 			itinerary = reservationDB.getItinerary(name, origin, destination);
-			return "delete,successful";
+			return cid+",delete,successful";
 		} else {
 			reservationDB.deleteReservation(name, origin, destination);
-			return "error,reservation not found";
+			return cid+",error,reservation not found";
 		}
 	}
 
