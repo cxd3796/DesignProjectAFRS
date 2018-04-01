@@ -19,7 +19,7 @@ public class Tab extends Button implements Resizeable {
     public Tab(ViewManager vm, int tabID, double width, double height) {
         this.manager = vm;
         this.tabID = tabID;
-        setText(Integer.toString(tabID));
+        setText("Tab " + Integer.toString(tabID + 1));
         setAbsWidth(width);
         setAbsHeight(height);
         setOnMouseClicked(e -> {
@@ -40,11 +40,13 @@ public class Tab extends Button implements Resizeable {
     private void setAbsHeight(double height) {
         setMinHeight(height);
         setPrefHeight(height);
+        setHeight(height);
         setMaxHeight(height);
     }
     private void setAbsWidth(double width) {
         setMinWidth(width);
         setPrefWidth(width);
+        setWidth(width);
         setMaxWidth(width);
     }
 

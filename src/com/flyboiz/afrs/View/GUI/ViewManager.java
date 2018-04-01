@@ -10,20 +10,18 @@ import com.flyboiz.afrs.View.Input;
 import com.flyboiz.afrs.View.Output;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import java.util.LinkedList;
 import java.util.List;
 
 /* implementation */
-public class ViewManager extends BorderPane implements Output, Input, Resizeable {
+public class ViewManager extends Pane implements Output, Input, Resizeable {
 
     // CONSTANTS //
     private static final double MANAGER_FRACTION = 8.0;
-    private static final double PREFERRED_WIDTH = 800.0;
-    private static final double PREFERRED_HEIGHT = 600.0;
-    private static final double TAB_MANAGER_HEIGHT = PREFERRED_HEIGHT / MANAGER_FRACTION;
-    private static final double PANE_HEIGHT = PREFERRED_HEIGHT - TAB_MANAGER_HEIGHT;
 
     // STATE //
     private QueryExecutor queryExecutor;
@@ -31,10 +29,13 @@ public class ViewManager extends BorderPane implements Output, Input, Resizeable
     private List<TabPanePair> pairs;
     private TabPanePair current;
 
+    private final double startWidth;
+    private final double startHeight;
+
     private Font font;
 
     // CONSTRUCTOR //
-    public ViewManager(QueryExecutor qe, Font font) {
+    public ViewManager(QueryExecutor qe, Font font, double startWidth, double startHeight) {
 
         // Perform basic node initialization. //
         super();
@@ -48,15 +49,18 @@ public class ViewManager extends BorderPane implements Output, Input, Resizeable
 
         // Local initialization (for this class). //
         this.pairs = new LinkedList<>();
-        this.tabManager = new TabManager(this, font, PREFERRED_WIDTH, PREFERRED_HEIGHT / 16);
+        this.tabManager = new TabManager(this, font, startWidth, startHeight / MANAGER_FRACTION);
 
         // Set the preferred size of the pane.
-        setAbsWidth(PREFERRED_WIDTH);
-        setAbsHeight(PREFERRED_HEIGHT);
+        setAbsWidth(startWidth);
+        setAbsHeight(startHeight);
+        this.startHeight = startHeight;
+        this.startWidth = startWidth;
 
         // Format the pane.
-        setTop(tabManager);
-        setCenter(null);
+        getChildren().add(tabManager);
+        tabManager.setLayoutX(0.0);
+        tabManager.setLayoutY(0.0);
 
         // Set size-changed event handler.
         this.heightProperty().addListener(new ChangeListener<Number>() {
@@ -80,7 +84,7 @@ public class ViewManager extends BorderPane implements Output, Input, Resizeable
 
         // Create a new tab, pane, and pair
         Tab newTab = tabManager.newTab();
-        IOPane newPane = new IOPane(newTab.getTabID(),this, font, PREFERRED_WIDTH, PANE_HEIGHT);
+        IOPane newPane = new IOPane(newTab.getTabID(),this, font, getPrefWidth(), getPaneHeight());
         TabPanePair tpp = new TabPanePair(newTab, newPane);
 
         // Add the pair
@@ -97,8 +101,13 @@ public class ViewManager extends BorderPane implements Output, Input, Resizeable
                 if (this.current != null) {
                     getChildren().remove(current.getPane());
                 }
+                Pane nextPane = tpp.getPane();
                 tabManager.highlightTab(tpp.getID());
-                setCenter(tpp.getPane());
+                getChildren().add(nextPane);
+                nextPane.setLayoutX(0.0);
+                nextPane.setLayoutY(getHeight() - getPaneHeight());
+                resizeHeight(getHeight());
+                resizeWidth(getWidth());
                 setCurrentPair(tpp);
             }
         } catch (Exception e) {
@@ -120,15 +129,24 @@ public class ViewManager extends BorderPane implements Output, Input, Resizeable
     private void setAbsHeight(double height) {
         setMinHeight(height);
         setPrefHeight(height);
+        setHeight(height);
         setMaxHeight(height);
     }
     private void setAbsWidth(double width) {
         setMinWidth(width);
         setPrefWidth(width);
+        setWidth(width);
         setMaxWidth(width);
     }
     private void setCurrentPair(TabPanePair tpp) {
         this.current = tpp;
+    }
+    private double getPaneHeight() {
+        return getHeight() - (getHeight() / MANAGER_FRACTION);
+    }
+    private void resizePane(IOPane p) {
+        p.setLayoutY(getHeight() - getPaneHeight());
+        p.resizeHeight(getPaneHeight());
     }
 
     // INTERFACE IMPLEMENTS //
@@ -145,15 +163,17 @@ public class ViewManager extends BorderPane implements Output, Input, Resizeable
     @Override
     public void resizeHeight(double newValue) {
         double managerSize = newValue / MANAGER_FRACTION;
-        double paneSize = newValue - managerSize;
         setAbsHeight(newValue);
         tabManager.resizeHeight(managerSize);
         for (TabPanePair tpp : pairs) {
-            tpp.getPane().resizeHeight(paneSize);
+            resizePane(tpp.getPane());
         }
     }
     @Override
     public void resizeWidth(double newValue) {
+        if (newValue < (startWidth / 4)) {
+            newValue = startWidth / 4;
+        }
         setAbsWidth(newValue);
         tabManager.resizeWidth(newValue);
         for (TabPanePair tpp : pairs) {

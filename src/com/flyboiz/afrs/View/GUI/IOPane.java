@@ -10,13 +10,14 @@ import com.flyboiz.afrs.Main;
 import com.flyboiz.afrs.View.Input;
 import com.flyboiz.afrs.View.Output;
 import javafx.geometry.Pos;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 
 /* implementation */
-public class IOPane extends TilePane implements Output, Input, Resizeable {
+public class IOPane extends AnchorPane implements Output, Input, Resizeable {
 
     // CONSTANTS //
     private static final String MSG_CONNECTION_FAILED = "Connection failed. Please try again.";
@@ -61,27 +62,22 @@ public class IOPane extends TilePane implements Output, Input, Resizeable {
         this.outputBox = new OutputBox(font, getPrefWidth(), getPrefHeight() / 2);
 
         // Insert boxes.
-        setHgap(0.0);
-        setVgap(0.0);
-        setTileAlignment(Pos.TOP_CENTER);
-        setPrefColumns(1);
-        setPrefRows(2);
         getChildren().add(inputBox);
         getChildren().add(outputBox);
-
-
     }
 
     // BEHAVIOUR //
     private void setAbsHeight(double height) {
         setMinHeight(height);
         setPrefHeight(height);
-        //setMaxHeight(height);
+        setHeight(height);
+        setMaxHeight(height);
     }
     private void setAbsWidth(double width) {
         setMinWidth(width);
         setPrefWidth(width);
-        //setMaxWidth(width);
+        setWidth(width);
+        setMaxWidth(width);
     }
     private void setNextState(IOPaneState nextState) {
         this.nextState = nextState;
@@ -89,7 +85,6 @@ public class IOPane extends TilePane implements Output, Input, Resizeable {
     public void changeState() {
         if (nextState != null) {
             currentState = nextState;
-            printState();
         }
         nextState = null;
     }
@@ -107,9 +102,6 @@ public class IOPane extends TilePane implements Output, Input, Resizeable {
         changeState();
         outputBox.update(text);
     }
-    public void printState() {
-        System.out.println(currentState.getClass().toString());
-    }
 
     // BEHAVIOUR (INTERFACE) //
     @Override
@@ -122,9 +114,10 @@ public class IOPane extends TilePane implements Output, Input, Resizeable {
     }
     @Override
     public void resizeHeight(double newValue) {
-        System.out.println("New value: " + newValue / 2.0);
         inputBox.resizeHeight(newValue / 2.0);
+        inputBox.setLayoutY(0.0);
         outputBox.resizeHeight(newValue / 2.0);
+        outputBox.setLayoutY(newValue / 2.0);
     }
     @Override
     public void resizeWidth(double newValue) {

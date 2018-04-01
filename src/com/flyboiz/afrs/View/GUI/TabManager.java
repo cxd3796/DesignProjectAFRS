@@ -37,7 +37,7 @@ public class TabManager extends HBox implements Resizeable {
 
         // Set up the font.
         this.normalFont = font;
-        this.highlightedFont = Font.font(font.getFamily(), FontWeight.EXTRA_BOLD, font.getSize());
+        this.highlightedFont = Font.font(font.getFamily(), FontWeight.EXTRA_BOLD, font.getSize() * 1.2);
 
         // Initialize New Tab Button.
         newButton = new NewTabButton(vm, width / 20, height);
@@ -54,7 +54,7 @@ public class TabManager extends HBox implements Resizeable {
     Tab newTab() {
 
         // Create a new tab and set its properties.
-        Tab newTab = new Tab(viewManager, allTabs.size(), getPrefWidth() / 25, getPrefHeight());
+        Tab newTab = new Tab(viewManager, allTabs.size(), calculateTabWidth(), getPrefHeight());
         newTab.setFont(normalFont);
 
         // Add a new tab to the tab list.
@@ -81,12 +81,19 @@ public class TabManager extends HBox implements Resizeable {
     private void setAbsHeight(double height) {
         setMinHeight(height);
         setPrefHeight(height);
+        setHeight(height);
         setMaxHeight(height);
     }
     private void setAbsWidth(double width) {
         setMinWidth(width);
         setPrefWidth(width);
+        setWidth(width);
         setMaxWidth(width);
+    }
+
+    private double calculateTabWidth() {
+        double tabWidth = getPrefWidth() - (getPrefWidth() / 20);
+        return tabWidth / allTabs.size();
     }
 
     @Override
@@ -102,7 +109,7 @@ public class TabManager extends HBox implements Resizeable {
         setAbsWidth(newValue);
         newButton.resizeWidth(newValue / 20.0);
         for (Tab t : allTabs) {
-            t.resizeWidth(newValue / 25.0);
+            t.resizeWidth(calculateTabWidth());
         }
     }
 }

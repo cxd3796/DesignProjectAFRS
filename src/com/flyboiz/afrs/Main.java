@@ -31,9 +31,11 @@ public class Main extends Application {
 	private static final String ERROR_ARG1 = "The launch argument '%s' is not a valid argument.";
 	private static final String ERROR_ARG2 = "Accepted arguments: '%s', '%s'";
 
-	// Font Constants
+	// GUI Constants
 	private static final String FONT_FAMILY = "Verdana";
 	private static final double FONT_SIZE = 12.0;
+	private static final double DEFAULT_WIDTH = 800;
+	private static final double DEFAULT_HEIGHT = 600;
 
 	// Query Type Constants
 	public static final String PARTIAL_REQUEST_STRING = "pr";
@@ -88,13 +90,17 @@ public class Main extends Application {
 		// Generate the QueryMaker, QueryExecutor, and Input/Output GUI.
 		QueryMaker queryMaker = new QueryMaker(flightDatabase, airportDatabase, reservationDatabase);
 		QueryExecutor queryExecutor = new QueryExecutor(null, queryMaker);
-		ViewManager viewManager = new ViewManager(queryExecutor, getFont());
+		ViewManager viewManager = new ViewManager(queryExecutor, getFont(), DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		queryExecutor.setOutput(viewManager);
 
 		// Set up the scene and stage, then show.
 		Scene scene = new Scene(viewManager);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle(TITLE);
+		primaryStage.setHeight(DEFAULT_HEIGHT);
+		primaryStage.setWidth(DEFAULT_WIDTH);
+		primaryStage.setMinHeight(DEFAULT_HEIGHT / 2.0);
+		primaryStage.setMinWidth(DEFAULT_WIDTH / 2.0);
 		primaryStage.show();
 	}
 

@@ -77,11 +77,13 @@ public class InputBox extends TextArea implements Input, Resizeable{
     private void setAbsHeight(double height) {
         setMinHeight(height);
         setPrefHeight(height);
+        setHeight(height);
         setMaxHeight(height);
     }
     private void setAbsWidth(double width) {
         setMinWidth(width);
         setPrefWidth(width);
+        setWidth(width);
         setMaxWidth(width);
     }
 }

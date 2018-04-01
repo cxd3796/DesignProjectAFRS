@@ -41,11 +41,13 @@ public class OutputBox extends TextArea implements Output, Resizeable {
     private void setAbsHeight(double height) {
         setMinHeight(height);
         setPrefHeight(height);
+        setHeight(height);
         setMaxHeight(height);
     }
     private void setAbsWidth(double width) {
         setMinWidth(width);
         setPrefWidth(width);
+        setWidth(width);
         setMaxWidth(width);
     }
 

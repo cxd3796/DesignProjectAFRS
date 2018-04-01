@@ -7,5 +7,4 @@ package com.flyboiz.afrs.View.GUI;
 public interface Resizeable {
     void resizeHeight(double newValue);
     void resizeWidth(double newValue);
-
 }
