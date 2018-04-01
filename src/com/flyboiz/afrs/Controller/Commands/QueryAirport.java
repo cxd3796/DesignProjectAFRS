@@ -24,6 +24,7 @@ public class QueryAirport extends Query {
 	 * @return String airportCode,weather,temperature,delay in string format
 	 */
 	public String generateResponse() {
+		//TODO
 		return airportDB.getAirportInfo(airport);
 	}
 }
