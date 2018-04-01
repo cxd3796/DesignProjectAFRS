@@ -8,18 +8,17 @@ public class Weather {
 
     private String condition;
     private int temperature;
-    private int delay;
 
-    public Weather(String condition, int temperature, int delay) {
+    public Weather(String condition, int temperature) {
         this.condition = condition;
         this.temperature = temperature;
-        this.delay = delay;
     }
 
     @Override
     public String toString() {
         return String.format("%s,%d", condition, temperature);
     }
+
 }
 
 
