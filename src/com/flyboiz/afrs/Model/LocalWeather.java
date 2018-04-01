@@ -31,7 +31,7 @@ public class LocalWeather implements WeatherStratum{
         }
         String tmp = getIterator(cid).getCurrentItem().toString();
         getIterator(cid).next();
-        return tmp;
+        return String.format("%s,%d", tmp, getDelay());
     }
 
     @Override
