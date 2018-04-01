@@ -5,15 +5,10 @@ package com.flyboiz.afrs.View.GUI;
 
 /* imports */
 
-import com.flyboiz.afrs.Controller.QueryPartialRequest;
 import com.flyboiz.afrs.Main;
 import com.flyboiz.afrs.View.Input;
 import com.flyboiz.afrs.View.Output;
-import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 
 /* implementation */

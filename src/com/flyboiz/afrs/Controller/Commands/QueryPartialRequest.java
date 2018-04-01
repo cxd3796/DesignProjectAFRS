@@ -1,12 +1,15 @@
 /* created by Kent Brown on 3/31/2018 */
 
 /* package */
-package com.flyboiz.afrs.Controller;
+package com.flyboiz.afrs.Controller.Commands;
 
 /* imports */
 
+import com.flyboiz.afrs.Controller.Commands.Query;
+import com.flyboiz.afrs.Model.ClientDatabase;
+
 /* implementation */
-public class QueryPartialRequest implements Query {
+public class QueryPartialRequest extends Query {
 
     // PARTIAL REQUEST STRING //
     public static final String PARTIAL_REQUEST_STRING = "partial-request";
@@ -14,7 +17,8 @@ public class QueryPartialRequest implements Query {
     // STATE //
 
     // CONSTRUCTOR //
-    public QueryPartialRequest() {
+    public QueryPartialRequest(ClientDatabase db) {
+        super(db);
         // no initialization
     }
 

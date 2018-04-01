@@ -10,10 +10,8 @@ package com.flyboiz.afrs;
 import com.flyboiz.afrs.Controller.QueryCreators.*;
 import com.flyboiz.afrs.Controller.QueryDecider;
 import com.flyboiz.afrs.Controller.QueryExecutor;
-import com.flyboiz.afrs.Controller.QueryMaker;
 import com.flyboiz.afrs.Model.*;
 import com.flyboiz.afrs.View.GUI.ViewManager;
-import com.flyboiz.afrs.Model.*;
 import com.flyboiz.afrs.View.InputReader;
 import com.flyboiz.afrs.View.OutputSender;
 import javafx.application.Application;
@@ -61,35 +59,36 @@ public class Main extends Application {
 			AirportDatabase airportDatabase = new AirportDatabase();
 			FlightDatabase flightDatabase = new FlightDatabase(airportDatabase);
 			ReservationDatabase reservationDatabase = new ReservationDatabase(flightDatabase);
+			ClientDatabase clientDatabase = new ClientDatabase();
 			ReadFile readFile = new ReadFile(flightDatabase, airportDatabase, reservationDatabase);
 
 			readFile.storeData();
 
-		//Instantiate factories//
+			//Instantiate factories//
 
-		Map<String, QueryCreator> factoryMap = new HashMap<>();
-		String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server" };
-		QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QReserveCreator(clientDatabase,reservationDatabase),
-										new QRetrieveCreator(clientDatabase,reservationDatabase,airportDatabase), new QDeleteCreator(clientDatabase,reservationDatabase), new QAirportCreator(clientDatabase,airportDatabase),
-										new QUndoCreator(clientDatabase), new QRedoCreator(clientDatabase), new QServerCreator(clientDatabase,airportDatabase), new QInfoCreator(clientDatabase,airportDatabase,flightDatabase) };
-		for (int i = 0; i < queryTypes.length; i++)
-		{
-			factoryMap.put(queryTypes[i], queryCreators[i]);
+			Map<String, QueryCreator> factoryMap = new HashMap<>();
+			String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server"};
+			QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QReserveCreator(clientDatabase, reservationDatabase),
+					new QRetrieveCreator(clientDatabase, reservationDatabase, airportDatabase), new QDeleteCreator(clientDatabase, reservationDatabase), new QAirportCreator(clientDatabase, airportDatabase),
+					new QUndoCreator(clientDatabase), new QRedoCreator(clientDatabase), new QServerCreator(clientDatabase, airportDatabase), new QInfoCreator(clientDatabase, airportDatabase, flightDatabase)};
+			for (int i = 0; i < queryTypes.length; i++) {
+				factoryMap.put(queryTypes[i], queryCreators[i]);
+			}
+
+			QueryDecider queryDecider = new QueryDecider(factoryMap);
+
+
+			// Instantiate controller objects. //
+			QueryExecutor queryExecutor;
+			InputReader reader = new InputReader();
+			OutputSender output = new OutputSender();
+			queryExecutor = new QueryExecutor(output, queryDecider);
+			reader.setExecutor(queryExecutor);
+			reader.setSender(output);
+
+			// start going
+			reader.waitOnInput();
 		}
-
-		QueryDecider queryDecider = new QueryDecider(factoryMap);
-
-
-		// Instantiate controller objects. //
-		QueryExecutor queryExecutor;
-		InputReader reader = new InputReader();
-		OutputSender output = new OutputSender();
-		queryExecutor = new QueryExecutor(output, queryDecider);
-		reader.setExecutor(queryExecutor);
-		reader.setSender(output);
-
-		// start going
-		reader.waitOnInput();
 	}
 
 	@Override
@@ -99,14 +98,26 @@ public class Main extends Application {
 		AirportDatabase airportDatabase = new AirportDatabase();
 		FlightDatabase flightDatabase = new FlightDatabase(airportDatabase);
 		ReservationDatabase reservationDatabase = new ReservationDatabase(flightDatabase);
+		ClientDatabase clientDatabase = new ClientDatabase();
 		ReadFile readFile = new ReadFile(flightDatabase, airportDatabase, reservationDatabase);
 
 		// Generate data in the databases.
 		readFile.storeData();
 
-		// Generate the QueryMaker, QueryExecutor, and Input/Output GUI.
-		QueryMaker queryMaker = new QueryMaker(flightDatabase, airportDatabase, reservationDatabase);
-		QueryExecutor queryExecutor = new QueryExecutor(null, queryMaker);
+		// Create the QueryDecider
+		Map<String, QueryCreator> factoryMap = new HashMap<>();
+		String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server"};
+		QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QReserveCreator(clientDatabase, reservationDatabase),
+				new QRetrieveCreator(clientDatabase, reservationDatabase, airportDatabase), new QDeleteCreator(clientDatabase, reservationDatabase), new QAirportCreator(clientDatabase, airportDatabase),
+				new QUndoCreator(clientDatabase), new QRedoCreator(clientDatabase), new QServerCreator(clientDatabase, airportDatabase), new QInfoCreator(clientDatabase, airportDatabase, flightDatabase)};
+		for (int i = 0; i < queryTypes.length; i++) {
+			factoryMap.put(queryTypes[i], queryCreators[i]);
+		}
+
+		QueryDecider queryDecider = new QueryDecider(factoryMap);
+
+		// Generate the QueryExecutor, and Input/Output GUI.
+		QueryExecutor queryExecutor = new QueryExecutor(null, queryDecider);
 		ViewManager viewManager = new ViewManager(queryExecutor, getFont(), DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		queryExecutor.setOutput(viewManager);
 
