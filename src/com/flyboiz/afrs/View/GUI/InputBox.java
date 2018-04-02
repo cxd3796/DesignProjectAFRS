@@ -60,6 +60,7 @@ public class InputBox extends TextArea implements Input, Resizeable{
             if (currentLine.length() > 0) {
                 if (currentLine.charAt(currentLine.length() - 1) != DELIMITING_CHARACTER) {
                     ioPane.submit("pr");
+                    retreatCharacter();
                 } else {
                     ioPane.submit(currentLine.substring(0, currentLine.length() - 1));
                     clearCurrentLine();

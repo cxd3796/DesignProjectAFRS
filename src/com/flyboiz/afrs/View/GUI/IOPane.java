@@ -44,7 +44,7 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
         this.font = font;
 
         // Set the current pane state.
-        this.currentState = new IOPaneDisconnectedState(this);
+        this.currentState = new IOPaneDisconnectedState();
         this.nextState = null;
 
         // Set the size of the IOPane.
@@ -96,6 +96,13 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
     private String prependClientID(String text) {
         return clientID + "," + text;
     }
+    private String removePrependedClientID(String text) {
+        int firstUsefulIndex = 0;
+        while (text.charAt(firstUsefulIndex) != ',') {
+            firstUsefulIndex++;
+        }
+        return text.substring(firstUsefulIndex + 1);
+    }
     private void submitText(String text) {
         changeState();
         viewManager.submit(text);
@@ -132,21 +139,14 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
     }
 
     // INNER STATE CLASSES //
-    private static abstract class IOPaneState {
-        IOPane pane = null;
-
-        public IOPaneState(IOPane pane) {
-            this.pane = pane;
-        }
-
+    private abstract class IOPaneState {
         abstract void update(String updateText);
         abstract void submit(String queryText);
     }
-    private static class IOPaneDisconnectedState extends IOPaneState {
+    private class IOPaneDisconnectedState extends IOPaneState {
 
-        public IOPaneDisconnectedState(IOPane pane) {
-            super(pane);
-            System.out.println("New Disconnected created for " + pane);
+        IOPaneDisconnectedState() {
+            System.out.println("New Disconnected created for " + IOPane.this.toString());
         }
 
         @Override
@@ -159,31 +159,30 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
         public void submit(String queryText) {
             // do something
             if (queryText.equals(Main.CONNECT_REQUEST_STRING) || queryText.equals(Main.PARTIAL_REQUEST_STRING)) {
-                pane.setNextState(new IOPaneAwaitingConnectionState(pane));
-                pane.submitText(queryText);
+                setNextState(new IOPaneAwaitingConnectionState());
+                submitText(queryText);
             } else {
                 // please deprecate
-                pane.updateText(MSG_CONNECTION_FAILED);
+                updateText(MSG_CONNECTION_FAILED);
             }
         }
     }
-    private static class IOPaneAwaitingConnectionState extends IOPaneState {
+    private class IOPaneAwaitingConnectionState extends IOPaneState {
 
-        IOPaneAwaitingConnectionState(IOPane pane) {
-            super(pane);
-            System.out.println("New AwaitingConnection created for " + pane);
+        IOPaneAwaitingConnectionState() {
+            System.out.println("New AwaitingConnection created for " + IOPane.this.toString());
         }
 
         @Override
         public void update(String updateText) {
             // do something
             if (updateText.contains(Main.CONNECT_REQUEST_STRING + ",")) {
-                pane.setNextState(new IOPaneConnectedState(pane));
-                pane.updateText(updateText);
-                pane.connect(updateText);
+                setNextState(new IOPaneConnectedState());
+                updateText(updateText);
+                connect(updateText);
             } else {
-                pane.setNextState(new IOPaneDisconnectedState(pane));
-                pane.updateText(updateText + " -> " + MSG_CONNECTION_FAILED);
+                setNextState(new IOPaneDisconnectedState());
+                updateText(updateText + " -> " + MSG_CONNECTION_FAILED);
             }
         }
 
@@ -192,11 +191,10 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
             // do nothing
         }
     }
-    private static class IOPaneConnectedState extends IOPaneState {
+    private class IOPaneConnectedState extends IOPaneState {
 
-        public IOPaneConnectedState(IOPane pane) {
-            super(pane);
-            System.out.println("New Connected created for " + pane);
+        IOPaneConnectedState() {
+            System.out.println("New Connected created for " + IOPane.this.toString());
         }
 
         @Override
@@ -207,21 +205,46 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
         @Override
         public void submit(String queryText) {
             // do something
-            pane.setNextState(new IOPaneAwaitingResponseState(pane));
-            pane.submitText(pane.prependClientID(queryText));
+            if (queryText.contains("disconnect")) {
+                setNextState(new IOPaneAwaitingDisconnectState());
+            } else {
+                setNextState(new IOPaneAwaitingResponseState());
+            }
+            submitText(prependClientID(queryText));
         }
     }
-    private static class IOPaneAwaitingResponseState extends IOPaneState {
+    private class IOPaneAwaitingResponseState extends IOPaneState {
 
-        public IOPaneAwaitingResponseState(IOPane pane) {
-            super(pane);
+        IOPaneAwaitingResponseState() {
+            System.out.println("New AwaitingResponse created for " + IOPane.this.toString());
         }
 
         @Override
         public void update(String updateText) {
             // do something
-            pane.setNextState(new IOPaneConnectedState(pane));
-            pane.updateText(updateText);
+            setNextState(new IOPaneConnectedState());
+            updateText = removePrependedClientID(updateText);
+            updateText(updateText);
+        }
+
+        @Override
+        public void submit(String queryText) {
+            // do nothing
+        }
+    }
+    private class IOPaneAwaitingDisconnectState extends IOPaneState {
+
+        IOPaneAwaitingDisconnectState() {
+            System.out.println("New AwaitingDisconnect created for " + IOPane.this.toString());
+        }
+
+        @Override
+        public void update(String updateText) {
+            // do something
+            setNextState(new IOPaneDisconnectedState());
+            updateText = removePrependedClientID(updateText);
+            updateText(updateText);
+            disconnect();
         }
 
         @Override
