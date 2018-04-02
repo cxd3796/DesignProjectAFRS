@@ -13,7 +13,6 @@ import java.net.URL;
 public class FAAProxy implements WeatherStratum{
     String condition;
     String airportCode;
-    String airportName;
     String temperature;
     String delay;
     int delayNum;
@@ -41,7 +40,7 @@ public class FAAProxy implements WeatherStratum{
     @Override
     public String getWeather(int cid) {
         getRemoteWeather();
-        return String.format("%s,%s,%s,%s", airportName, condition, temperature, delay);
+        return String.format("%s,%s,%s", condition, temperature, delay);
     }
 
     /**
@@ -67,10 +66,6 @@ public class FAAProxy implements WeatherStratum{
             JsonParser jp = new JsonParser();
             JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
             JsonObject rootObj = root.getAsJsonObject();
-
-            // Get airport name
-            JsonPrimitive airportName = rootObj.getAsJsonPrimitive("Name");
-            this.airportName = airportName.getAsString();
 
             // Get Weather condition
             JsonObject weatherRoot = rootObj.getAsJsonObject("Weather");

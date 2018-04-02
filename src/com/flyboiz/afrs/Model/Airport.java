@@ -99,7 +99,7 @@ public class Airport {
 	 * @return the delay time
 	 */
 	public int getDelayTime(int cid) {
-        if (weatherStratums.containsKey(cid)) {
+        if (!weatherStratums.containsKey(cid)) {
             weatherStratums.put(cid, weatherServers.get("local"));
         }
         WeatherStratum stratum = weatherStratums.get(cid);
@@ -113,7 +113,7 @@ public class Airport {
 	 * @return String weather.
 	 */
 	public String getWeather(int cid) {
-		if (weatherStratums.containsKey(cid)) {
+		if (!weatherStratums.containsKey(cid)) {
 		    weatherStratums.put(cid, weatherServers.get("local"));
         }
         WeatherStratum stratum = weatherStratums.get(cid);
@@ -126,6 +126,9 @@ public class Airport {
      * @param cid client id
      */
 	public void setServer(int cid, String server) {
+        if (!weatherStratums.containsKey(cid)) {
+            weatherStratums.put(cid, weatherServers.get("local"));
+        }
 	   weatherStratums.put(cid, weatherServers.get(server));
     }
 
