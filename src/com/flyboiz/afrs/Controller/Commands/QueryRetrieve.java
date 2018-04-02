@@ -1,4 +1,4 @@
-package com.flyboiz.afrs.Controller;
+package com.flyboiz.afrs.Controller.Commands;
 
 import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.Itinerary;
@@ -7,7 +7,7 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 
 import java.util.List;
 
-public class QueryRetrieveReservation implements Query {
+public class QueryRetrieve extends Query {
 
 	private String name;
 	private String origin;
@@ -17,13 +17,15 @@ public class QueryRetrieveReservation implements Query {
 
 	/**
 	 * Construct a command that will be used to retrieve a reservation from the databases.
+	 * @param cid client id
 	 * @param name The name of the passenger
 	 * @param origin The origin city
 	 * @param destination The destination city
 	 * @param reservationDB The reservation database
 	 * @param airportDB The airport database
 	 */
-	public QueryRetrieveReservation(String name, String origin, String destination, ReservationDatabase reservationDB, AirportDatabase airportDB) {
+	public QueryRetrieve(int cid, String name, String origin, String destination, ReservationDatabase reservationDB, AirportDatabase airportDB) {
+		super(cid);
 		this.name = name;
 		this.origin = origin;
 		this.destination = destination;
@@ -38,11 +40,11 @@ public class QueryRetrieveReservation implements Query {
 	public String generateResponse() {
 		// Check origin airport for validity
 		if (!airportDB.isAirportReal(origin) && !(origin.equals(""))) {
-			return "error,unknown origin";
+			return cid+",error,unknown origin";
 		}
 		// Check destination airport for validity
 		if (!airportDB.isAirportReal(destination) && !(destination.equals(""))) {
-			return "error,unknown destination";
+			return cid+",error,unknown destination";
 		}
 
 		// Create output from reservations
@@ -63,6 +65,6 @@ public class QueryRetrieveReservation implements Query {
 			Itinerary i = r.getItinerary();
 			output += "\n" + i.toString();
 		}
-		return output;
+		return cid+","+ output;
 	}
 }
