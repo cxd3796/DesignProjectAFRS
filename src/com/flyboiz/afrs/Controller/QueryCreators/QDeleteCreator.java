@@ -7,13 +7,15 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 public class QDeleteCreator extends QueryCreator{
 
     private ReservationDatabase reservationDB;
+    private ClientDatabase clientDatabase;
 
     /**
      * constructor
      * @param reservationDB reservation database
      */
-    public QDeleteCreator( ReservationDatabase reservationDB){
+    public QDeleteCreator( ReservationDatabase reservationDB, ClientDatabase clientDatabase){
         this.reservationDB = reservationDB;
+        this.clientDatabase = clientDatabase;
     }
 
     /**
@@ -26,7 +28,9 @@ public class QDeleteCreator extends QueryCreator{
         String[] split = input.split(",");
         int cid = Integer.parseInt(split[0]);
         if(split.length==5){
-            return new QueryDelete(cid, split[2],split[3],split[4],reservationDB);
+            QueryDelete newDelete = new QueryDelete(cid, split[2],split[3],split[4],reservationDB);
+            clientDatabase.addUndoQuery(newDelete, cid);
+            return newDelete;
         }
         return null;
     }

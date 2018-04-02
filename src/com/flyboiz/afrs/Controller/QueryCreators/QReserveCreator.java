@@ -37,7 +37,10 @@ public class QReserveCreator extends QueryCreator{
         Query last = clientDB.getLastQuery(cid);
         int id = Integer.parseInt(split[2]);
         String name = split[3];
-        return new QueryReserve(cid, id, name, reservationDB, last);
+
+        QueryReserve newReserve = new QueryReserve(cid, id, name, reservationDB, last);
+        clientDB.addUndoQuery(newReserve, cid);
+        return newReserve;
     }
 
 
