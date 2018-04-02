@@ -83,29 +83,19 @@ public class Main extends Application {
 					new QConnectCreator(clientDatabase), 										// connect
 					new QDisconnectCreator(clientDatabase), 									// disconnect
 					new QReserveCreator(clientDatabase, reservationDatabase),					// reserve
-					new QRetrieveCreator(clientDatabase, reservationDatabase, airportDatabase),	// retrieve
-					new QDeleteCreator(clientDatabase, reservationDatabase),					// delete
-					new QAirportCreator(clientDatabase, airportDatabase),						// airport
+					new QRetrieveCreator(reservationDatabase, airportDatabase),	// retrieve
+					new QDeleteCreator(reservationDatabase),					// delete
+					new QAirportCreator(airportDatabase),						// airport
 					new QUndoCreator(clientDatabase),											// undo
 					new QRedoCreator(clientDatabase),											// redo
-					new QServerCreator(clientDatabase, airportDatabase),						// server
-					new QInfoCreator(clientDatabase, airportDatabase, flightDatabase),			// info
+					new QServerCreator(airportDatabase),						// server
+					new QInfoCreator(airportDatabase, flightDatabase),			// info
 					new QPartialRequestCreator()};												// pr
 			for (int i = 0; i < queryTypes.length; i++) {
 				factoryMap.put(queryTypes[i], queryCreators[i]);
 			}
-		Map<String, QueryCreator> factoryMap = new HashMap<>();
-		String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server" };
-		QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QInfoCreator(airportDatabase,flightDatabase), new QReserveCreator(clientDatabase,reservationDatabase),
-										new QRetrieveCreator(reservationDatabase,airportDatabase), new QDeleteCreator(reservationDatabase), new QUndoCreator(clientDatabase),
-										new QRedoCreator(clientDatabase),new QAirportCreator(airportDatabase), new QServerCreator(airportDatabase) };
-		for (int i = 0; i < queryTypes.length; i++)
-		{
-			factoryMap.put(queryTypes[i], queryCreators[i]);
-		}
 
 			QueryDecider queryDecider = new QueryDecider(factoryMap, clientDatabase);
-
 
 			// Instantiate controller objects. //
 			QueryExecutor queryExecutor;
@@ -150,17 +140,17 @@ public class Main extends Application {
 				"info",
 				"pr"};
 		QueryCreator[] queryCreators = {
-				new QConnectCreator(clientDatabase), 										// connect
-				new QDisconnectCreator(clientDatabase), 									// disconnect
-				new QReserveCreator(clientDatabase, reservationDatabase),					// reserve
-				new QRetrieveCreator(clientDatabase, reservationDatabase, airportDatabase),	// retrieve
-				new QDeleteCreator(clientDatabase, reservationDatabase),					// delete
-				new QAirportCreator(clientDatabase, airportDatabase),						// airport
-				new QUndoCreator(clientDatabase),											// undo
-				new QRedoCreator(clientDatabase),											// redo
-				new QServerCreator(clientDatabase, airportDatabase),						// server
-				new QInfoCreator(clientDatabase, airportDatabase, flightDatabase),			// info
-				new QPartialRequestCreator()};												// pr
+				new QConnectCreator(clientDatabase), 						// connect
+				new QDisconnectCreator(clientDatabase), 					// disconnect
+				new QReserveCreator(clientDatabase, reservationDatabase),	// reserve
+				new QRetrieveCreator(reservationDatabase, airportDatabase),	// retrieve
+				new QDeleteCreator(reservationDatabase),					// delete
+				new QAirportCreator(airportDatabase),						// airport
+				new QUndoCreator(clientDatabase),							// undo
+				new QRedoCreator(clientDatabase),							// redo
+				new QServerCreator(airportDatabase),						// server
+				new QInfoCreator(airportDatabase, flightDatabase),			// info
+				new QPartialRequestCreator()};								// pr
 		for (int i = 0; i < queryTypes.length; i++) {
 			factoryMap.put(queryTypes[i], queryCreators[i]);
 		}
