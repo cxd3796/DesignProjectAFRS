@@ -5,8 +5,6 @@ package com.flyboiz.afrs.View.GUI;
 
 /* imports */
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import javafx.scene.control.Control;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
