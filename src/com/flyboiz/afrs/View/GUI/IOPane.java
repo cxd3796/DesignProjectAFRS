@@ -33,6 +33,15 @@ public class IOPane extends AnchorPane implements Output, Input {
     private IOPaneState nextState;
 
     // CONSTRUCTOR //
+
+    /**
+     * Construct an IOPane.
+     * @param tabID the given tabID
+     * @param vm the viewManager
+     * @param font the font
+     * @param width width of the IOPane
+     * @param height height of the IOPane
+     */
     IOPane(int tabID, ViewManager vm, Font font, double width, double height) {
 
         // Initialize.
@@ -79,18 +88,36 @@ public class IOPane extends AnchorPane implements Output, Input {
         setWidth(width);
         setMaxWidth(width);
     }
+
+    /**
+     * Set the state to transition to next time changeState() is called.
+     * @param nextState the next state
+     */
     private void setNextState(IOPaneState nextState) {
         this.nextState = nextState;
     }
+
+    /**
+     * Change to the next state.
+     */
     void changeState() {
         if (nextState != null) {
             currentState = nextState;
         }
         nextState = null;
     }
+
+    /**
+     * force-disconnect this tab.
+     */
     void forceDisconnect() {
         submit("disconnect");
     }
+
+    /**
+     * Connect this tab
+     * @param connectedResponse connect the tab based on the connection response.
+     */
     private void connect(String connectedResponse) {
         String idString = connectedResponse.replace("connect, ", "");
         int newID = Integer.parseInt(idString);
@@ -98,6 +125,9 @@ public class IOPane extends AnchorPane implements Output, Input {
             clientID = newID;
         }
     }
+    /**
+     * disconnect this pane (remove its clientID)
+     * */
     private void disconnect() {
         clientID = -1;
     }

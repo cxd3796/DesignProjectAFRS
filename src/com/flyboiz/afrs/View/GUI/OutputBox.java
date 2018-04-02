@@ -18,6 +18,13 @@ public class OutputBox extends TextArea implements Output{
     private Font font;
 
     // CONSTRUCTOR //
+
+    /**
+     * Generate an OutputBox
+     * @param font the font
+     * @param width the width of the outputBox
+     * @param height the height of the outputBox
+     */
     OutputBox(Font font, double width, double height) {
 
         // Change the properties of the box.

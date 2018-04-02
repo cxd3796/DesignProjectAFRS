@@ -78,6 +78,10 @@ public class ViewManager extends Pane implements Output, Input {
     }
 
     // BEHAVIOUR (PACKAGE-PRIVATE) //
+
+    /**
+     * Code to generate a new window. Called by the NewTabButton.
+     */
     void newWindow() {
 
         // Create a new tab, pane, and pair
@@ -92,6 +96,10 @@ public class ViewManager extends Pane implements Output, Input {
         changeTab(newTab);
 
     }
+    /**
+     * Change the active tab to the specified tab.
+     * @param tab The specified tab.
+     */
     void changeTab(Tab tab) {
         try {
             TabPanePair tpp = getPair(tab);
@@ -113,6 +121,10 @@ public class ViewManager extends Pane implements Output, Input {
             System.out.println(" -> " + e.getMessage());
         }
     }
+    /**
+     * Close a given tab.
+     * @param tabID The ID of the Tab to close.
+     */
     void closeTab(int tabID) {
         TabPanePair removePair = getPair(tabID);
         IOPane removePane = removePair.getPane();
@@ -125,6 +137,12 @@ public class ViewManager extends Pane implements Output, Input {
     }
 
     // BEHAVIOUR (PRIVATE) //
+
+    /**
+     * Get a the TabPanePair associated with a given tab.
+     * @param tab the given tab.
+     * @return the associated tabPanePair.
+     */
     private TabPanePair getPair(Tab tab) {
         TabPanePair tpp = null;
         for (TabPanePair eachTabPair : pairs) {
@@ -179,6 +197,10 @@ public class ViewManager extends Pane implements Output, Input {
         queryExecutor.makeQuery(queryText);
     }
 
+    /**
+     * Resize this object's height
+     * @param newValue desired height
+     */
     public void resizeHeight(double newValue) {
         double managerSize = newValue / MANAGER_FRACTION;
         setAbsHeight(newValue);
@@ -187,7 +209,10 @@ public class ViewManager extends Pane implements Output, Input {
             resizePane(tpp.getPane());
         }
     }
-
+    /**
+     * Resize this object's width
+     * @param newValue the desired width
+     */
     public void resizeWidth(double newValue) {
         if (newValue < (startWidth / 4)) {
             newValue = startWidth / 4;

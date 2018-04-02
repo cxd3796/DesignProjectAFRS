@@ -52,6 +52,11 @@ public class TabManager extends HBox {
     // GETTERS & SETTERS //
 
     // BEHAVIOUR //
+
+    /**
+     * Generate a new tab.
+     * @return the generated tab.
+     */
     Tab newTab() {
 
         // Create a new tab and set its properties.
@@ -69,6 +74,11 @@ public class TabManager extends HBox {
         // Return the newly created.
         return newTab;
     }
+
+    /**
+     * Highlight the specified tab. All other tabs, and the NewTabButton, will be de-highlighted.
+     * @param tabID the tabID of the tab to highlight
+     */
     void highlightTab(int tabID) {
         for (Tab tb : allTabs) {
             if (tb.getTabID() == tabID) {
@@ -78,10 +88,20 @@ public class TabManager extends HBox {
             }
         }
     }
+
+    /**
+     * Remove the specified tab.
+     * @param tabID id of the tab to remove
+     */
     void removeTab(int tabID) {
         removeTab(getTab(tabID));
     }
-    void removeTab(Tab tab) {
+
+    /**
+     * Remove the specified tab
+     * @param tab remove this tab
+     */
+    private void removeTab(Tab tab) {
         allTabs.remove(tab);
         getChildren().remove(tab);
     }
@@ -118,15 +138,14 @@ public class TabManager extends HBox {
         return null;
     }
 
-    public void resizeHeight(double newValue) {
+    void resizeHeight(double newValue) {
         setAbsHeight(newValue);
         newButton.resizeHeight(newValue);
         for (Tab t : allTabs) {
             t.resizeHeight(newValue);
         }
     }
-
-    public void resizeWidth(double newValue) {
+    void resizeWidth(double newValue) {
         setAbsWidth(newValue);
         newButton.resizeWidth(newValue / 20.0);
         for (Tab t : allTabs) {

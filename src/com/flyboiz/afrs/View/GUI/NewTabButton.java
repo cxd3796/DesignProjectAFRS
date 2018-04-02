@@ -41,6 +41,10 @@ public class NewTabButton extends Button{
     }
 
     // BEHAVIOUR //
+
+    /**
+     * This method is called when the button is pressed.
+     */
     private void makeNewTab() {
         viewManager.newWindow();
     }

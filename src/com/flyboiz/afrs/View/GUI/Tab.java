@@ -16,6 +16,14 @@ public class Tab extends Button{
     private ViewManager manager;
 
     // CONSTRUCTOR //
+
+    /**
+     * Construct a tab
+     * @param vm the viewmanager
+     * @param tabID the tabID for this tab
+     * @param width the width of the tab
+     * @param height the height of the tab
+     */
     public Tab(ViewManager vm, int tabID, double width, double height) {
         this.manager = vm;
         this.tabID = tabID;
@@ -34,6 +42,9 @@ public class Tab extends Button{
         return tabID;
     }
 
+    /**
+     * Call manager.changeTab(this);
+     */
     private void selectThisTab() {
         manager.changeTab(this);
     }
@@ -53,7 +64,6 @@ public class Tab extends Button{
     public void resizeHeight(double newValue) {
         setAbsHeight(newValue);
     }
-
     public void resizeWidth(double newValue) {
         setAbsWidth(newValue);
     }

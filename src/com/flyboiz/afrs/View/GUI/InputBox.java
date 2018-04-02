@@ -21,6 +21,14 @@ public class InputBox extends TextArea implements Input{
     private String currentLine;
 
     // CONSTRUCTOR //
+
+    /**
+     * Construct an inputBox
+     * @param pane IOPane
+     * @param font font
+     * @param width desired width
+     * @param height desired height
+     */
     public InputBox(IOPane pane, Font font, double width, double height) {
         this.ioPane = pane;
         this.font = font;
@@ -38,12 +46,15 @@ public class InputBox extends TextArea implements Input{
     public void resizeHeight(double newValue) {
         setAbsHeight(newValue);
     }
-
     public void resizeWidth(double newValue) {
         setAbsWidth(newValue);
     }
 
     // PUBLIC BEHAVIOUR //
+
+    /**
+     * Retreat the cursor by a single character.
+     */
     public void retreatCharacter() {
         backward();
     }
@@ -55,6 +66,11 @@ public class InputBox extends TextArea implements Input{
     }
 
     // PRIVATE BEHAVIOUR //
+
+    /**
+     * Call this method from the KeyPressed EventHandler
+     * @param character the charTyped from the eventHandler
+     */
     private void keyTyped(String character) {
         if (character.equals(SUBMIT_CHARACTER)) {
             if (currentLine.length() > 0) {
@@ -76,6 +92,9 @@ public class InputBox extends TextArea implements Input{
             currentLine = currentLine + character;
         }
     }
+    /**
+     * Clear the data line.
+     */
     private void clearCurrentLine() {
         currentLine = "";
     }
