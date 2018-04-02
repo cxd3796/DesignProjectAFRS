@@ -15,6 +15,9 @@ public class QueryRedo extends Query {
     @Override
     public String generateResponse() {
         Query redo = clientDB.getLastRedoQuery(cid);
+        if (redo==null) {
+            return cid + ",error,no request available";
+        }
         if (!(redo instanceof QueryReserve) && !(redo instanceof QueryDelete)){
             return "error";
         }

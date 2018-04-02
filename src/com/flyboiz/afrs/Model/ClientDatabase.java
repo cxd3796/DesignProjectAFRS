@@ -3,6 +3,7 @@ package com.flyboiz.afrs.Model;
 import com.flyboiz.afrs.Controller.Commands.Query;
 
 import java.util.HashMap;
+import java.util.Stack;
 
 public class ClientDatabase
 {
@@ -28,31 +29,25 @@ public class ClientDatabase
 
 	public void addRedoQuery(Query query, int cid)
 	{
-		clients.get(cid).addLastQuery(query);
+		clients.get(cid).addRedoQuery(query);
 	}
 
 	public Query getLastQuery(int cid)
 	{
-		if(clients.isEmpty())
-		{
-			return null;
-		}
 		return clients.get(cid).getLastQuery();
 	}
 
-	public Query getLastUndoQuery(int cid)
-	{
-		if(clients.isEmpty())
-		{
+	public Query getLastUndoQuery(int cid) {
+		Stack<Query> undoStack = clients.get(cid).getUndoStack();
+		if(undoStack.empty()){
 			return null;
 		}
 		return clients.get(cid).getLastUndo();
 	}
 
-	public Query getLastRedoQuery(int cid)
-	{
-		if(clients.isEmpty())
-		{
+	public Query getLastRedoQuery(int cid) {
+		Stack<Query> redoStack = clients.get(cid).getRedoStack();
+		if(redoStack.empty()){
 			return null;
 		}
 		return clients.get(cid).getLastRedo();

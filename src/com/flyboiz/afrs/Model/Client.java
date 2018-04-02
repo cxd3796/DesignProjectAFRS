@@ -58,6 +58,14 @@ public class Client
 		undoStack.push(query);
 	}
 
+	public Stack<Query> getUndoStack() {
+		return undoStack;
+	}
+
+	public Stack<Query> getRedoStack() {
+		return redoStack;
+	}
+
 	public int getClientID()
 	{
 		return cid;
