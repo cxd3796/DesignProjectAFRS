@@ -114,5 +114,4 @@ public class AirportDatabase {
 		return ap.getConnectionTime() + ap.getDelayTime(cid);
 	}
 
-
 }

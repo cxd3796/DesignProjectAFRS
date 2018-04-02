@@ -8,6 +8,7 @@ public class LocalWeather implements WeatherStratum{
     private HashMap<Integer, WeatherIterator> weatherIterators;
     private List<Weather> weatherList;
     int delayTime;
+    String airportName;
 
     public LocalWeather(List<Weather> weatherList){
         weatherIterators = new HashMap<>();
@@ -31,7 +32,7 @@ public class LocalWeather implements WeatherStratum{
         }
         String tmp = getIterator(cid).getCurrentItem().toString();
         getIterator(cid).next();
-        return tmp;
+        return String.format("%s,%s,%d", airportName, tmp, getDelay());
     }
 
     @Override
@@ -41,5 +42,9 @@ public class LocalWeather implements WeatherStratum{
 
     public void setDelay(int delay) {
         delayTime = delay;
+    }
+
+    public void setName(String airportName) {
+        this.airportName = airportName;
     }
 }

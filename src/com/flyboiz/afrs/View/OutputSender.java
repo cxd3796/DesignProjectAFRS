@@ -9,7 +9,7 @@ public class OutputSender implements Output {
 
 	// Constructor //
 	public OutputSender() {
-
+		// No code required in constructor
 	}
 
 	/**

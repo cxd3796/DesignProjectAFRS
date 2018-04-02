@@ -13,9 +13,9 @@ import java.net.URL;
 public class FAAProxy implements WeatherStratum{
     String condition;
     String airportCode;
-    String airportName;
     String temperature;
     String delay;
+    String airportName;
     int delayNum;
 
     /**
@@ -68,9 +68,9 @@ public class FAAProxy implements WeatherStratum{
             JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
             JsonObject rootObj = root.getAsJsonObject();
 
-            // Get airport name
-            JsonPrimitive airportName = rootObj.getAsJsonPrimitive("Name");
-            this.airportName = airportName.getAsString();
+            // Get Airport Name
+            JsonPrimitive name = rootObj.getAsJsonPrimitive("Name");
+            airportName = name.getAsString();
 
             // Get Weather condition
             JsonObject weatherRoot = rootObj.getAsJsonObject("Weather");

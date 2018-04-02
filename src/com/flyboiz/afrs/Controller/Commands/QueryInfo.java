@@ -1,15 +1,13 @@
-package com.flyboiz.afrs.Controller;
+package com.flyboiz.afrs.Controller.Commands;
 
 import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.FlightDatabase;
 import com.flyboiz.afrs.Model.Itinerary;
-import com.flyboiz.afrs.Controller.Query;
-import com.flyboiz.afrs.Controller.SortStrategy;
-import com.flyboiz.afrs.Model.FlightDatabase;
+import com.flyboiz.afrs.Controller.SortStrategy.SortStrategy;
 
 import java.util.List;
 
-public class QueryItineraryInfo implements Query {
+public class QueryInfo extends Query {
 	private String origin;
 	private String destination;
 	private int maxConnection;
@@ -27,11 +25,10 @@ public class QueryItineraryInfo implements Query {
 	 * @param flightDB The flight database that holds all of the flights
 	 * @param airportDB The airport database that holds all of the airports
 	 */
-	public QueryItineraryInfo(String origin, String destination, int maxConnection, SortStrategy sortType,
-							  FlightDatabase flightDB, AirportDatabase airportDB) {
+	public QueryInfo(int cid, String origin, String destination, int maxConnection, SortStrategy sortType,
+					 FlightDatabase flightDB, AirportDatabase airportDB) {
+		super(cid);
 		this.origin = origin;
-
-
 		this.destination = destination;
 		this.maxConnection = maxConnection;
 		this.sortType = sortType;
@@ -45,25 +42,25 @@ public class QueryItineraryInfo implements Query {
 	 */
 	public String generateResponse() {
 		if (!airportDB.isAirportReal(origin)) {
-			return "error,unknown origin";
+			return cid+",error,unknown origin";
 		}
 		if (!airportDB.isAirportReal(destination)) {
-			return "error,unknown destination";
+			return cid+",error,unknown destination";
 		}
 		if (maxConnection < 0 || maxConnection > 2) {
-			return "error,invalid connection limit";
+			return cid+",error,invalid connection limit";
 		}
 		if (sortType == null) {
-			return "error,invalid sort order";
+			return cid+",error,invalid sort order";
 		}
-		itineraries = flightDB.getPotentialItineraries(origin, destination, maxConnection);
+		itineraries = flightDB.getPotentialItineraries(origin, destination, maxConnection, cid);
 		int n = itineraries.size();
 		String response = "info," + n;
 		sortType.sort(itineraries);
 		for (int i = 0; i < n; i++) {
 			response = response + "\n" + (i + 1) + "," + itineraries.get(i).toString();
 		}
-		return response;
+		return cid+","+response;
 	}
 
 	/**
