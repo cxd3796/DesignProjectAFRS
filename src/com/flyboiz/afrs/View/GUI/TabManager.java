@@ -18,6 +18,7 @@ import java.util.List;
 public class TabManager extends HBox implements Resizeable {
 
     // STATE //
+    private int tabINT = 0;
     private ViewManager viewManager;
 
     private NewTabButton newButton;
@@ -54,7 +55,7 @@ public class TabManager extends HBox implements Resizeable {
     Tab newTab() {
 
         // Create a new tab and set its properties.
-        Tab newTab = new Tab(viewManager, allTabs.size(), calculateTabWidth(), getPrefHeight());
+        Tab newTab = new Tab(viewManager, tabINT++, calculateTabWidth(), getPrefHeight());
         newTab.setFont(normalFont);
 
         // Add a new tab to the tab list.
@@ -76,6 +77,13 @@ public class TabManager extends HBox implements Resizeable {
                 tb.setFont(normalFont);
             }
         }
+    }
+    void removeTab(int tabID) {
+        removeTab(getTab(tabID));
+    }
+    void removeTab(Tab tab) {
+        allTabs.remove(tab);
+        getChildren().remove(tab);
     }
 
     private void setAbsHeight(double height) {
@@ -101,6 +109,13 @@ public class TabManager extends HBox implements Resizeable {
     }
     private double maxTabWidth() {
         return (getPrefWidth() - (getPrefWidth() / 25)) / 5;
+    }
+    private Tab getTab(int tabID) {
+        for (Tab t : allTabs) {
+            if (t.getTabID() == tabID)
+                return t;
+        }
+        return null;
     }
 
     @Override

@@ -26,11 +26,9 @@ public class TabPanePair implements Output{
     int getID() {
         return id;
     }
-
     Tab getTab() {
         return tab;
     }
-
     IOPane getPane() {
         return pane;
     }
@@ -41,5 +39,4 @@ public class TabPanePair implements Output{
     }
 
     // BEHAVIOUR //
-
 }

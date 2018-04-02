@@ -22,6 +22,7 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
     private ViewManager viewManager;
     private InputBox inputBox;
     private OutputBox outputBox;
+    private CloseTabButton closeTabButton;
 
     private int clientID;
     private int tabID;
@@ -55,10 +56,14 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
         this.viewManager = vm;
         this.inputBox = new InputBox(this, font, getPrefWidth(), getPrefHeight() / 2);
         this.outputBox = new OutputBox(font, getPrefWidth(), getPrefHeight() / 2);
+        this.closeTabButton = new CloseTabButton(viewManager, this.tabID, font, getPrefWidth() / 20, getPrefHeight() / 20);
 
         // Insert boxes.
         getChildren().add(inputBox);
         getChildren().add(outputBox);
+        getChildren().add(closeTabButton);
+        resizeHeight(getHeight());
+        resizeWidth(getWidth());
     }
 
     // BEHAVIOUR //
@@ -77,11 +82,14 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
     private void setNextState(IOPaneState nextState) {
         this.nextState = nextState;
     }
-    public void changeState() {
+    void changeState() {
         if (nextState != null) {
             currentState = nextState;
         }
         nextState = null;
+    }
+    void forceDisconnect() {
+        submit("disconnect");
     }
     private void connect(String connectedResponse) {
         String idString = connectedResponse.replace("connect, ", "");
@@ -127,11 +135,16 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
         inputBox.setLayoutY(0.0);
         outputBox.resizeHeight(newValue / 2.0);
         outputBox.setLayoutY(newValue / 2.0);
+        closeTabButton.resizeHeight(newValue / 20.0);
+        closeTabButton.setLayoutY(0.0);
+        closeTabButton.toFront();
     }
     @Override
     public void resizeWidth(double newValue) {
         inputBox.resizeWidth(newValue);
         outputBox.resizeWidth(newValue);
+        closeTabButton.resizeWidth(closeTabButton.getHeight());
+        closeTabButton.setLayoutX(inputBox.getWidth() - (closeTabButton.getHeight()));
     }
     @Override
     public String toString() {

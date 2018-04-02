@@ -113,13 +113,32 @@ public class ViewManager extends Pane implements Output, Input, Resizeable {
             System.out.println(" -> " + e.getMessage());
         }
     }
+    void closeTab(int tabID) {
+        TabPanePair removePair = getPair(tabID);
+        IOPane removePane = removePair.getPane();
+        pairs.remove(removePair);
+        getChildren().remove(removePane);
+        removePane.forceDisconnect();
+        tabManager.removeTab(tabID);
+        resizeWidth(getWidth());
+        resizeHeight(getHeight());
+    }
 
     // BEHAVIOUR (PRIVATE) //
-    private TabPanePair getPair(Tab tab) throws Exception {
+    private TabPanePair getPair(Tab tab) {
         TabPanePair tpp = null;
         for (TabPanePair eachTabPair : pairs) {
             tpp = eachTabPair;
             if (tpp.getTab().equals(tab))
+                break;
+        }
+        return tpp;
+    }
+    private TabPanePair getPair(int tabID) {
+        TabPanePair tpp = null;
+        for (TabPanePair eachTabPair : pairs) {
+            tpp = eachTabPair;
+            if (tpp.getID() == tabID)
                 break;
         }
         return tpp;
