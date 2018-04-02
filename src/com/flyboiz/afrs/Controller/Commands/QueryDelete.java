@@ -17,10 +17,11 @@ public class QueryDelete extends Query {
 
 	/**
 	 * Constructs a concrete Query which will be used to delete a reservation from the database.
-	 * @param cid client id
-	 * @param name The name of the passenger
-	 * @param origin The origin city
-	 * @param destination The destination city
+	 *
+	 * @param cid           client id
+	 * @param name          The name of the passenger
+	 * @param origin        The origin city
+	 * @param destination   The destination city
 	 * @param reservationDB The Reservation Database
 	 */
 	public QueryDelete(int cid, String name, String origin, String destination, ReservationDatabase reservationDB) {
@@ -39,20 +40,20 @@ public class QueryDelete extends Query {
 	public String generateResponse() {
 		if (reservationDB.deleteReservation(name, origin, destination)) {
 			itinerary = reservationDB.getItinerary(name, origin, destination);
-			return cid+",delete,successful";
+			return cid + ",delete,successful";
 		} else {
 			reservationDB.deleteReservation(name, origin, destination);
-			return cid+",error,reservation not found";
+			return cid + ",error,reservation not found";
 		}
 	}
 
-    /**
-     * remakes the deleted reservation and returns a response in the format
+	/**
+	 * remakes the deleted reservation and returns a response in the format
 	 * cid, undo, operation, passenger,itinerary
-     */
-	public String undo(){
+	 */
+	public String undo() {
 		reservationDB.bookReservation(itinerary, name);
-		String response = cid +",undo,delete,"+name+","+itinerary.toString();
+		String response = cid + ",undo,delete," + name + "," + itinerary.toString();
 		return response;
 	}
 
@@ -60,11 +61,12 @@ public class QueryDelete extends Query {
 	/**
 	 * deletes specified reservation and returns a response in the format
 	 * cid, undo, operation, passenger,itinerary
+	 *
 	 * @return specified response.
 	 */
-	public String redo(){
-		reservationDB.deleteReservation(name,origin,destination);
-		String response = cid+",redo,delete,"+name+","+itinerary.toString();
+	public String redo() {
+		reservationDB.deleteReservation(name, origin, destination);
+		String response = cid + ",redo,delete," + name + "," + itinerary.toString();
 		return response;
 	}
 }

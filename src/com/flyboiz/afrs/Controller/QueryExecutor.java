@@ -35,6 +35,7 @@ public class QueryExecutor {
 
 	/**
 	 * Method to set the output of the QueryExecutor.
+	 *
 	 * @param output the specified object to which output should be sent.
 	 */
 	public void setOutput(Output output) {

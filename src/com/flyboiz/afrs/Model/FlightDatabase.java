@@ -31,12 +31,13 @@ public class FlightDatabase {
 
 	/**
 	 * Create a new flight and add it to the flight database.
-	 * @param originAirport 		The origin airport.
-	 * @param destinationAirport	The destination airport.
-	 * @param departureTime			The departure time.
-	 * @param arrivalTime			The arrival time.
-	 * @param flightNumber			The flight number.
-	 * @param airfare				The cost of the flight.
+	 *
+	 * @param originAirport      The origin airport.
+	 * @param destinationAirport The destination airport.
+	 * @param departureTime      The departure time.
+	 * @param arrivalTime        The arrival time.
+	 * @param flightNumber       The flight number.
+	 * @param airfare            The cost of the flight.
 	 */
 	public void generateFlight(String originAirport,
 							   String destinationAirport,
@@ -50,6 +51,7 @@ public class FlightDatabase {
 
 	/**
 	 * Casually create an itinerary (basically just a constructor @kent)
+	 *
 	 * @param flights set of flights to put in the itinerary
 	 * @return a newly created itinerary
 	 */
@@ -102,6 +104,7 @@ public class FlightDatabase {
 
 	/**
 	 * Get the flight whose number matches the parameter
+	 *
 	 * @param flightNumber the number to search for
 	 * @return the flight with the parameter number
 	 */
@@ -118,6 +121,7 @@ public class FlightDatabase {
 
 	/**
 	 * Copy a list of flights into a different list to prevent modification
+	 *
 	 * @param flights set of flights to copy into a new list of flights
 	 * @return the copied list of flights
 	 */

@@ -5,8 +5,8 @@ package com.flyboiz.afrs.Model;
  */
 public interface GeneralIterator {
 
-    public Object next();
+	public Object next();
 
-    public Object getCurrentItem();
+	public Object getCurrentItem();
 
 }

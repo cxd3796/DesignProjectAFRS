@@ -91,12 +91,11 @@ public class AirportDatabase {
 	}
 
 	/**
-	 *
 	 * @param cid
 	 * @param server
 	 */
 	public void setServer(int cid, String server) {
-		for (Airport airport:airports.values()) {
+		for (Airport airport : airports.values()) {
 			airport.setServer(cid, server);
 		}
 	}

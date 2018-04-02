@@ -30,6 +30,7 @@ public class Itinerary {
 
 	/**
 	 * Standard getter for the origin airport.
+	 *
 	 * @return the origin airport
 	 */
 	public String getOrigin() {
@@ -38,6 +39,7 @@ public class Itinerary {
 
 	/**
 	 * Get the destination of the airport.
+	 *
 	 * @return the destination
 	 */
 	public String getDestination() {
@@ -46,6 +48,7 @@ public class Itinerary {
 
 	/**
 	 * Return the fare
+	 *
 	 * @return the fare of the itinerary (total cost of all flights)
 	 */
 	public int getFare() {
@@ -54,6 +57,7 @@ public class Itinerary {
 
 	/**
 	 * The departure time of the itinerary is the departure time of the first flight.
+	 *
 	 * @return the departure time
 	 */
 	public Time getDepartureTime() {
@@ -63,6 +67,7 @@ public class Itinerary {
 
 	/**
 	 * The arrival time of the itinerary is the arrival time of the last flight.
+	 *
 	 * @return the arrival time of the itinerary
 	 */
 	public Time getArrivalTime() {
@@ -72,6 +77,7 @@ public class Itinerary {
 
 	/**
 	 * A string representation of the itinerary
+	 *
 	 * @return the string representation of the itinerary
 	 */
 	public String toString() {

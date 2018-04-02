@@ -16,11 +16,12 @@ public class QueryReserve extends Query {
 
 	/**
 	 * Constructor for Query command for creating reservations
-	 * @param cid client id
-	 * @param itineraryId The number that corresponds to the itinerary that was previously queried
-	 * @param name The name of the passenger
+	 *
+	 * @param cid           client id
+	 * @param itineraryId   The number that corresponds to the itinerary that was previously queried
+	 * @param name          The name of the passenger
 	 * @param reservationDB The reservation database
-	 * @param lastQuery The last query object that was created by the factory (QueryMaker)
+	 * @param lastQuery     The last query object that was created by the factory (QueryMaker)
 	 */
 	public QueryReserve(int cid, int itineraryId, String name, ReservationDatabase reservationDB, Query lastQuery,
 						ClientDatabase clientDB) {
@@ -42,15 +43,15 @@ public class QueryReserve extends Query {
 		if (lastQuery instanceof QueryInfo) {
 			QueryInfo itineraryQuery = (QueryInfo) lastQuery;
 			if (itineraryId < 0 || itineraryId > itineraryQuery.getItineraries().size()) {
-				return cid+",error,invalid id";
+				return cid + ",error,invalid id";
 			}
 			reserving = itineraryQuery.getItinerary(itineraryId);
 			List<Reservation> check = reservationDB.retrieveReservations(name, reserving.getOrigin(), reserving.getDestination());
 			if (check.size() > 0) {
-				return cid+",error,duplicate reservation";
+				return cid + ",error,duplicate reservation";
 			} else {
 				reservationDB.bookReservation(reserving, name);
-				return cid+",reserve,successful";
+				return cid + ",reserve,successful";
 			}
 		}
 		return null;
@@ -61,8 +62,8 @@ public class QueryReserve extends Query {
 	 * cid,undo,operation,passenger,itinerary
 	 */
 	public String undo() {
-		reservationDB.deleteReservation(name, reserving.getOrigin(), reserving.getDestination() );
-		String response = cid+",undo,reserve,"+name+","+reserving.toString();
+		reservationDB.deleteReservation(name, reserving.getOrigin(), reserving.getDestination());
+		String response = cid + ",undo,reserve," + name + "," + reserving.toString();
 		return response;
 	}
 
@@ -70,16 +71,17 @@ public class QueryReserve extends Query {
 	/**
 	 * reserves the specified reservation again and outputs a response in the format
 	 * cid,redo,operation,passenger,itinerary
+	 *
 	 * @return string in the format specified
 	 */
-	public String redo(){
+	public String redo() {
 		List<Reservation> check = reservationDB.retrieveReservations(name, reserving.getOrigin(), reserving.getDestination());
 		if (check.size() > 0) {
 			return "error,duplicate reservation";
 		} else {
 			reservationDB.bookReservation(reserving, name);
 		}
-		String response = cid+",redo,reserve,"+name+","+reserving.toString();
+		String response = cid + ",redo,reserve," + name + "," + reserving.toString();
 		return response;
 	}
 }

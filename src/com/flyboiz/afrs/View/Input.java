@@ -5,5 +5,5 @@ package com.flyboiz.afrs.View;
 
 /* Implementation */
 public interface Input {
-    void submit(String queryText);
+	void submit(String queryText);
 }

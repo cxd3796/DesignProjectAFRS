@@ -8,11 +8,12 @@ import com.flyboiz.afrs.Model.ClientDatabase;
  * Product within the Factory pattern
  */
 public abstract class Query {
-    int cid;                        // Client id
+	int cid;                        // Client id
 	protected ClientDatabase clientDB;
 
 	/**
 	 * Constructor for queries that don't need a client database
+	 *
 	 * @param cid
 	 */
 	public Query(int cid) {
@@ -21,19 +22,20 @@ public abstract class Query {
 
 	/**
 	 * Constructor for queries that need a client database, but not an id (connect)
+	 *
 	 * @param clientDB
 	 */
-	public Query(ClientDatabase clientDB){
+	public Query(ClientDatabase clientDB) {
 		this.clientDB = clientDB;
 	}
 
 	/**
 	 * Constructor for queries that need both a cid and a client database.
+	 *
 	 * @param cid
 	 * @param clientDB
 	 */
-	public Query(int cid, ClientDatabase clientDB)
-	{
+	public Query(int cid, ClientDatabase clientDB) {
 		this.cid = cid;
 		this.clientDB = clientDB;
 	}

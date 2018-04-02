@@ -71,15 +71,14 @@ public class Main extends Application {
 
 			//Instantiate factories//
 
-		Map<String, QueryCreator> factoryMap = new HashMap<>();
-		String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server" };
-		QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QInfoCreator(airportDatabase,flightDatabase), new QReserveCreator(clientDatabase,reservationDatabase),
-										new QRetrieveCreator(reservationDatabase,airportDatabase), new QDeleteCreator(reservationDatabase,clientDatabase), new QUndoCreator(clientDatabase),
-										new QRedoCreator(clientDatabase),new QAirportCreator(airportDatabase), new QServerCreator(airportDatabase) };
-		for (int i = 0; i < queryTypes.length; i++)
-		{
-			factoryMap.put(queryTypes[i], queryCreators[i]);
-		}
+			Map<String, QueryCreator> factoryMap = new HashMap<>();
+			String[] queryTypes = {"connect", "disconnect", "info", "reserve", "retrieve", "delete", "undo", "redo", "airport", "server"};
+			QueryCreator[] queryCreators = {new QConnectCreator(clientDatabase), new QDisconnectCreator(clientDatabase), new QInfoCreator(airportDatabase, flightDatabase), new QReserveCreator(clientDatabase, reservationDatabase),
+					new QRetrieveCreator(reservationDatabase, airportDatabase), new QDeleteCreator(reservationDatabase, clientDatabase), new QUndoCreator(clientDatabase),
+					new QRedoCreator(clientDatabase), new QAirportCreator(airportDatabase), new QServerCreator(airportDatabase)};
+			for (int i = 0; i < queryTypes.length; i++) {
+				factoryMap.put(queryTypes[i], queryCreators[i]);
+			}
 
 			QueryDecider queryDecider = new QueryDecider(factoryMap, clientDatabase);
 
@@ -125,17 +124,17 @@ public class Main extends Application {
 				"info",
 				"pr"};
 		QueryCreator[] queryCreators = {
-				new QConnectCreator(clientDatabase), 						// connect
-				new QDisconnectCreator(clientDatabase), 					// disconnect
-				new QReserveCreator(clientDatabase, reservationDatabase),	// reserve
-				new QRetrieveCreator(reservationDatabase, airportDatabase),	// retrieve
-				new QDeleteCreator(reservationDatabase, clientDatabase),	// delete
-				new QAirportCreator(airportDatabase),						// airport
-				new QUndoCreator(clientDatabase),							// undo
-				new QRedoCreator(clientDatabase),							// redo
-				new QServerCreator(airportDatabase),						// server
-				new QInfoCreator(airportDatabase, flightDatabase),			// info
-				new QPartialRequestCreator()};								// pr
+				new QConnectCreator(clientDatabase),                        // connect
+				new QDisconnectCreator(clientDatabase),                    // disconnect
+				new QReserveCreator(clientDatabase, reservationDatabase),    // reserve
+				new QRetrieveCreator(reservationDatabase, airportDatabase),    // retrieve
+				new QDeleteCreator(reservationDatabase, clientDatabase),    // delete
+				new QAirportCreator(airportDatabase),                        // airport
+				new QUndoCreator(clientDatabase),                            // undo
+				new QRedoCreator(clientDatabase),                            // redo
+				new QServerCreator(airportDatabase),                        // server
+				new QInfoCreator(airportDatabase, flightDatabase),            // info
+				new QPartialRequestCreator()};                                // pr
 		for (int i = 0; i < queryTypes.length; i++) {
 			factoryMap.put(queryTypes[i], queryCreators[i]);
 		}
@@ -160,6 +159,7 @@ public class Main extends Application {
 
 	/**
 	 * This method returns the GUI application's default font.
+	 *
 	 * @return the default font for the GUI.
 	 */
 	private Font getFont() {

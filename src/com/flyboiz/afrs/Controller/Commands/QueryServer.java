@@ -5,30 +5,32 @@ import com.flyboiz.afrs.Model.ClientDatabase;
 
 public class QueryServer extends Query {
 
-    AirportDatabase airportDB;
-    String infoServer;
+	AirportDatabase airportDB;
+	String infoServer;
 
-    /**
-     * Constructor for QueryServer command
-     * @param cid client id
-     */
-    public QueryServer(int cid, String infoServer, AirportDatabase airportDB) {
-        super(cid);
-        this.infoServer = infoServer;
-        this.airportDB=airportDB;
-    }
+	/**
+	 * Constructor for QueryServer command
+	 *
+	 * @param cid client id
+	 */
+	public QueryServer(int cid, String infoServer, AirportDatabase airportDB) {
+		super(cid);
+		this.infoServer = infoServer;
+		this.airportDB = airportDB;
+	}
 
-    /**
-     * performs change of info-server and returns response in format
-     *cid,server,successful
-     * @return
-     */
-    @Override
-    public String generateResponse() {
-        if(!infoServer.equals("local")&& !infoServer.equals("faa")){
-            return cid+",error,unknown information server";
-        }
-        airportDB.setServer(cid, infoServer);
-        return cid+"," +infoServer+ ",successful";
-    }
+	/**
+	 * performs change of info-server and returns response in format
+	 * cid,server,successful
+	 *
+	 * @return
+	 */
+	@Override
+	public String generateResponse() {
+		if (!infoServer.equals("local") && !infoServer.equals("faa")) {
+			return cid + ",error,unknown information server";
+		}
+		airportDB.setServer(cid, infoServer);
+		return cid + "," + infoServer + ",successful";
+	}
 }

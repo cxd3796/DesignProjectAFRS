@@ -36,6 +36,7 @@ public class Flight {
 
 	/**
 	 * Basic getter to retrieve flight number. //
+	 *
 	 * @return the flight's flight number
 	 */
 	int getFlightNumber() {
@@ -44,6 +45,7 @@ public class Flight {
 
 	/**
 	 * Get the flight's airfare (basic getter)
+	 *
 	 * @return the flights
 	 */
 	int getAirfare() {
@@ -52,6 +54,7 @@ public class Flight {
 
 	/**
 	 * Get the flight's origin airport (code form)
+	 *
 	 * @return the flight's origin
 	 */
 	String getOrigin() {
@@ -60,6 +63,7 @@ public class Flight {
 
 	/**
 	 * Get the destination airport for this flight
+	 *
 	 * @return the destination airport for this flight
 	 */
 	String getDestination() {
@@ -68,6 +72,7 @@ public class Flight {
 
 	/**
 	 * Basic getter for departure time
+	 *
 	 * @return departure time
 	 */
 	Time getDepartureTime() {
@@ -76,6 +81,7 @@ public class Flight {
 
 	/**
 	 * Get arrival time
+	 *
 	 * @return arrival time
 	 */
 	Time getArrivalTime() {
@@ -86,6 +92,7 @@ public class Flight {
 
 	/**
 	 * Return format FlightNumber,OriginAirport,DepartureTime,DestinationAirport,ArrivalTime
+	 *
 	 * @return toString
 	 */
 	public String toString() {

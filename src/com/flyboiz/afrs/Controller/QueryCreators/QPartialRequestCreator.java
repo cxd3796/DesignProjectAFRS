@@ -12,16 +12,17 @@ import com.flyboiz.afrs.Controller.QueryExecutor;
 /* implementation */
 public class QPartialRequestCreator extends QueryCreator {
 
-    // BEHAVIOUR //
+	// BEHAVIOUR //
 
-    /**
-     * Creates a query for partial requests
-     * @param userInput The user's input
-     * @return Returns a QueryPartialRequest
-     */
-    @Override
-    public Query makeQuery(String userInput) {
-        return new QueryPartialRequest();
-    }
+	/**
+	 * Creates a query for partial requests
+	 *
+	 * @param userInput The user's input
+	 * @return Returns a QueryPartialRequest
+	 */
+	@Override
+	public Query makeQuery(String userInput) {
+		return new QueryPartialRequest();
+	}
 
 }

@@ -8,8 +8,9 @@ public class QueryAirport extends Query {
 
 	/**
 	 * Constructs a concrete Query object using the inputted Airport Code and Airport Database
-	 * @param cid client id
-	 * @param airport Airport Code
+	 *
+	 * @param cid       client id
+	 * @param airport   Airport Code
 	 * @param airportDB Airport Database
 	 */
 	public QueryAirport(int cid, String airport, AirportDatabase airportDB) {
@@ -24,9 +25,9 @@ public class QueryAirport extends Query {
 	 * @return String airportCode,weather,temperature,delay in string format
 	 */
 	public String generateResponse() {
-		if(!airportDB.isAirportReal(airport)){
-			return cid+"error,unknown airport";
+		if (!airportDB.isAirportReal(airport)) {
+			return cid + "error,unknown airport";
 		}
-		return cid+",airport,"+ airportDB.getAirportInfo(cid, airport);
+		return cid + ",airport," + airportDB.getAirportInfo(cid, airport);
 	}
 }

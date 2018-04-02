@@ -18,12 +18,13 @@ public class QueryInfo extends Query {
 
 	/**
 	 * Constructs a query command that will retrieve potential itineraries from the Flight Database and Airport Database
-	 * @param origin Origin City
-	 * @param destination Destination City
+	 *
+	 * @param origin        Origin City
+	 * @param destination   Destination City
 	 * @param maxConnection The maximum number of connections
-	 * @param sortType A sort strategy that is created by the QueryMaker
-	 * @param flightDB The flight database that holds all of the flights
-	 * @param airportDB The airport database that holds all of the airports
+	 * @param sortType      A sort strategy that is created by the QueryMaker
+	 * @param flightDB      The flight database that holds all of the flights
+	 * @param airportDB     The airport database that holds all of the airports
 	 */
 	public QueryInfo(int cid, String origin, String destination, int maxConnection, SortStrategy sortType,
 					 FlightDatabase flightDB, AirportDatabase airportDB) {
@@ -38,20 +39,21 @@ public class QueryInfo extends Query {
 
 	/**
 	 * Generates a response when invoked sorted by the sort strategy
+	 *
 	 * @return A list of ordered itineraries
 	 */
 	public String generateResponse() {
 		if (!airportDB.isAirportReal(origin)) {
-			return cid+",error,unknown origin";
+			return cid + ",error,unknown origin";
 		}
 		if (!airportDB.isAirportReal(destination)) {
-			return cid+",error,unknown destination";
+			return cid + ",error,unknown destination";
 		}
 		if (maxConnection < 0 || maxConnection > 2) {
-			return cid+",error,invalid connection limit";
+			return cid + ",error,invalid connection limit";
 		}
 		if (sortType == null) {
-			return cid+",error,invalid sort order";
+			return cid + ",error,invalid sort order";
 		}
 		itineraries = flightDB.getPotentialItineraries(origin, destination, maxConnection, cid);
 		int n = itineraries.size();
@@ -60,11 +62,12 @@ public class QueryInfo extends Query {
 		for (int i = 0; i < n; i++) {
 			response = response + "\n" + (i + 1) + "," + itineraries.get(i).toString();
 		}
-		return cid+","+response;
+		return cid + "," + response;
 	}
 
 	/**
 	 * Provides a way to retrive an Itinerary from the list of generated itineraries
+	 *
 	 * @param index Index within the list of itineraries
 	 * @return Returns the Itinerary at the index within the list of itineraries
 	 */
@@ -74,6 +77,7 @@ public class QueryInfo extends Query {
 
 	/**
 	 * Retrieve all of the itineraries that were queried by the user
+	 *
 	 * @return An arraylist of itineraries that were requested
 	 */
 	public List<Itinerary> getItineraries() {

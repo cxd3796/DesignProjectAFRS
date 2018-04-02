@@ -5,19 +5,20 @@ import com.flyboiz.afrs.Model.ClientDatabase;
 
 public class QueryConnect extends Query {
 
-    public QueryConnect(ClientDatabase clientDB){
-        super(clientDB);
-    }
+	public QueryConnect(ClientDatabase clientDB) {
+		super(clientDB);
+	}
 
-    /**
-     * generates response after performing action.
-     * response in format: "connect", cid;
-     * @return
-     */
-    @Override
-    public String generateResponse() {
-        int cid = clientDB.connectClient();
-        String string = "connect, " + cid;
-        return string;
-    }
+	/**
+	 * generates response after performing action.
+	 * response in format: "connect", cid;
+	 *
+	 * @return
+	 */
+	@Override
+	public String generateResponse() {
+		int cid = clientDB.connectClient();
+		String string = "connect, " + cid;
+		return string;
+	}
 }

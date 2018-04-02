@@ -17,6 +17,7 @@ public interface SortStrategy {
 
 	/**
 	 * Method that will need to be implemented to provide sort functionality
+	 *
 	 * @param list A list of itineraries
 	 */
 	void sort(List<Itinerary> list);

@@ -26,6 +26,7 @@ public class ReservationDatabase {
 
 	/**
 	 * Constructor
+	 *
 	 * @param flightDatabase: FlightDatabase Object
 	 */
 	public ReservationDatabase(FlightDatabase flightDatabase) {
@@ -35,7 +36,8 @@ public class ReservationDatabase {
 
 	/**
 	 * Create a reservation object and add it to the list of reservations
-	 * @param itinerary: Itinerary Object
+	 *
+	 * @param itinerary:     Itinerary Object
 	 * @param passengerName: String
 	 */
 	public void bookReservation(Itinerary itinerary, String passengerName) {
@@ -46,6 +48,7 @@ public class ReservationDatabase {
 
 	/**
 	 * Create a reservation from data and book it
+	 *
 	 * @param passengerName: String, key to obtain a Flight and create a reservation
 	 * @param flightNumbers: List of Strings
 	 */
@@ -59,10 +62,9 @@ public class ReservationDatabase {
 	}
 
 	/**
-	 *
 	 * @param passengerName: String, used to look up reservations
-	 * @param origin: String, where the flight originated from
-	 * @param destination: String, where the flight is headed
+	 * @param origin:        String, where the flight originated from
+	 * @param destination:   String, where the flight is headed
 	 * @return boolean, True if deleted, false otherwise
 	 */
 	public boolean deleteReservation(String passengerName, String origin, String destination) {
@@ -148,15 +150,16 @@ public class ReservationDatabase {
 	/**
 	 * This function obtains an itinerary given a name, destination and origin. used by QueryMakeReservation's
 	 * undo method.
-	 * @param name name of passenger
-	 * @param origin airport code of origin
+	 *
+	 * @param name        name of passenger
+	 * @param origin      airport code of origin
 	 * @param destination airport code of destination
 	 * @return
 	 */
-	public Itinerary getItinerary(String name,String origin,String destination){
-		for(Reservation r: reservations){
-			if(r.getPassengerName().equals(name)&& r.getOrigin().equals(origin)&&
-					r.getDestination().equals(destination)){
+	public Itinerary getItinerary(String name, String origin, String destination) {
+		for (Reservation r : reservations) {
+			if (r.getPassengerName().equals(name) && r.getOrigin().equals(origin) &&
+					r.getDestination().equals(destination)) {
 				return r.getItinerary();
 			}
 		}

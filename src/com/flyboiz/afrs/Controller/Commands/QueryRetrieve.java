@@ -17,12 +17,13 @@ public class QueryRetrieve extends Query {
 
 	/**
 	 * Construct a command that will be used to retrieve a reservation from the databases.
-	 * @param cid client id
-	 * @param name The name of the passenger
-	 * @param origin The origin city
-	 * @param destination The destination city
+	 *
+	 * @param cid           client id
+	 * @param name          The name of the passenger
+	 * @param origin        The origin city
+	 * @param destination   The destination city
 	 * @param reservationDB The reservation database
-	 * @param airportDB The airport database
+	 * @param airportDB     The airport database
 	 */
 	public QueryRetrieve(int cid, String name, String origin, String destination, ReservationDatabase reservationDB, AirportDatabase airportDB) {
 		super(cid);
@@ -35,16 +36,17 @@ public class QueryRetrieve extends Query {
 
 	/**
 	 * Creates a user-friendly output version of the request response
+	 *
 	 * @return A request response to tell the user the result of the request
 	 */
 	public String generateResponse() {
 		// Check origin airport for validity
 		if (!airportDB.isAirportReal(origin) && !(origin.equals(""))) {
-			return cid+",error,unknown origin";
+			return cid + ",error,unknown origin";
 		}
 		// Check destination airport for validity
 		if (!airportDB.isAirportReal(destination) && !(destination.equals(""))) {
-			return cid+",error,unknown destination";
+			return cid + ",error,unknown destination";
 		}
 
 		// Create output from reservations
@@ -65,6 +67,6 @@ public class QueryRetrieve extends Query {
 			Itinerary i = r.getItinerary();
 			output += "\n" + i.toString();
 		}
-		return cid+","+ output;
+		return cid + "," + output;
 	}
 }

@@ -14,288 +14,305 @@ import javafx.scene.text.Font;
 /* implementation */
 public class IOPane extends AnchorPane implements Output, Input {
 
-    // CONSTANTS //
-    private static final String MSG_CONNECTION_FAILED = "Connection failed. Please try again.";
-    private static final String MSG_DISCONNECTED = "You are currently disconnected. Please connect before making queries.";
+	// CONSTANTS //
+	private static final String MSG_CONNECTION_FAILED = "Connection failed. Please try again.";
+	private static final String MSG_DISCONNECTED = "You are currently disconnected. Please connect before making queries.";
 
-    // STATE //
-    private ViewManager viewManager;
-    private InputBox inputBox;
-    private OutputBox outputBox;
-    private CloseTabButton closeTabButton;
+	// STATE //
+	private ViewManager viewManager;
+	private InputBox inputBox;
+	private OutputBox outputBox;
+	private CloseTabButton closeTabButton;
 
-    private int clientID;
-    private int tabID;
+	private int clientID;
+	private int tabID;
 
-    private Font font;
+	private Font font;
 
-    private IOPaneState currentState;
-    private IOPaneState nextState;
+	private IOPaneState currentState;
+	private IOPaneState nextState;
 
-    // CONSTRUCTOR //
+	// CONSTRUCTOR //
 
-    /**
-     * Construct an IOPane.
-     * @param tabID the given tabID
-     * @param vm the viewManager
-     * @param font the font
-     * @param width width of the IOPane
-     * @param height height of the IOPane
-     */
-    IOPane(int tabID, ViewManager vm, Font font, double width, double height) {
+	/**
+	 * Construct an IOPane.
+	 *
+	 * @param tabID  the given tabID
+	 * @param vm     the viewManager
+	 * @param font   the font
+	 * @param width  width of the IOPane
+	 * @param height height of the IOPane
+	 */
+	IOPane(int tabID, ViewManager vm, Font font, double width, double height) {
 
-        // Initialize.
-        super();
-        getChildren().clear();
-        this.tabID = tabID;
-        this.clientID = -1;
+		// Initialize.
+		super();
+		getChildren().clear();
+		this.tabID = tabID;
+		this.clientID = -1;
 
-        // Set the font.
-        this.font = font;
+		// Set the font.
+		this.font = font;
 
-        // Set the current pane state.
-        this.currentState = new IOPaneDisconnectedState();
-        this.nextState = null;
+		// Set the current pane state.
+		this.currentState = new IOPaneDisconnectedState();
+		this.nextState = null;
 
-        // Set the size of the IOPane.
-        setAbsHeight(height);
-        setAbsWidth(width);
+		// Set the size of the IOPane.
+		setAbsHeight(height);
+		setAbsWidth(width);
 
-        // Set up ViewManager state.
-        this.viewManager = vm;
-        this.inputBox = new InputBox(this, font, getPrefWidth(), getPrefHeight() / 2);
-        this.outputBox = new OutputBox(font, getPrefWidth(), getPrefHeight() / 2);
-        this.closeTabButton = new CloseTabButton(viewManager, this.tabID, font, getPrefWidth() / 20, getPrefHeight() / 20);
+		// Set up ViewManager state.
+		this.viewManager = vm;
+		this.inputBox = new InputBox(this, font, getPrefWidth(), getPrefHeight() / 2);
+		this.outputBox = new OutputBox(font, getPrefWidth(), getPrefHeight() / 2);
+		this.closeTabButton = new CloseTabButton(viewManager, this.tabID, font, getPrefWidth() / 20, getPrefHeight() / 20);
 
-        // Insert boxes.
-        getChildren().add(inputBox);
-        getChildren().add(outputBox);
-        getChildren().add(closeTabButton);
-        resizeHeight(getHeight());
-        resizeWidth(getWidth());
-    }
+		// Insert boxes.
+		getChildren().add(inputBox);
+		getChildren().add(outputBox);
+		getChildren().add(closeTabButton);
+		resizeHeight(getHeight());
+		resizeWidth(getWidth());
+	}
 
-    // BEHAVIOUR //
-    private void setAbsHeight(double height) {
-        setMinHeight(height);
-        setPrefHeight(height);
-        setHeight(height);
-        setMaxHeight(height);
-    }
-    private void setAbsWidth(double width) {
-        setMinWidth(width);
-        setPrefWidth(width);
-        setWidth(width);
-        setMaxWidth(width);
-    }
+	// BEHAVIOUR //
+	private void setAbsHeight(double height) {
+		setMinHeight(height);
+		setPrefHeight(height);
+		setHeight(height);
+		setMaxHeight(height);
+	}
 
-    /**
-     * Set the state to transition to next time changeState() is called.
-     * @param nextState the next state
-     */
-    private void setNextState(IOPaneState nextState) {
-        this.nextState = nextState;
-    }
+	private void setAbsWidth(double width) {
+		setMinWidth(width);
+		setPrefWidth(width);
+		setWidth(width);
+		setMaxWidth(width);
+	}
 
-    /**
-     * Change to the next state.
-     */
-    void changeState() {
-        if (nextState != null) {
-            currentState = nextState;
-        }
-        nextState = null;
-    }
+	/**
+	 * Set the state to transition to next time changeState() is called.
+	 *
+	 * @param nextState the next state
+	 */
+	private void setNextState(IOPaneState nextState) {
+		this.nextState = nextState;
+	}
 
-    /**
-     * force-disconnect this tab.
-     */
-    void forceDisconnect() {
-        submit("disconnect");
-    }
+	/**
+	 * Change to the next state.
+	 */
+	void changeState() {
+		if (nextState != null) {
+			currentState = nextState;
+		}
+		nextState = null;
+	}
 
-    /**
-     * Connect this tab
-     * @param connectedResponse connect the tab based on the connection response.
-     */
-    private void connect(String connectedResponse) {
-        String idString = connectedResponse.replace("connect, ", "");
-        int newID = Integer.parseInt(idString);
-        if (clientID == -1) {
-            clientID = newID;
-        }
-    }
-    /**
-     * disconnect this pane (remove its clientID)
-     * */
-    private void disconnect() {
-        clientID = -1;
-    }
-    private String prependClientID(String text) {
-        return clientID + "," + text;
-    }
-    private String removePrependedClientID(String text) {
-        int firstUsefulIndex = 0;
-        while (text.charAt(firstUsefulIndex) != ',' && firstUsefulIndex != (text.length() - 1)) {
-            firstUsefulIndex++;
-        }
-        if (firstUsefulIndex == text.length() - 1) {
-            return text;
-        }
-        return text.substring(firstUsefulIndex + 1);
-    }
-    private void submitText(String text) {
-        changeState();
-        viewManager.submit(text);
-    }
-    private void updateText(String text) {
-        changeState();
-        outputBox.update(text);
-    }
+	/**
+	 * force-disconnect this tab.
+	 */
+	void forceDisconnect() {
+		submit("disconnect");
+	}
 
-    // BEHAVIOUR (OVERRIDE) //
-    @Override
-    public void update(String updateText) {
-        currentState.update(updateText);
-    }
-    @Override
-    public void submit(String queryText) {
-        currentState.submit(queryText);
-    }
+	/**
+	 * Connect this tab
+	 *
+	 * @param connectedResponse connect the tab based on the connection response.
+	 */
+	private void connect(String connectedResponse) {
+		String idString = connectedResponse.replace("connect, ", "");
+		int newID = Integer.parseInt(idString);
+		if (clientID == -1) {
+			clientID = newID;
+		}
+	}
 
-    public void resizeHeight(double newValue) {
-        inputBox.resizeHeight(newValue / 2.0);
-        inputBox.setLayoutY(0.0);
-        outputBox.resizeHeight(newValue / 2.0);
-        outputBox.setLayoutY(newValue / 2.0);
-        closeTabButton.resizeHeight(newValue / 20.0);
-        closeTabButton.setLayoutY(0.0);
-        closeTabButton.toFront();
-    }
+	/**
+	 * disconnect this pane (remove its clientID)
+	 */
+	private void disconnect() {
+		clientID = -1;
+	}
 
-    public void resizeWidth(double newValue) {
-        inputBox.resizeWidth(newValue);
-        outputBox.resizeWidth(newValue);
-        closeTabButton.resizeWidth(closeTabButton.getHeight());
-        closeTabButton.setLayoutX(inputBox.getWidth() - (closeTabButton.getHeight()));
-    }
-    @Override
-    public String toString() {
-        return "{IOPane: cid=" + clientID + ", tabID=" + tabID + "}";
-    }
+	private String prependClientID(String text) {
+		return clientID + "," + text;
+	}
 
-    // INNER STATE CLASSES //
-    private abstract class IOPaneState {
-        abstract void update(String updateText);
-        abstract void submit(String queryText);
-    }
-    private class IOPaneDisconnectedState extends IOPaneState {
+	private String removePrependedClientID(String text) {
+		int firstUsefulIndex = 0;
+		while (text.charAt(firstUsefulIndex) != ',' && firstUsefulIndex != (text.length() - 1)) {
+			firstUsefulIndex++;
+		}
+		if (firstUsefulIndex == text.length() - 1) {
+			return text;
+		}
+		return text.substring(firstUsefulIndex + 1);
+	}
 
-        IOPaneDisconnectedState() {
-            System.out.println("New Disconnected created for " + IOPane.this.toString());
-        }
+	private void submitText(String text) {
+		changeState();
+		viewManager.submit(text);
+	}
 
-        @Override
-        public void update(String updateText) {
-            // do nothing
-            //System.out.println("This should not happen!");
-        }
+	private void updateText(String text) {
+		changeState();
+		outputBox.update(text);
+	}
 
-        @Override
-        public void submit(String queryText) {
-            // do something
-            if (queryText.equals(Main.CONNECT_REQUEST_STRING) || queryText.equals(Main.PARTIAL_REQUEST_STRING)) {
-                setNextState(new IOPaneAwaitingConnectionState());
-                submitText(queryText);
-            } else {
-                // please deprecate
-                updateText(MSG_CONNECTION_FAILED);
-            }
-        }
-    }
-    private class IOPaneAwaitingConnectionState extends IOPaneState {
+	// BEHAVIOUR (OVERRIDE) //
+	@Override
+	public void update(String updateText) {
+		currentState.update(updateText);
+	}
 
-        IOPaneAwaitingConnectionState() {
-            System.out.println("New AwaitingConnection created for " + IOPane.this.toString());
-        }
+	@Override
+	public void submit(String queryText) {
+		currentState.submit(queryText);
+	}
 
-        @Override
-        public void update(String updateText) {
-            // do something
-            if (updateText.contains(Main.CONNECT_REQUEST_STRING + ",")) {
-                setNextState(new IOPaneConnectedState());
-                updateText(updateText);
-                connect(updateText);
-            } else {
-                setNextState(new IOPaneDisconnectedState());
-                updateText(updateText + " -> " + MSG_CONNECTION_FAILED);
-            }
-        }
+	public void resizeHeight(double newValue) {
+		inputBox.resizeHeight(newValue / 2.0);
+		inputBox.setLayoutY(0.0);
+		outputBox.resizeHeight(newValue / 2.0);
+		outputBox.setLayoutY(newValue / 2.0);
+		closeTabButton.resizeHeight(newValue / 20.0);
+		closeTabButton.setLayoutY(0.0);
+		closeTabButton.toFront();
+	}
 
-        @Override
-        public void submit(String queryText) {
-            // do nothing
-        }
-    }
-    private class IOPaneConnectedState extends IOPaneState {
+	public void resizeWidth(double newValue) {
+		inputBox.resizeWidth(newValue);
+		outputBox.resizeWidth(newValue);
+		closeTabButton.resizeWidth(closeTabButton.getHeight());
+		closeTabButton.setLayoutX(inputBox.getWidth() - (closeTabButton.getHeight()));
+	}
 
-        IOPaneConnectedState() {
-            System.out.println("New Connected created for " + IOPane.this.toString());
-        }
+	@Override
+	public String toString() {
+		return "{IOPane: cid=" + clientID + ", tabID=" + tabID + "}";
+	}
 
-        @Override
-        public void update(String updateText) {
-            // do nothing
-        }
+	// INNER STATE CLASSES //
+	private abstract class IOPaneState {
+		abstract void update(String updateText);
 
-        @Override
-        public void submit(String queryText) {
-            // do something
-            if (queryText.contains("disconnect")) {
-                setNextState(new IOPaneAwaitingDisconnectState());
-            } else {
-                setNextState(new IOPaneAwaitingResponseState());
-            }
-            submitText(prependClientID(queryText));
-        }
-    }
-    private class IOPaneAwaitingResponseState extends IOPaneState {
+		abstract void submit(String queryText);
+	}
 
-        IOPaneAwaitingResponseState() {
-            System.out.println("New AwaitingResponse created for " + IOPane.this.toString());
-        }
+	private class IOPaneDisconnectedState extends IOPaneState {
 
-        @Override
-        public void update(String updateText) {
-            // do something
-            setNextState(new IOPaneConnectedState());
-            updateText = removePrependedClientID(updateText);
-            updateText(updateText);
-        }
+		IOPaneDisconnectedState() {
+			System.out.println("New Disconnected created for " + IOPane.this.toString());
+		}
 
-        @Override
-        public void submit(String queryText) {
-            // do nothing
-        }
-    }
-    private class IOPaneAwaitingDisconnectState extends IOPaneState {
+		@Override
+		public void update(String updateText) {
+			// do nothing
+			//System.out.println("This should not happen!");
+		}
 
-        IOPaneAwaitingDisconnectState() {
-            System.out.println("New AwaitingDisconnect created for " + IOPane.this.toString());
-        }
+		@Override
+		public void submit(String queryText) {
+			// do something
+			if (queryText.equals(Main.CONNECT_REQUEST_STRING) || queryText.equals(Main.PARTIAL_REQUEST_STRING)) {
+				setNextState(new IOPaneAwaitingConnectionState());
+				submitText(queryText);
+			} else {
+				// please deprecate
+				updateText(MSG_CONNECTION_FAILED);
+			}
+		}
+	}
 
-        @Override
-        public void update(String updateText) {
-            // do something
-            setNextState(new IOPaneDisconnectedState());
-            updateText = removePrependedClientID(updateText);
-            updateText(updateText);
-            disconnect();
-        }
+	private class IOPaneAwaitingConnectionState extends IOPaneState {
 
-        @Override
-        public void submit(String queryText) {
-            // do nothing
-        }
-    }
+		IOPaneAwaitingConnectionState() {
+			System.out.println("New AwaitingConnection created for " + IOPane.this.toString());
+		}
+
+		@Override
+		public void update(String updateText) {
+			// do something
+			if (updateText.contains(Main.CONNECT_REQUEST_STRING + ",")) {
+				setNextState(new IOPaneConnectedState());
+				updateText(updateText);
+				connect(updateText);
+			} else {
+				setNextState(new IOPaneDisconnectedState());
+				updateText(updateText + " -> " + MSG_CONNECTION_FAILED);
+			}
+		}
+
+		@Override
+		public void submit(String queryText) {
+			// do nothing
+		}
+	}
+
+	private class IOPaneConnectedState extends IOPaneState {
+
+		IOPaneConnectedState() {
+			System.out.println("New Connected created for " + IOPane.this.toString());
+		}
+
+		@Override
+		public void update(String updateText) {
+			// do nothing
+		}
+
+		@Override
+		public void submit(String queryText) {
+			// do something
+			if (queryText.contains("disconnect")) {
+				setNextState(new IOPaneAwaitingDisconnectState());
+			} else {
+				setNextState(new IOPaneAwaitingResponseState());
+			}
+			submitText(prependClientID(queryText));
+		}
+	}
+
+	private class IOPaneAwaitingResponseState extends IOPaneState {
+
+		IOPaneAwaitingResponseState() {
+			System.out.println("New AwaitingResponse created for " + IOPane.this.toString());
+		}
+
+		@Override
+		public void update(String updateText) {
+			// do something
+			setNextState(new IOPaneConnectedState());
+			updateText = removePrependedClientID(updateText);
+			updateText(updateText);
+		}
+
+		@Override
+		public void submit(String queryText) {
+			// do nothing
+		}
+	}
+
+	private class IOPaneAwaitingDisconnectState extends IOPaneState {
+
+		IOPaneAwaitingDisconnectState() {
+			System.out.println("New AwaitingDisconnect created for " + IOPane.this.toString());
+		}
+
+		@Override
+		public void update(String updateText) {
+			// do something
+			setNextState(new IOPaneDisconnectedState());
+			updateText = removePrependedClientID(updateText);
+			updateText(updateText);
+			disconnect();
+		}
+
+		@Override
+		public void submit(String queryText) {
+			// do nothing
+		}
+	}
 }
