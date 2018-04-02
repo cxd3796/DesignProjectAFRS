@@ -25,9 +25,11 @@ public class QueryUndo extends Query {
             return "error";
         }
         if(undo instanceof QueryReserve){
+            clientDB.moveLastUndoToRedo(cid);
             return ((QueryReserve) undo).undo();
         }
         else {
+            clientDB.moveLastUndoToRedo(cid);
             return ((QueryDelete)undo).undo();
         }
     }

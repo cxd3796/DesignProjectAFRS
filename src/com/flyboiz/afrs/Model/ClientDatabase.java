@@ -28,21 +28,33 @@ public class ClientDatabase
 
 	public void addRedoQuery(Query query, int cid)
 	{
-		clients.get(cid).addRedoQuery(query);
+		clients.get(cid).addLastQuery(query);
 	}
 
 	public Query getLastQuery(int cid)
 	{
+		if(clients.isEmpty())
+		{
+			return null;
+		}
 		return clients.get(cid).getLastQuery();
 	}
 
 	public Query getLastUndoQuery(int cid)
 	{
+		if(clients.isEmpty())
+		{
+			return null;
+		}
 		return clients.get(cid).getLastUndo();
 	}
 
 	public Query getLastRedoQuery(int cid)
 	{
+		if(clients.isEmpty())
+		{
+			return null;
+		}
 		return clients.get(cid).getLastRedo();
 	}
 

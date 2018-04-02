@@ -19,9 +19,11 @@ public class QueryRedo extends Query {
             return "error";
         }
         if(redo instanceof QueryReserve){
+            clientDB.moveLastRedoToUndo(cid);
             return ((QueryReserve) redo).redo();
         }
         else {
+            clientDB.moveLastRedoToUndo(cid);
             return ((QueryDelete)redo).redo();
         }
     }
