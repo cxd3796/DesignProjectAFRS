@@ -27,6 +27,6 @@ public class QRedoCreator extends QueryCreator{
             return null;
         }
         int cid = Integer.parseInt(split[0]);
-        return new QueryRedo(cid);
+        return new QueryRedo(cid,clientDB);
     }
 }

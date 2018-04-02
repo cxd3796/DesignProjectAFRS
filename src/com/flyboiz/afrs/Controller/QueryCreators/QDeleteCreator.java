@@ -6,16 +6,13 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 
 public class QDeleteCreator extends QueryCreator{
 
-    private ClientDatabase clientDB;
     private ReservationDatabase reservationDB;
 
     /**
      * constructor
-     * @param clientDB client database
      * @param reservationDB reservation database
      */
-    public QDeleteCreator(ClientDatabase clientDB, ReservationDatabase reservationDB){
-        this.clientDB = clientDB;
+    public QDeleteCreator( ReservationDatabase reservationDB){
         this.reservationDB = reservationDB;
     }
 

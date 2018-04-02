@@ -5,12 +5,9 @@ import com.flyboiz.afrs.Model.ClientDatabase;
 
 public class QueryConnect extends Query {
 
-    private ClientDatabase clientDB;
-
     public QueryConnect(ClientDatabase clientDB){
         super(clientDB);
     }
-
 
     /**
      * generates response after performing action.

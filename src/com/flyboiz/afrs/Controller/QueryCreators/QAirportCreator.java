@@ -6,13 +6,11 @@ import com.flyboiz.afrs.Model.ClientDatabase;
 
 public class QAirportCreator extends QueryCreator{
 
-    private ClientDatabase clientdb;
-    private AirportDatabase airportdb;
+    private AirportDatabase airportDB;
 
 
-    public QAirportCreator(ClientDatabase clientDB, AirportDatabase airportDB){
-        this.clientdb = clientDB;
-        airportdb= airportDB;
+    public QAirportCreator(AirportDatabase airportDB){
+        this.airportDB = airportDB;
     }
 
     /**
@@ -26,7 +24,7 @@ public class QAirportCreator extends QueryCreator{
         String[] split = input.split(",");
         if(split.length==3){
             int cid= Integer.parseInt(split[0]);
-            return new QueryAirport(cid, split[2],airportdb);
+            return new QueryAirport(cid, split[2],airportDB);
 
         }
         return null;

@@ -10,6 +10,7 @@ import com.flyboiz.afrs.Model.ClientDatabase;
 public abstract class Query {
     int cid;                        // Client id
 	ClientDatabase clientDB;
+
 	public Query(int cid) {
 		this.cid = cid;
 	}
@@ -21,6 +22,14 @@ public abstract class Query {
 	public Query(ClientDatabase clientDB){
 		this.clientDB = clientDB;
 	}
+
+	public Query(int cid, ClientDatabase clientDB)
+	{
+		this.cid = cid;
+		this.clientDB = clientDB;
+	}
+
+
 	/**
 	 * @return A string that  represents the desired result.
 	 */

@@ -11,8 +11,7 @@ public class QueryDisconnect extends Query {
      * @param cid client id
      */
     public QueryDisconnect(int cid, ClientDatabase clientDB) {
-        super(cid);
-        this.clientDB = clientDB;
+        super(cid,clientDB);
     }
 
     @Override

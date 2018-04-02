@@ -5,15 +5,12 @@ import com.flyboiz.afrs.Model.AirportDatabase;
 import com.flyboiz.afrs.Model.ClientDatabase;
 
 public class QServerCreator extends QueryCreator {
-    private ClientDatabase clientDB;
     private AirportDatabase airportDB;
 
     /**
      * constructor
-     * @param clientDB client database
      */
-    public QServerCreator(ClientDatabase clientDB, AirportDatabase airportDB){
-        this.clientDB = clientDB;
+    public QServerCreator( AirportDatabase airportDB){
         this.airportDB = airportDB;
     }
 
@@ -25,6 +22,6 @@ public class QServerCreator extends QueryCreator {
         }
         int cid = Integer.parseInt(split[0]);
         String info = split[2];
-        return new QueryServer(cid,info,airportDB,clientDB);
+        return new QueryServer(cid,info,airportDB);
     }
 }
