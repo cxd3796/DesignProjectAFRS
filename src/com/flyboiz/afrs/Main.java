@@ -89,7 +89,6 @@ public class Main extends Application {
 			OutputSender output = new OutputSender();
 			queryExecutor = new QueryExecutor(output, queryDecider);
 			reader.setExecutor(queryExecutor);
-			reader.setSender(output);
 
 			// start going
 			reader.waitOnInput();

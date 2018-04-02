@@ -27,7 +27,7 @@ public class QueryExecutor {
 			output.update("error,unknown request");
 		} else {
 			currentQuery = query;
-			System.out.println("Current query class: " + currentQuery.getClass());
+			//System.out.println("Current query class: " + currentQuery.getClass());
 			String response = currentQuery.generateResponse();
 			output.update(response);
 		}
@@ -47,7 +47,7 @@ public class QueryExecutor {
 	 * @param userInput-
 	 */
 	public void makeQuery(String userInput) {
-		System.out.println("UserInput: " + userInput);
+		//System.out.println("UserInput: " + userInput);
 		Query query = queryDecider.queryDecide(userInput);
 		setCurrentQuery(query);
 	}

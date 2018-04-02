@@ -35,7 +35,12 @@ public class QueryDecider
 
 		if(split.length > 1)
 		{
-			int cid = Integer.parseInt(split[0]);
+			int cid = -1;
+			try {
+				cid = Integer.parseInt(split[0]);
+			} catch (Exception e) {
+				return null;
+			}
 			if(!factories.containsKey(split[1]))
 			{
 				return null;
