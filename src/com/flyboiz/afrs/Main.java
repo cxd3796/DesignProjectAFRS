@@ -33,6 +33,7 @@ public class Main extends Application {
 	private static final String ARG_TEXT = "text";
 	private static final String ERROR_ARG1 = "The launch argument '%s' is not a valid argument.";
 	private static final String ERROR_ARG2 = "Accepted arguments: '%s', '%s'";
+	private static final String ERROR_ARG3 = "Usage: java afrs gui|text";
 
 	// GUI Constants
 	private static final String FONT_FAMILY = "Verdana";
@@ -46,6 +47,11 @@ public class Main extends Application {
 
 	// Implementation
 	public static void main(String[] args) {
+
+		if (args.length != 1) {
+			System.out.println(ERROR_ARG3);
+			return;
+		}
 
 		// Parse input arguments.
 		String arg = args[0];
