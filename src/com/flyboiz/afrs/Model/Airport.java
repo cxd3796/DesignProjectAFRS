@@ -65,7 +65,7 @@ public class Airport {
 	 * @param airportName - String, name of the airport. Ex jfk-New York City
 	 */
 	public void storeAirportName(String airportName) {
-		this.airportName = airportName;
+		localWeather.setName(airportName);
 	}
 
 	/**

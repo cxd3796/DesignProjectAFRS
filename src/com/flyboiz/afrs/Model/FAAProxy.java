@@ -15,6 +15,7 @@ public class FAAProxy implements WeatherStratum{
     String airportCode;
     String temperature;
     String delay;
+    String airportName;
     int delayNum;
 
     /**
@@ -40,7 +41,7 @@ public class FAAProxy implements WeatherStratum{
     @Override
     public String getWeather(int cid) {
         getRemoteWeather();
-        return String.format("%s,%s,%s", condition, temperature, delay);
+        return String.format("%s,%s,%s,%s", airportName, condition, temperature, delay);
     }
 
     /**
@@ -66,6 +67,10 @@ public class FAAProxy implements WeatherStratum{
             JsonParser jp = new JsonParser();
             JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
             JsonObject rootObj = root.getAsJsonObject();
+
+            // Get Airport Name
+            JsonPrimitive name = rootObj.getAsJsonPrimitive("name");
+            airportName = name.getAsString();
 
             // Get Weather condition
             JsonObject weatherRoot = rootObj.getAsJsonObject("Weather");
