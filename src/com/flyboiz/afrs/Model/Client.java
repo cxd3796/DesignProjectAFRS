@@ -36,14 +36,18 @@ public class Client
 		return queryStack.peek();
 	}
 
-	public Query getLastRedo()
-	{
-		return undoStack.peek();
+	public Query getLastRedo(){
+		if(redoStack.isEmpty()){
+			return null;
+		}
+		return redoStack.peek();
 	}
 
-	public Query getLastUndo()
-	{
-		return redoStack.peek();
+	public Query getLastUndo(){
+		if(undoStack.isEmpty()){
+			return null;
+		}
+		return undoStack.peek();
 	}
 
 	public void moveLastUndoToRedo()
