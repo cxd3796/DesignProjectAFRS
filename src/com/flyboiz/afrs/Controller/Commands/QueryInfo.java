@@ -53,7 +53,7 @@ public class QueryInfo extends Query {
 		if (sortType == null) {
 			return cid+",error,invalid sort order";
 		}
-		itineraries = flightDB.getPotentialItineraries(origin, destination, maxConnection);
+		itineraries = flightDB.getPotentialItineraries(origin, destination, maxConnection, cid);
 		int n = itineraries.size();
 		String response = "info," + n;
 		sortType.sort(itineraries);

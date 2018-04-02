@@ -57,7 +57,7 @@ public class FlightDatabaseTest {
 		additional.storeAirportDelay(AIRPORT2, DELAY_TIME);
 		additional.storeAirportDelay(AIRPORT3, DELAY_TIME);
 
-		List<Itinerary> result = CuT.getPotentialItineraries(AIRPORT1, AIRPORT3, 2);
+		List<Itinerary> result = CuT.getPotentialItineraries(AIRPORT1, AIRPORT3, 2, 1);
 
 		assertEquals(FLIGHT_OUTPUT_ONE, result.get(0).toString());
 		assertEquals(FLIGHT_OUTPUT_TWO, result.get(1).toString());
