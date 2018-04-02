@@ -24,7 +24,9 @@ public class QueryAirport extends Query {
 	 * @return String airportCode,weather,temperature,delay in string format
 	 */
 	public String generateResponse() {
-		//TODO
-		return airportDB.getAirportInfo(airport);
+		if(!airportDB.isAirportReal(airport)){
+			return cid+"error,unknown airport";
+		}
+		return cid+",airport,"+ airportDB.getAirportInfo(cid, airport);
 	}
 }

@@ -9,6 +9,7 @@ package com.flyboiz.afrs.Model;
 /* Imports */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /* Implementation */
@@ -17,28 +18,12 @@ public class Airport {
 	private String airportCode;
 	private String airportName;
 	private int connectionTime;
-	private int delayTime;
 	private List<Weather> weatherList;
+	private HashMap<Integer, WeatherStratum> weatherStratums;
+	private HashMap<String, WeatherStratum> weatherServers;
 	private int weatherIndex;
 
-	/**
-	 * Weather class to track Weather for airports easier
-	 */
-	private class Weather {
-
-		private String condition;
-		private int temperature;
-
-		public Weather(String condition, int temperature) {
-			this.condition = condition;
-			this.temperature = temperature;
-		}
-
-		@Override
-		public String toString() {
-			return String.format("%s,%d", condition, temperature);
-		}
-	}
+	private LocalWeather localWeather;
 
 	/**
 	 * Airport Constructor.
@@ -48,10 +33,22 @@ public class Airport {
 	public Airport(String airportCode) {
 		this.airportCode = airportCode;
 		connectionTime = 0;
-		delayTime = 0;
 		weatherList = new ArrayList<>();
 		weatherIndex = 0;
+		weatherServers = new HashMap<>();
+        weatherStratums = new HashMap<>();
+        localWeather = new LocalWeather(weatherList);
+        generateWeatherServers();
+
 	}
+
+    /**
+     * Populates the hashmap of concrete strategies.
+     */
+	private void generateWeatherServers() {
+	    weatherServers.put("faa", new FAAProxy(airportCode));
+	    weatherServers.put("local", localWeather);
+    }
 
 	/**
 	 * Add new weather state into the airport (the two parameters are paired).
@@ -68,7 +65,7 @@ public class Airport {
 	 * @param airportName - String, name of the airport. Ex jfk-New York City
 	 */
 	public void storeAirportName(String airportName) {
-		this.airportName = airportName;
+		localWeather.setName(airportName);
 	}
 
 	/**
@@ -86,7 +83,7 @@ public class Airport {
 	 * @param delayTime- delay time given by the read file
 	 */
 	public void setDelayTime(int delayTime) {
-		this.delayTime = delayTime;
+        localWeather.setDelay(delayTime);
 	}
 
 	/**
@@ -101,32 +98,39 @@ public class Airport {
 	 * Basic getter for the delay time
 	 * @return the delay time
 	 */
-	public int getDelayTime() {
-		return delayTime;
+	public int getDelayTime(int cid) {
+        if (!weatherStratums.containsKey(cid)) {
+            weatherStratums.put(cid, weatherServers.get("local"));
+        }
+        WeatherStratum stratum = weatherStratums.get(cid);
+        return stratum.getDelay();
 	}
 
 	/**
 	 * Get Weather object in the weatherList.
 	 * Every time this function is called, go to the next weather condition
 	 *
-	 * @return Weather object
+	 * @return String weather.
 	 */
-	private Weather getWeather() {
-		int currentIndex = weatherIndex;
-		if (weatherIndex + 1 == weatherList.size()) {
-			weatherIndex = 0;
-		} else {
-			weatherIndex += 1;
-		}
-		return weatherList.get(currentIndex);
+	public String getWeather(int cid) {
+		if (!weatherStratums.containsKey(cid)) {
+		    weatherStratums.put(cid, weatherServers.get("local"));
+        }
+        WeatherStratum stratum = weatherStratums.get(cid);
+		return stratum.getWeather(cid);
 	}
 
-	/**
-	 * @return airport-name,weather,temperature,delay in string format
-	 */
-	@Override
-	public String toString() {
-		return String.format("%s,%s,%d", airportName, getWeather(), delayTime);
-	}
+    /**
+     * Sets the weather server of the user
+     *
+     * @param cid client id
+     */
+	public void setServer(int cid, String server) {
+        if (!weatherStratums.containsKey(cid)) {
+            weatherStratums.put(cid, weatherServers.get("local"));
+        }
+	   weatherStratums.put(cid, weatherServers.get(server));
+    }
+
 
 }
