@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 
 /* implementation */
-public class IOPane extends AnchorPane implements Output, Input, Resizeable {
+public class IOPane extends AnchorPane implements Output, Input {
 
     // CONSTANTS //
     private static final String MSG_CONNECTION_FAILED = "Connection failed. Please try again.";
@@ -132,7 +132,7 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
     public void submit(String queryText) {
         currentState.submit(queryText);
     }
-    @Override
+
     public void resizeHeight(double newValue) {
         inputBox.resizeHeight(newValue / 2.0);
         inputBox.setLayoutY(0.0);
@@ -142,7 +142,7 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
         closeTabButton.setLayoutY(0.0);
         closeTabButton.toFront();
     }
-    @Override
+
     public void resizeWidth(double newValue) {
         inputBox.resizeWidth(newValue);
         outputBox.resizeWidth(newValue);

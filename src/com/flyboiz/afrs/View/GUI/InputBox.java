@@ -9,7 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
 
 /* implementation */
-public class InputBox extends TextArea implements Input, Resizeable{
+public class InputBox extends TextArea implements Input{
 
     // CONSTANTS //
     private static final String SUBMIT_CHARACTER = "\r"; // Escape character is a carriage return.
@@ -34,11 +34,11 @@ public class InputBox extends TextArea implements Input, Resizeable{
     }
 
     // GETTERS & SETTERS //
-    @Override
+
     public void resizeHeight(double newValue) {
         setAbsHeight(newValue);
     }
-    @Override
+
     public void resizeWidth(double newValue) {
         setAbsWidth(newValue);
     }

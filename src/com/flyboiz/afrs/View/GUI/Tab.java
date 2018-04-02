@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 /* implementation */
-public class Tab extends Button implements Resizeable {
+public class Tab extends Button{
 
     // STATE //
     private int tabID;
@@ -50,12 +50,10 @@ public class Tab extends Button implements Resizeable {
         setMaxWidth(width);
     }
 
-    @Override
     public void resizeHeight(double newValue) {
         setAbsHeight(newValue);
     }
 
-    @Override
     public void resizeWidth(double newValue) {
         setAbsWidth(newValue);
     }

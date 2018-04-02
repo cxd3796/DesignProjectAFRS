@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /* implementation */
-public class TabManager extends HBox implements Resizeable {
+public class TabManager extends HBox {
 
     // STATE //
     private int tabINT = 0;
@@ -118,7 +118,6 @@ public class TabManager extends HBox implements Resizeable {
         return null;
     }
 
-    @Override
     public void resizeHeight(double newValue) {
         setAbsHeight(newValue);
         newButton.resizeHeight(newValue);
@@ -126,7 +125,7 @@ public class TabManager extends HBox implements Resizeable {
             t.resizeHeight(newValue);
         }
     }
-    @Override
+
     public void resizeWidth(double newValue) {
         setAbsWidth(newValue);
         newButton.resizeWidth(newValue / 20.0);

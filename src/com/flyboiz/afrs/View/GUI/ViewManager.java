@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /* implementation */
-public class ViewManager extends Pane implements Output, Input, Resizeable {
+public class ViewManager extends Pane implements Output, Input {
 
     // CONSTANTS //
     private static final double MANAGER_FRACTION = 8.0;
@@ -178,7 +178,7 @@ public class ViewManager extends Pane implements Output, Input, Resizeable {
     public void submit(String queryText) {
         queryExecutor.makeQuery(queryText);
     }
-    @Override
+
     public void resizeHeight(double newValue) {
         double managerSize = newValue / MANAGER_FRACTION;
         setAbsHeight(newValue);
@@ -187,7 +187,7 @@ public class ViewManager extends Pane implements Output, Input, Resizeable {
             resizePane(tpp.getPane());
         }
     }
-    @Override
+
     public void resizeWidth(double newValue) {
         if (newValue < (startWidth / 4)) {
             newValue = startWidth / 4;

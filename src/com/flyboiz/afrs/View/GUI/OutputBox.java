@@ -9,7 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
 
 /* implementation */
-public class OutputBox extends TextArea implements Output, Resizeable {
+public class OutputBox extends TextArea implements Output{
 
     // CONSTANTS //
     private static final String NEWLINE = "\r\n";
@@ -51,11 +51,10 @@ public class OutputBox extends TextArea implements Output, Resizeable {
         setMaxWidth(width);
     }
 
-    @Override
     public void resizeHeight(double newValue) {
         setAbsHeight(newValue);
     }
-    @Override
+
     public void resizeWidth(double newValue) {
         setAbsWidth(newValue);
     }

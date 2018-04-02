@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 
 /* implementation */
-public class CloseTabButton extends Button implements Resizeable {
+public class CloseTabButton extends Button{
 
     // STATE //
     private ViewManager viewManager;
@@ -54,12 +54,10 @@ public class CloseTabButton extends Button implements Resizeable {
         this.font = font;
     }
 
-    @Override
     public void resizeHeight(double newValue) {
         setAbsHeight(newValue);
     }
 
-    @Override
     public void resizeWidth(double newValue) {
         setAbsWidth(newValue);
     }
