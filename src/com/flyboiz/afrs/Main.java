@@ -43,7 +43,6 @@ public class Main extends Application {
 	// Query Type Constants
 	public static final String PARTIAL_REQUEST_STRING = "pr";
 	public static final String CONNECT_REQUEST_STRING = "connect";
-	public static final String CONNECTED_STRING = "Connected! Client ID: ";
 
 	// Implementation
 	public static void main(String[] args) {
@@ -125,7 +124,7 @@ public class Main extends Application {
 				new QDisconnectCreator(clientDatabase), 					// disconnect
 				new QReserveCreator(clientDatabase, reservationDatabase),	// reserve
 				new QRetrieveCreator(reservationDatabase, airportDatabase),	// retrieve
-				new QDeleteCreator(reservationDatabase),					// delete
+				new QDeleteCreator(reservationDatabase, clientDatabase),	// delete
 				new QAirportCreator(airportDatabase),						// airport
 				new QUndoCreator(clientDatabase),							// undo
 				new QRedoCreator(clientDatabase),							// redo

@@ -5,7 +5,6 @@ import com.flyboiz.afrs.Model.ClientDatabase;
 
 public class QueryDisconnect extends Query {
 
-    private ClientDatabase clientDB;
     /**
      * Constructor for QueryDisconnect command
      * @param cid client id

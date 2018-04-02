@@ -106,8 +106,11 @@ public class IOPane extends AnchorPane implements Output, Input, Resizeable {
     }
     private String removePrependedClientID(String text) {
         int firstUsefulIndex = 0;
-        while (text.charAt(firstUsefulIndex) != ',') {
+        while (text.charAt(firstUsefulIndex) != ',' && firstUsefulIndex != (text.length() - 1)) {
             firstUsefulIndex++;
+        }
+        if (firstUsefulIndex == text.length() - 1) {
+            return text;
         }
         return text.substring(firstUsefulIndex + 1);
     }

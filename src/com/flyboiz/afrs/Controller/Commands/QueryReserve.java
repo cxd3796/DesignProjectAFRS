@@ -1,5 +1,6 @@
 package com.flyboiz.afrs.Controller.Commands;
 
+import com.flyboiz.afrs.Model.ClientDatabase;
 import com.flyboiz.afrs.Model.Itinerary;
 import com.flyboiz.afrs.Model.Reservation;
 import com.flyboiz.afrs.Model.ReservationDatabase;
@@ -21,12 +22,15 @@ public class QueryReserve extends Query {
 	 * @param reservationDB The reservation database
 	 * @param lastQuery The last query object that was created by the factory (QueryMaker)
 	 */
-	public QueryReserve(int cid, int itineraryId, String name, ReservationDatabase reservationDB, Query lastQuery) {
+	public QueryReserve(int cid, int itineraryId, String name, ReservationDatabase reservationDB, Query lastQuery,
+						ClientDatabase clientDB) {
 		super(cid);
+		this.clientDB = clientDB;
 		this.itineraryId = itineraryId;
 		this.name = name;
 		this.reservationDB = reservationDB;
 		this.lastQuery = lastQuery;
+		clientDB.addUndoQuery(this, cid); //TESTING
 	}
 
 	/**
