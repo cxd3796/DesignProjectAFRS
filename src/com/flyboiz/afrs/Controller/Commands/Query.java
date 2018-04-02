@@ -21,6 +21,14 @@ public abstract class Query {
 	public Query(ClientDatabase clientDB){
 		this.clientDB = clientDB;
 	}
+
+	public Query(int cid, ClientDatabase clientDB)
+	{
+		this.cid = cid;
+		this.clientDB = clientDB;
+	}
+
+
 	/**
 	 * @return A string that  represents the desired result.
 	 */

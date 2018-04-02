@@ -5,8 +5,6 @@ import com.flyboiz.afrs.Model.ClientDatabase;
 
 public abstract class QueryCreator {
 
-    ClientDatabase clientDB;
-
     /**
      * takes input and returns a Query
      * @param userInput

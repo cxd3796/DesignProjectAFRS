@@ -26,7 +26,7 @@ public class QUndoCreator extends QueryCreator {
             return null;
         }
         int cid = Integer.parseInt(split[0]);
-        return new QueryUndo(cid);
+        return new QueryUndo(cid, clientDB);
     }
 
 }

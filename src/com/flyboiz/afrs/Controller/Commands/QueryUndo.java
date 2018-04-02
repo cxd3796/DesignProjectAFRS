@@ -1,13 +1,15 @@
 package com.flyboiz.afrs.Controller.Commands;
 
+import com.flyboiz.afrs.Model.ClientDatabase;
+
 public class QueryUndo extends Query {
 
     /**
      * Constructor for QueryUndo command
      * @param cid client id
      */
-    public QueryUndo(int cid) {
-        super(cid);
+    public QueryUndo(int cid, ClientDatabase clientDatabase) {
+        super(cid, clientDatabase);
     }
 
 

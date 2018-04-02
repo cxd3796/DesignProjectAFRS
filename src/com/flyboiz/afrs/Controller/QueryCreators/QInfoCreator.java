@@ -15,18 +15,15 @@ import java.util.Map;
 public class QInfoCreator extends QueryCreator {
     private AirportDatabase airportDB;
     private FlightDatabase flightDB;
-    private ClientDatabase clientDB;
     private Map<String, SortStrategy> sorts;
 
     /**
      * constructor. instantiates hashmap of sort strategies
-     * @param clientDB
      * @param airportDB
      */
-    public QInfoCreator(ClientDatabase clientDB, AirportDatabase airportDB,
+    public QInfoCreator(AirportDatabase airportDB,
                         FlightDatabase flightDB){
 		this.airportDB= airportDB;
-        this.clientDB= clientDB;
         this.flightDB = flightDB;
         sorts= new HashMap<>();
         sorts.put("departure", new SortByDeparture());

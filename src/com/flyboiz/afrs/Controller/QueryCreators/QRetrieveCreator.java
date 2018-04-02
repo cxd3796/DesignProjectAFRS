@@ -7,17 +7,14 @@ import com.flyboiz.afrs.Model.ReservationDatabase;
 public class QRetrieveCreator extends QueryCreator {
     private ReservationDatabase reservationDB;
     private AirportDatabase airportDB;
-    private ClientDatabase clientDB;
 
     /**
      * constructor
-     * @param clientDB client database
      * @param reservationDB reservation database
      * @param airportDB airport database
      */
-    public QRetrieveCreator(ClientDatabase clientDB, ReservationDatabase reservationDB,
+    public QRetrieveCreator( ReservationDatabase reservationDB,
                             AirportDatabase airportDB){
-        this.clientDB = clientDB;
         this.reservationDB = reservationDB;
         this.airportDB = airportDB;
     }

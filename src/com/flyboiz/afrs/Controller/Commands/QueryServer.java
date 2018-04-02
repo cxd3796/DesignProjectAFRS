@@ -7,17 +7,15 @@ public class QueryServer extends Query {
 
     AirportDatabase airportDB;
     String infoServer;
-    ClientDatabase clientDB;
 
     /**
      * Constructor for QueryServer command
      * @param cid client id
      */
-    public QueryServer(int cid, String infoServer, AirportDatabase airportDB, ClientDatabase clientDB) {
+    public QueryServer(int cid, String infoServer, AirportDatabase airportDB) {
         super(cid);
         this.infoServer = infoServer;
         this.airportDB=airportDB;
-        this.clientDB= clientDB;
     }
 
     /**

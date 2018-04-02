@@ -1,13 +1,15 @@
 package com.flyboiz.afrs.Controller.Commands;
 
+import com.flyboiz.afrs.Model.ClientDatabase;
+
 public class QueryRedo extends Query {
 
     /**
      * Constructor for QueryRedo command
      * @param cid client id
      */
-    public QueryRedo(int cid) {
-        super(cid);
+    public QueryRedo(int cid, ClientDatabase clientDatabase) {
+        super(cid, clientDatabase);
     }
 
     @Override
