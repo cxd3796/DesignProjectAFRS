@@ -4,7 +4,6 @@
 package com.flyboiz.afrs.View.GUI;
 
 /* imports */
-
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
