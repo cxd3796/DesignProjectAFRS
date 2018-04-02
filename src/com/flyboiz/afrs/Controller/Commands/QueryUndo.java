@@ -20,7 +20,10 @@ public class QueryUndo extends Query {
      */
     @Override
     public String generateResponse() {
-        Query undo = clientDB.getLastQuery(cid);
+        Query undo= clientDB.getLastUndoQuery(cid);
+        if(undo==null){
+            return cid+",error,no request available";
+        }
         if (!(undo instanceof QueryReserve) && !(undo instanceof QueryDelete)){
             return "error";
         }
