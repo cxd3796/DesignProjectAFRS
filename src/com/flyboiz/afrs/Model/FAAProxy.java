@@ -69,7 +69,7 @@ public class FAAProxy implements WeatherStratum{
             JsonObject rootObj = root.getAsJsonObject();
 
             // Get Airport Name
-            JsonPrimitive name = rootObj.getAsJsonPrimitive("name");
+            JsonPrimitive name = rootObj.getAsJsonPrimitive("Name");
             airportName = name.getAsString();
 
             // Get Weather condition

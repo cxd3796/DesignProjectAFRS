@@ -114,9 +114,4 @@ public class AirportDatabase {
 		return ap.getConnectionTime() + ap.getDelayTime(cid);
 	}
 
-
-	public void setServer(int clientID, String infoServer) {
-		// do nothing?
-	}
-
 }
