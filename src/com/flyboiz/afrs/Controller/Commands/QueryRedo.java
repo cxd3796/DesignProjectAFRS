@@ -4,14 +4,20 @@ import com.flyboiz.afrs.Model.ClientDatabase;
 
 public class QueryRedo extends Query {
 
+
     /**
-     * Constructor for QueryRedo command
-     * @param cid client id
+     * Constructor for QueryRedo Command
+     * @param cid The client id
+     * @param clientDatabase The client database
      */
     public QueryRedo(int cid, ClientDatabase clientDatabase) {
         super(cid, clientDatabase);
     }
 
+    /**
+     * Generates a response for the output
+     * @return A string representation of the response
+     */
     @Override
     public String generateResponse() {
         Query redo = clientDB.getLastRedoQuery(cid);

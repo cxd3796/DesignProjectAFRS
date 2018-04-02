@@ -11,11 +11,19 @@ public class Client
 	private Stack<Query> redoStack = new Stack<>();
 	private int cid;
 
+	/**
+	 * Constructor for client
+	 * @param cid Takes in a client id
+	 */
 	public Client(int cid)
 	{
 		this.cid = cid;
 	}
 
+	/**
+	 * Adds to the client's query stack with a query
+	 * @param query
+	 */
 	public void addLastQuery(Query query)
 	{
 		queryStack.push(query);

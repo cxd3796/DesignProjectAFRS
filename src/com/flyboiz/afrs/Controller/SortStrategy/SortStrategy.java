@@ -14,6 +14,11 @@ import java.util.List;
 public interface SortStrategy {
 
 	// Behaviors //
+
+	/**
+	 * Method that will need to be implemented to provide sort functionality
+	 * @param list A list of itineraries
+	 */
 	void sort(List<Itinerary> list);
 
 }

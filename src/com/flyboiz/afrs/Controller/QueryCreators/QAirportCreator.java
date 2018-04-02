@@ -8,7 +8,10 @@ public class QAirportCreator extends QueryCreator{
 
     private AirportDatabase airportDB;
 
-
+    /**
+     * Constructor for Query Airport Creator
+     * @param airportDB Airport Database
+     */
     public QAirportCreator(AirportDatabase airportDB){
         this.airportDB = airportDB;
     }

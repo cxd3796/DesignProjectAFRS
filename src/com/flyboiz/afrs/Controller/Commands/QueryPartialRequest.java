@@ -14,15 +14,11 @@ public class QueryPartialRequest extends Query {
     // PARTIAL REQUEST STRING //
     public static final String PARTIAL_REQUEST_STRING = "partial-request";
 
-    // STATE //
-
     // CONSTRUCTOR //
     public QueryPartialRequest() {
         super(null);
         // no initialization
     }
-
-    // GETTERS & SETTERS //
 
     // BEHAVIOUR //
     @Override

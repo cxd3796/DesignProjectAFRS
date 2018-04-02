@@ -18,8 +18,8 @@ public class QRedoCreator extends QueryCreator{
     /**
      * makes a QueryRedo given a cid.
      * input should be in format: cid, redo
-     * @param input
-     * @return
+     * @param input Input String
+     * @return Returns a QueryRedo
      */
     public QueryRedo makeQuery(String input){
         String[] split = input.split(",");

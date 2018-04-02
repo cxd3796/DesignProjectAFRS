@@ -8,7 +8,7 @@ public class QConnectCreator extends QueryCreator{
     private ClientDatabase clientDB;
 
     /**
-     * constructor
+     * Constructor for the QConnectCreator
      * @param clientDB client database
      */
     public QConnectCreator(ClientDatabase clientDB){

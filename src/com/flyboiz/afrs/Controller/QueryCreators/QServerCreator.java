@@ -14,7 +14,11 @@ public class QServerCreator extends QueryCreator {
         this.airportDB = airportDB;
     }
 
-
+    /**
+     * Creates a query based on the input (will handle switching of the server)
+     * @param input InputString
+     * @return Returns a QueryServer
+     */
     public QueryServer makeQuery(String input) {
         String[] split = input.split(",");
         if(split.length!= 3){

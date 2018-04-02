@@ -7,8 +7,8 @@ public abstract class QueryCreator {
 
     /**
      * takes input and returns a Query
-     * @param userInput
-     * @return
+     * @param userInput The user's input
+     * @return Returns a Query that can be executed
      */
     public abstract Query makeQuery(String userInput);
 
